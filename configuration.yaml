@@ -74,3 +74,52 @@ shell_command:
     cd /config &&
     git fetch origin &&
     git checkout origin/main -- automations.yaml dashboard_nha-c-a-hi-u.yaml dashboard_nha-c-a-hi-u-2.yaml
+
+# BỘ TRỢ GIÚP ĐIỀU KHIỂN SẠC & XẢ PIN LUXPOWER
+input_boolean:
+  solar_ac_charge_enabled:
+    name: "Kích hoạt sạc lưới theo giờ"
+    icon: mdi:battery-charging
+  solar_discharge_enabled:
+    name: "Kích hoạt xả pin theo giờ"
+    icon: mdi:battery-arrow-down
+
+input_datetime:
+  solar_ac_charge_start:
+    name: "Giờ bắt đầu sạc lưới"
+    has_date: false
+    has_time: true
+    initial: "23:00"
+  solar_ac_charge_end:
+    name: "Giờ kết thúc sạc lưới"
+    has_date: false
+    has_time: true
+    initial: "05:00"
+  solar_discharge_start:
+    name: "Giờ bắt đầu xả pin"
+    has_date: false
+    has_time: true
+    initial: "17:00"
+  solar_discharge_end:
+    name: "Giờ kết thúc xả pin"
+    has_date: false
+    has_time: true
+    initial: "21:00"
+
+input_number:
+  solar_ac_charge_soc_limit:
+    name: "Ngưỡng dừng sạc lưới (% SOC)"
+    min: 20
+    max: 100
+    step: 5
+    unit_of_measurement: "%"
+    initial: 90
+    icon: mdi:battery-charging-90
+  solar_discharge_soc_cutoff:
+    name: "Ngưỡng dừng xả bảo vệ pin (% SOC)"
+    min: 10
+    max: 50
+    step: 5
+    unit_of_measurement: "%"
+    initial: 20
+    icon: mdi:battery-alert
