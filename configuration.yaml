@@ -1,0 +1,75 @@
+http:
+  use_x_forwarded_for: true
+  trusted_proxies:
+    - 172.30.33.0/24
+# Loads default set of integrations. Do not remove.
+default_config:
+
+# Load frontend themes from the themes folder
+frontend:
+  themes: !include_dir_merge_named themes
+
+automation: !include automations.yaml
+script: !include scripts.yaml
+scene: !include scenes.yaml
+
+template:
+  - sensor:
+      - name: "Nhiệt độ hôm nay dự báo thời tiết"
+        state: "{{ state_attr('weather.forecast_home','temperature') }}"
+        unit_of_measurement: "°C"
+        device_class: temperature
+
+      - name: "Độ ẩm dự báo thời tiết "
+        state: "{{ state_attr('weather.forecast_home','humidity') }}"
+        unit_of_measurement: "%"
+        device_class: humidity
+
+      - name: "Tốc độ gió dự báo thời tiết"
+        state: "{{ state_attr('weather.forecast_home','wind_speed') }}"
+        unit_of_measurement: "km/h"
+        device_class: wind_speed
+
+      - name: "Dự báo thời tiết"
+        state: >
+          {% set w = states('weather.forecast_home') %}
+          {% if w == 'sunny' %} Trời có nắng
+          {% elif w == 'partlycloudy' %} Trời ít mây
+          {% elif w == 'clear-night' %} Trời quang mây
+          {% elif w == 'cloudy' %} Trời nhiều mây
+          {% elif w == 'rainy' %} Trời có mưa
+          {% elif w == 'pouring' %} Trời có mưa lớn
+          {% elif w == 'snowy' %} Trời có tuyết rơi
+          {% elif w == 'fog' %} Trời có sương mù
+          {% elif w == 'windy' %} Trời nhiều gió
+          {% elif w == 'lightning' %} Trời có dông
+          {% elif w == 'lightning-rainy' %} Trời có mưa dông
+          {% else %} {{ w }}
+          {% endif %}
+          panel_iframe:
+utility_meter:
+  pv_energy_monthly:
+    name: "PV Energy Monthly"
+    source: sensor.luxpower_inverter_pv_pv_energy_total
+    cycle: monthly
+
+  battery_charge_monthly:
+    name: "Battery Charge Monthly"
+    source: sensor.luxpower_inverter_battery_charge_energy_total
+    cycle: monthly
+
+  battery_discharge_monthly:
+    name: "Battery Discharge Monthly"
+    source: sensor.luxpower_inverter_battery_discharge_energy_total
+    cycle: monthly
+
+  grid_energy_monthly:
+    name: "Grid Energy Monthly"
+    source: sensor.luxpower_inverter_grid_energy_from_grid_total
+    cycle: monthly
+
+shell_command:
+  deploy_config: >
+    cd /config &&
+    git fetch origin &&
+    git checkout origin/main -- automations.yaml dashboard_nha-c-a-hi-u.yaml dashboard_nha-c-a-hi-u-2.yaml

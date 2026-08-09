@@ -1,0 +1,36 @@
+c_a_m:
+  alias: Cửa - Mở
+  sequence:
+  - action: input_select.select_option
+    target:
+      entity_id: input_select.trang_thai_cua
+    data:
+      option: ĐANG MỞ
+  - action: cover.open_cover
+    target:
+      entity_id: cover.cong_tac_cua_cuon
+  mode: restart
+c_a_d_ng:
+  alias: Cửa - Dừng
+  sequence:
+  - action: input_select.select_option
+    target:
+      entity_id: input_select.trang_thai_cua
+    data:
+      option: ĐANG DỪNG
+  - action: cover.stop_cover
+    target:
+      entity_id: cover.cong_tac_cua_cuon
+  mode: restart
+c_a_dong:
+  alias: Cửa - Đóng
+  sequence:
+  - action: input_select.select_option
+    target:
+      entity_id: input_select.trang_thai_cua
+    data:
+      option: ĐANG ĐÓNG
+  - action: cover.close_cover
+    target:
+      entity_id: cover.cong_tac_cua_cuon
+  mode: restart

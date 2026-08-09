@@ -1,0 +1,126 @@
+ptz_move:
+  name: PTZ di chuyển liên tục
+  description: Xoay/zoom camera liên tục theo vận tốc (gọi ptz_stop để dừng).
+  fields:
+    entity_id:
+      name: Camera
+      description: Camera áp dụng (bỏ trống = tất cả).
+      selector:
+        entity:
+          integration: imou_ranger
+          domain: camera
+    pan:
+      name: Pan
+      description: Vận tốc ngang -1..1.
+      default: 0
+      selector:
+        number:
+          min: -1
+          max: 1
+          step: 0.1
+    tilt:
+      name: Tilt
+      description: Vận tốc dọc -1..1.
+      default: 0
+      selector:
+        number:
+          min: -1
+          max: 1
+          step: 0.1
+    zoom:
+      name: Zoom
+      description: Vận tốc zoom -1..1.
+      default: 0
+      selector:
+        number:
+          min: -1
+          max: 1
+          step: 0.1
+
+ptz_step:
+  name: PTZ nhích một bước
+  description: Di chuyển trong khoảng thời gian rồi tự dừng.
+  fields:
+    entity_id:
+      name: Camera
+      selector:
+        entity:
+          integration: imou_ranger
+          domain: camera
+    pan:
+      name: Pan
+      default: 0
+      selector:
+        number: { min: -1, max: 1, step: 0.1 }
+    tilt:
+      name: Tilt
+      default: 0
+      selector:
+        number: { min: -1, max: 1, step: 0.1 }
+    zoom:
+      name: Zoom
+      default: 0
+      selector:
+        number: { min: -1, max: 1, step: 0.1 }
+    duration:
+      name: Thời lượng (giây)
+      default: 0.5
+      selector:
+        number: { min: 0.1, max: 5, step: 0.1 }
+
+ptz_stop:
+  name: PTZ dừng
+  description: Dừng mọi chuyển động PTZ.
+  fields:
+    entity_id:
+      name: Camera
+      selector:
+        entity:
+          integration: imou_ranger
+          domain: camera
+
+goto_preset:
+  name: Đi tới preset
+  description: Di chuyển camera tới preset đã lưu.
+  fields:
+    entity_id:
+      name: Camera
+      selector:
+        entity:
+          integration: imou_ranger
+          domain: camera
+    preset:
+      name: Preset token
+      required: true
+      selector:
+        text:
+
+set_preset:
+  name: Lưu vị trí hiện tại (preset)
+  description: Lưu vị trí PTZ hiện tại thành preset mới.
+  fields:
+    entity_id:
+      name: Camera
+      selector:
+        entity:
+          integration: imou_ranger
+          domain: camera
+    name:
+      name: Tên preset
+      selector:
+        text:
+
+remove_preset:
+  name: Xóa preset
+  fields:
+    entity_id:
+      name: Camera
+      selector:
+        entity:
+          integration: imou_ranger
+          domain: camera
+    preset:
+      name: Preset token
+      required: true
+      selector:
+        text:

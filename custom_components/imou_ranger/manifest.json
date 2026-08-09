@@ -1,0 +1,12 @@
+{
+  "domain": "imou_ranger",
+  "name": "Imou Ranger 2 (ONVIF)",
+  "version": "1.0.0",
+  "config_flow": true,
+  "documentation": "https://github.com/local/imou_ranger",
+  "issue_tracker": "https://github.com/local/imou_ranger/issues",
+  "requirements": ["onvif-zeep==0.2.12"],
+  "iot_class": "local_polling",
+  "integration_type": "device",
+  "codeowners": []
+}

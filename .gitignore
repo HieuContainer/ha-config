@@ -1,0 +1,33 @@
+# Security Secrets (KHÔNG BAO GIỜ COMMIT MẬT KHẨU VÀ TOKEN)
+secrets.yaml
+.env
+
+# Database & Runtime logs
+*.db
+*.db-shm
+*.db-wal
+home-assistant_v2.db*
+home-assistant.log*
+*.fault
+.ha_run.lock
+
+# Home Assistant Sensitive Storage & Tokens
+.storage/
+
+# Cache & Temp Files
+.cache/
+__pycache__/
+*.pyc
+
+# Local Helper Scripts & Wrappers
+pull_code.ps1
+sync_push.ps1
+sync_pull.ps1
+watch_sync.ps1
+discover.ps1
+test_samba*
+fix_git_path.ps1
+git_push.ps1
+run_preview_docker.ps1
+git.bat
+git.ps1

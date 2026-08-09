@@ -1,0 +1,44 @@
+- id: '1783839133972'
+  alias: Bình nóng lạnh - Tự tắt sau 20 phút
+  description: Bật bình nóng lạnh thì chạy timer và tự tắt sau 20 phút
+  triggers:
+  - trigger: state
+    entity_id:
+    - switch.cong_tac_nong_lanh
+    to:
+    - 'on'
+  conditions: []
+  actions:
+  - action: timer.start
+    target:
+      entity_id: timer.nong_lanh_20_phut
+    data:
+      duration: 00:20:00
+  - wait_for_trigger:
+    - trigger: event
+      event_type: timer.finished
+      event_data:
+        entity_id: timer.nong_lanh_20_phut
+    continue_on_timeout: false
+  - condition: state
+    entity_id: switch.cong_tac_nong_lanh
+    state: 'on'
+  - action: switch.turn_off
+    target:
+      entity_id: switch.cong_tac_nong_lanh
+  mode: restart
+- id: '1783922667532'
+  alias: Bình nóng lạnh - Tắt thì hủy timer
+  description: Tắt bình thủ công thì hủy bộ đếm
+  triggers:
+  - trigger: state
+    entity_id:
+    - switch.cong_tac_nong_lanh
+    to:
+    - 'off'
+  conditions: []
+  actions:
+  - action: timer.cancel
+    target:
+      entity_id: timer.nong_lanh_20_phut
+  mode: restart

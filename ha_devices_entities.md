@@ -1,0 +1,1097 @@
+# Home Assistant - Tai lieu Tich hop / Thiet bi / Thuc the
+
+Nguon: minhhieubg.online | Tong: 21 tich hop, 51 thiet bi, 857 thuc the, 4 khu vuc
+
+## Khu vuc (Areas)
+- `phong_khach`: Phòng khách
+- `phong_bep`: Phòng bếp
+- `phong_ngu`: Phòng ngủ
+- `san`: sân
+
+## Bo tich hop (Integrations) va Thiet bi / Thuc the
+
+### Analytics  (`analytics`)
+- entry_id: `01KWRA5ZSXVZ583WS42YYZSD7S` | state: loaded | so thiet bi: 0 | so thuc the (qua thiet bi): 0
+- (khong co thiet bi rieng - co the co thuc the truc tiep, xem phan "Thuc the khong gan thiet bi")
+
+### Backup  (`backup`)
+- entry_id: `01KWRA5ZTRXHFSG6DZJM2PMP5J` | state: loaded | so thiet bi: 1 | so thuc the (qua thiet bi): 5
+  - **Thiet bi:** Backup  (id: `0ce66e352ce451871bbbf96c18f3dc94`)
+    - hang: Home Assistant | model: Home Assistant Backup | sw: 2026.7.4 | khu vuc: -
+    - Thuc the (5):
+      - `event.backup_automatic_backup` - Automatic backup
+      - `sensor.backup_backup_manager_state` - Backup Manager state
+      - `sensor.backup_last_attempted_automatic_backup` - Last attempted automatic backup
+      - `sensor.backup_last_successful_automatic_backup` - Last successful automatic backup
+      - `sensor.backup_next_scheduled_automatic_backup` - Next scheduled automatic backup
+
+### Công Tơ Tải  (`tuya_local`)
+- entry_id: `01KZ390PVEN1AGS9Z9JSWEHYQV` | state: loaded | so thiet bi: 1 | so thuc the (qua thiet bi): 27
+  - **Thiet bi:** Công Tơ Tải  (id: `c088f5f9042324c9654d80808a22e1a6`)
+    - hang: Tuya | khu vuc: -
+    - Thuc the (27):
+      - `binary_sensor.cong_to_tai_su_co` - Sự cố
+      - `event.cong_to_tai_alarm` - Alarm
+      - `select.cong_to_tai_power_source` - Power source
+      - `sensor.cong_to_tai_battery_temperature` - Battery temperature
+      - `sensor.cong_to_tai_cong_suat` - Công suất
+      - `sensor.cong_to_tai_current_ac_phase_a` - Current AC phase A
+      - `sensor.cong_to_tai_current_ac_phase_b` - Current AC phase B
+      - `sensor.cong_to_tai_current_ac_phase_c` - Current AC phase C
+      - `sensor.cong_to_tai_current_pv_1` - Current PV 1
+      - `sensor.cong_to_tai_current_pv_2` - Current PV 2
+      - `sensor.cong_to_tai_energy_consumed` - Energy consumed
+      - `sensor.cong_to_tai_energy_produced` - Energy produced
+      - `sensor.cong_to_tai_nhiet_do` - Nhiệt độ
+      - `sensor.cong_to_tai_power_ac_phase_a` - Power AC phase A
+      - `sensor.cong_to_tai_power_ac_phase_b` - Power AC phase B
+      - `sensor.cong_to_tai_power_ac_phase_c` - Power AC phase C
+      - `sensor.cong_to_tai_power_data` - Power data
+      - `sensor.cong_to_tai_power_pv_1` - Power PV 1
+      - `sensor.cong_to_tai_power_pv_2` - Power PV 2
+      - `sensor.cong_to_tai_voltage_ac_phase_a` - Voltage AC phase A
+      - `sensor.cong_to_tai_voltage_ac_phase_b` - Voltage AC phase B
+      - `sensor.cong_to_tai_voltage_ac_phase_c` - Voltage AC phase C
+      - `sensor.cong_to_tai_voltage_pv_1` - Voltage PV 1
+      - `sensor.cong_to_tai_voltage_pv_2` - Voltage PV 2
+      - `text.cong_to_tai_alarm_1` - Alarm 1
+      - `text.cong_to_tai_alarm_2` - Alarm 2
+      - `text.cong_to_tai_settings` - Settings
+
+### Công tắc cửa cuốn  (`tuya_local`)
+- entry_id: `01KYA68GQDARQBNEQG3WWAY4YC` | state: loaded | so thiet bi: 1 | so thuc the (qua thiet bi): 1
+  - **Thiet bi:** Công tắc cửa cuốn  (id: `0844245c298c5a9d0b87a9eeb4d2fe0b`)
+    - hang: Tuya | khu vuc: -
+    - Thuc the (1):
+      - `cover.cong_tac_cua_cuon`
+
+### Công tắc Nóng - Lạnh  (`tuya_local`)
+- entry_id: `01KXNJW8YTPQNF0CMHZ5NPE6J8` | state: loaded | so thiet bi: 1 | so thuc the (qua thiet bi): 1
+  - **Thiet bi:** Công tắc Nóng - Lạnh  (id: `78243728b2843063070d1911544757d1`)
+    - hang: Tuya | khu vuc: -
+    - Thuc the (1):
+      - `switch.cong_tac_nong_lanh`
+
+### go2rtc  (`go2rtc`)
+- entry_id: `01KWRA5ZSXE60BVWEV8GK4SJXE` | state: loaded | so thiet bi: 0 | so thuc the (qua thiet bi): 0
+- (khong co thiet bi rieng - co the co thuc the truc tiep, xem phan "Thuc the khong gan thiet bi")
+
+### Google Cast  (`cast`)
+- entry_id: `01KWRA60RNT2M6MK359B2BJCSS` | state: loaded | so thiet bi: 2 | so thuc the (qua thiet bi): 2
+  - **Thiet bi:** TV trong Phòng gia đình  (id: `712640c5b2c4e374789154f0efb8e50b`)
+    - hang: Sony | model: BRAVIA VU31 | khu vuc: -
+    - Thuc the (1):
+      - `media_player.tv_trong_phong_gia_dinh`
+  - **Thiet bi:** TV phòng khách  (id: `8147a2bda9c08ff32770d70d64896a1c`)
+    - hang: Sony | model: BRAVIA 4K GB | khu vuc: -
+    - Thuc the (1):
+      - `media_player.tv_phong_khach`
+
+### Google Translate text-to-speech  (`google_translate`)
+- entry_id: `01KWRAB3WMC88S5FJQRK68WVSQ` | state: loaded | so thiet bi: 1 | so thuc the (qua thiet bi): 1
+  - **Thiet bi:** Google Translate en com  (id: `f316e63c6708cc7ed5db79af0e95508e`)
+    - hang: Google | model: Google Translate TTS | khu vuc: -
+    - Thuc the (1):
+      - `tts.google_translate_en_com`
+
+### hacs  (`hacs`)
+- entry_id: `01KWRB4F08QDEY5GQ9JKMJD0CP` | state: loaded | so thiet bi: 18 | so thuc the (qua thiet bi): 18
+  - **Thiet bi:** HACS  (id: `7557cf3f680e92e31a4606ceb6a7a198`)
+    - hang: hacs.xyz | sw: 2.0.5 | khu vuc: -
+    - Thuc the (1):
+      - `update.hacs_update` - Update
+  - **Thiet bi:** Local Tuya  (id: `1d594aa63aa87235761bc97dabc6b1c2`)
+    - hang: rospogrigio, postlund | model: integration | khu vuc: -
+    - Thuc the (1):
+      - `update.local_tuya_update` - Update
+  - **Thiet bi:** Mushroom  (id: `4310a5fee3f4e77ed381968f713171dc`)
+    - hang: piitaya | model: plugin | khu vuc: -
+    - Thuc the (1):
+      - `update.mushroom_update` - Update
+  - **Thiet bi:** Tuya Local  (id: `4e057054ecb6834d7ce5d43ecefa3490`)
+    - hang: make-all | model: integration | khu vuc: -
+    - Thuc the (1):
+      - `update.tuya_local_update` - Update
+  - **Thiet bi:** Bubble Card  (id: `7e4452f1e5b1dba4c08c5e20299011cc`)
+    - hang: Clooos | model: plugin | khu vuc: -
+    - Thuc the (1):
+      - `update.bubble_card_update` - Update
+  - **Thiet bi:** button-card  (id: `b54d39fab9f3b1f37d081c00c036555b`)
+    - hang: custom-cards | model: plugin | khu vuc: -
+    - Thuc the (1):
+      - `update.button_card_update` - Update
+  - **Thiet bi:** card-mod  (id: `bf67f69aabd299be913db710ed823bbc`)
+    - hang: thomasloven | model: plugin | khu vuc: -
+    - Thuc the (1):
+      - `update.card_mod_update` - Update
+  - **Thiet bi:** Stack In Card  (id: `0425be6a7d150b09cd7b18e69f4e01fb`)
+    - hang: custom-cards | model: plugin | khu vuc: -
+    - Thuc the (1):
+      - `update.stack_in_card_update` - Update
+  - **Thiet bi:** layout-card  (id: `b1e0c38ed0e349ff4d8c6502cac07ea4`)
+    - hang: thomasloven | model: plugin | khu vuc: -
+    - Thuc the (1):
+      - `update.layout_card_update` - Update
+  - **Thiet bi:** Noctis  (id: `6ce2432ea291ecc525c206727e52e1ca`)
+    - hang: aFFekopp | model: theme | khu vuc: -
+    - Thuc the (1):
+      - `update.noctis_update` - Update
+  - **Thiet bi:** Clock Weather Card  (id: `2ca38cb974b0d5b90aac1332d6d72567`)
+    - hang: pkissling | model: plugin | khu vuc: -
+    - Thuc the (1):
+      - `update.clock_weather_card_update` - Update
+  - **Thiet bi:** HASS.Agent 2 Integration - Media Player & Notifications  (id: `05a14178d4eedb05e9c1f025e9cd7ef3`)
+    - hang: fillefilip8, DrR0X-glitch, amadeo-alex | model: integration | khu vuc: -
+    - Thuc the (1):
+      - `update.hass_agent_2_integration_media_player_notifications_update` - Update
+  - **Thiet bi:** Luxpower Inverter (Modbus)  (id: `4bd064dc24125a1c3ced179b7377df4f`)
+    - hang: ant0nkr | model: integration | khu vuc: -
+    - Thuc the (1):
+      - `update.luxpower_inverter_modbus_update` - Update
+  - **Thiet bi:** apexcharts-card  (id: `3a4ab49b2ee7a64850d3259cd0e40e0c`)
+    - hang: RomRider | model: plugin | khu vuc: -
+    - Thuc the (1):
+      - `update.apexcharts_card_update` - Update
+  - **Thiet bi:** Power Flow Card Plus  (id: `91410e5f37257103c6a97a9d7330feb8`)
+    - hang: flixlix | model: plugin | khu vuc: -
+    - Thuc the (1):
+      - `update.power_flow_card_plus_update` - Update
+  - **Thiet bi:** Sunsynk Power Flow Card  (id: `4cc329928374cc5df34f00530506cb47`)
+    - hang: slipx06 | model: plugin | khu vuc: -
+    - Thuc the (1):
+      - `update.sunsynk_power_flow_card_update` - Update
+  - **Thiet bi:** Flexible Horseshoe Card  (id: `0e9fbe4d9dbdd483e8b327568454e2fd`)
+    - hang: AmoebeLabs | model: plugin | khu vuc: -
+    - Thuc the (1):
+      - `update.flexible_horseshoe_card_update` - Update
+  - **Thiet bi:** Paper Buttons Row  (id: `beb156d970eef23087bf3d05a5cd34e8`)
+    - hang: jcwillox | model: plugin | khu vuc: -
+    - Thuc the (1):
+      - `update.paper_buttons_row_update` - Update
+
+### Home  (`met`)
+- entry_id: `01KWRMWV6R21VDXK56BBWY9F55` | state: loaded | so thiet bi: 1 | so thuc the (qua thiet bi): 1
+  - **Thiet bi:** Forecast  (id: `501f937f6309a2eacb9c41b6446c1ddb`)
+    - hang: Met.no | model: Forecast | khu vuc: -
+    - Thuc the (1):
+      - `weather.forecast_home` - Home
+
+### Imou Ranger 2  (`imou_ranger`)
+- entry_id: `01KY4H0MW9J5WQ5KX5EAHNX7DZ` | state: loaded | so thiet bi: 1 | so thuc the (qua thiet bi): 15
+  - **Thiet bi:** IPC-GS7E-3M0WE  (id: `1b8569217c6f975f5e7555a1fc4c776f`)
+    - hang: LC | model: IPC-GS7E-3M0WE | sw: 2.810.0000000.1.R 2025-12-02 | khu vuc: -
+    - Thuc the (15):
+      - `button.ipc_gs7e_3m0we_len` - Lên
+      - `button.ipc_gs7e_3m0we_luu_vi_tri_hien_tai` - Lưu vị trí hiện tại
+      - `button.ipc_gs7e_3m0we_phai` - Phải
+      - `button.ipc_gs7e_3m0we_trai` - Trái
+      - `button.ipc_gs7e_3m0we_xuong` - Xuống
+      - `button.ipc_gs7e_3m0we_zoom` - Zoom +
+      - `button.ipc_gs7e_3m0we_zoom_2` - Zoom −
+      - `camera.ipc_gs7e_3m0we`
+      - `select.ipc_gs7e_3m0we_di_toi_vi_tri` - Đi tới vị trí
+      - `select.ipc_gs7e_3m0we_xoa_vi_tri` - Xóa vị trí
+      - `sensor.ipc_gs7e_3m0we_firmware` - Firmware
+      - `sensor.ipc_gs7e_3m0we_manufacturer` - Manufacturer
+      - `sensor.ipc_gs7e_3m0we_model` - Model
+      - `sensor.ipc_gs7e_3m0we_serial` - Serial
+      - `text.ipc_gs7e_3m0we_luu_vi_tri_dat_ten` - Lưu vị trí đặt tên
+
+### Imou Ranger 2  (`imou_ranger`)
+- entry_id: `01KY4HZK8G31NX3APMDMK524G8` | state: loaded | so thiet bi: 1 | so thuc the (qua thiet bi): 15
+  - **Thiet bi:** IPC-TA42-L  (id: `22ecae4ae4c033b16bf30bf9af047d64`)
+    - hang: LC | model: IPC-TA42-L | sw: 2.810.0000000.1.R 2025-12-05 | khu vuc: -
+    - Thuc the (15):
+      - `button.ipc_ta42_l_len` - Lên
+      - `button.ipc_ta42_l_luu_vi_tri_hien_tai` - Lưu vị trí hiện tại
+      - `button.ipc_ta42_l_phai` - Phải
+      - `button.ipc_ta42_l_trai` - Trái
+      - `button.ipc_ta42_l_xuong` - Xuống
+      - `button.ipc_ta42_l_zoom` - Zoom +
+      - `button.ipc_ta42_l_zoom_2` - Zoom −
+      - `camera.ipc_ta42_l`
+      - `select.ipc_ta42_l_di_toi_vi_tri` - Đi tới vị trí
+      - `select.ipc_ta42_l_xoa_vi_tri` - Xóa vị trí
+      - `sensor.ipc_ta42_l_firmware` - Firmware
+      - `sensor.ipc_ta42_l_manufacturer` - Manufacturer
+      - `sensor.ipc_ta42_l_model` - Model
+      - `sensor.ipc_ta42_l_serial` - Serial
+      - `text.ipc_ta42_l_luu_vi_tri_dat_ten` - Lưu vị trí đặt tên
+
+### Iphone11  (`mobile_app`)
+- entry_id: `01KXFR8PFR4ENWP2Z9GBX7165W` | state: loaded | so thiet bi: 1 | so thuc the (qua thiet bi): 18
+  - **Thiet bi:** Iphone11  (id: `8d6962846af7a82a42aaa5e6144ab019`)
+    - hang: Apple | model: iPhone12,1 | sw: 16.4.1 | khu vuc: -
+    - Thuc the (18):
+      - `binary_sensor.iphone11_kiosk_mode` - Kiosk Mode
+      - `device_tracker.iphone11`
+      - `notify.iphone11`
+      - `sensor.iphone11_app_version` - App Version
+      - `sensor.iphone11_audio_output` - Audio Output
+      - `sensor.iphone11_battery_level` - Battery Level
+      - `sensor.iphone11_battery_state` - Battery State
+      - `sensor.iphone11_bssid` - BSSID
+      - `sensor.iphone11_connection_type` - Connection Type
+      - `sensor.iphone11_geocoded_location` - Geocoded Location
+      - `sensor.iphone11_kiosk_brightness` - Kiosk Brightness
+      - `sensor.iphone11_kiosk_volume` - Kiosk Volume
+      - `sensor.iphone11_last_update_trigger` - Last Update Trigger
+      - `sensor.iphone11_location_permission` - Location permission
+      - `sensor.iphone11_sim_1` - SIM 1
+      - `sensor.iphone11_sim_2` - SIM 2
+      - `sensor.iphone11_ssid` - SSID
+      - `sensor.iphone11_storage` - Storage
+
+### Luxpower Inverter  (`lxp_modbus`)
+- entry_id: `01KZ5GN29JEC25WX3418D5781V` | state: loaded | so thiet bi: 9 | so thuc the (qua thiet bi): 717
+  - **Thiet bi:** Luxpower Inverter  (id: `f5b0f64493e1ab00dac65dd97d835629`)
+    - hang: LuxpowerTek | model: HCAA | sw: CHAA-000303 | khu vuc: -
+    - Thuc the (117):
+      - `button.luxpower_inverter_clear_parallel_alarm` -  Clear Parallel Alarm
+      - `button.luxpower_inverter_reboot_inverter` -  Reboot Inverter
+      - `number.luxpower_inverter_ac_charge_power` -  AC Charge Power
+      - `number.luxpower_inverter_active_power_percent` -  Active Power Percent
+      - `number.luxpower_inverter_active_power_percent_precise` -  Active Power Percent (Precise)
+      - `number.luxpower_inverter_afci_arc_threshold` -  AFCI Arc Threshold
+      - `number.luxpower_inverter_bus_overvoltage_alarm_point` -  BUS Overvoltage Alarm Point
+      - `number.luxpower_inverter_discharge_recovery_volt_threshold` -  Discharge Recovery Volt Threshold
+      - `number.luxpower_inverter_equalization_interval` -  Equalization Interval
+      - `number.luxpower_inverter_equalization_time` -  Equalization Time
+      - `number.luxpower_inverter_external_ct_power_offset` -  External CT Power Offset
+      - `number.luxpower_inverter_flash_size` -  Flash Size
+      - `number.luxpower_inverter_lcd_password` -  LCD Password
+      - `number.luxpower_inverter_max_backflow_power` -  Max Backflow Power
+      - `number.luxpower_inverter_modbus_address` -  Modbus Address
+      - `number.luxpower_inverter_nec_120_bus_bar_limit` -  NEC 120% Bus Bar Limit
+      - `number.luxpower_inverter_npe_threshold` -  NPE Threshold
+      - `number.luxpower_inverter_over_temperature_derate_point` -  Over-Temperature Derate Point
+      - `number.luxpower_inverter_power_soft_start_slope` -  Power Soft Start Slope
+      - `number.luxpower_inverter_specific_load_compensate` -  Specific Load Compensate
+      - `number.luxpower_inverter_start_charge_p_import_threshold` -  Start Charge P_import Threshold
+      - `number.luxpower_inverter_wattnode_ct1_amps` -  WattNode CT1 Amps
+      - `number.luxpower_inverter_wattnode_ct2_amps` -  WattNode CT2 Amps
+      - `number.luxpower_inverter_wattnode_ct3_amps` -  WattNode CT3 Amps
+      - `select.luxpower_inverter_ac_charge_type` -  AC Charge Type
+      - `select.luxpower_inverter_discharge_control_type` -  Discharge Control Type
+      - `select.luxpower_inverter_language` -  Language
+      - `select.luxpower_inverter_lcd_screen_type` -  LCD Screen Type
+      - `select.luxpower_inverter_line_mode` -  Line Mode
+      - `select.luxpower_inverter_output_priority_config` -  Output Priority Config
+      - `select.luxpower_inverter_smart_load_enable` -  Smart Load Enable
+      - `select.luxpower_inverter_system_type` -  System Type
+      - `select.luxpower_inverter_working_mode` -  Working Mode
+      - `sensor.luxpower_inverter_ac_charge_energy_today` -  AC Charge Energy Today
+      - `sensor.luxpower_inverter_ac_charge_energy_total` -  AC Charge Energy Total
+      - `sensor.luxpower_inverter_ac_charging_rectification_power` -  AC Charging Rectification Power
+      - `sensor.luxpower_inverter_ac_input_type` -  AC Input Type
+      - `sensor.luxpower_inverter_ac_rectification_power_l1n` -  AC Rectification Power L1N
+      - `sensor.luxpower_inverter_ac_rectification_power_l2n` -  AC Rectification Power L2N
+      - `sensor.luxpower_inverter_active_fault_code` -  Active Fault (Code)
+      - `sensor.luxpower_inverter_active_fault_text` -  Active Fault (Text)
+      - `sensor.luxpower_inverter_active_warning_code` -  Active Warning (Code)
+      - `sensor.luxpower_inverter_active_warning_text` -  Active Warning (Text)
+      - `sensor.luxpower_inverter_auto_test_status` -  Auto Test Status
+      - `sensor.luxpower_inverter_bootloader_update_flag` -  Bootloader Update Flag
+      - `sensor.luxpower_inverter_bootloader_version` -  Bootloader Version
+      - `sensor.luxpower_inverter_bus_1_voltage` -  Bus 1 Voltage
+      - `sensor.luxpower_inverter_bus_2_voltage` -  Bus 2 Voltage
+      - `sensor.luxpower_inverter_charge_energy_today` -  Charge Energy Today
+      - `sensor.luxpower_inverter_charge_energy_total` -  Charge Energy Total
+      - `sensor.luxpower_inverter_dip_switch_state` -  DIP Switch State
+      - `sensor.luxpower_inverter_discharge_energy_today` -  Discharge Energy Today
+      - `sensor.luxpower_inverter_discharge_energy_total` -  Discharge Energy Total
+      - `sensor.luxpower_inverter_energy_flow` -  Energy Flow
+      - `sensor.luxpower_inverter_exception_reason_1` -  Exception Reason 1
+      - `sensor.luxpower_inverter_exception_reason_2` -  Exception Reason 2
+      - `sensor.luxpower_inverter_half_bus_voltage` -  Half Bus Voltage
+      - `sensor.luxpower_inverter_internal_fault_code` -  Internal Fault Code
+      - `sensor.luxpower_inverter_internal_temperature` -  Internal Temperature
+      - `sensor.luxpower_inverter_internal_temperature_2` -  Internal Temperature 2
+      - `sensor.luxpower_inverter_inverter_current` -  Inverter Current
+      - `sensor.luxpower_inverter_inverter_energy_today` -  Inverter Energy Today
+      - `sensor.luxpower_inverter_inverter_energy_total` -  Inverter Energy Total
+      - `sensor.luxpower_inverter_inverter_power` -  Inverter Power
+      - `sensor.luxpower_inverter_inverter_power_l1n` -  Inverter Power L1N
+      - `sensor.luxpower_inverter_inverter_power_l2n` -  Inverter Power L2N
+      - `sensor.luxpower_inverter_inverter_state` -  Inverter State
+      - `sensor.luxpower_inverter_inverter_state_code` -  Inverter State Code
+      - `sensor.luxpower_inverter_load_consumption_today` -  Load Consumption Today
+      - `sensor.luxpower_inverter_load_consumption_total` -  Load Consumption Total
+      - `sensor.luxpower_inverter_load_percentage` -  Load Percentage
+      - `sensor.luxpower_inverter_load_power` -  Load Power
+      - `sensor.luxpower_inverter_parallel_inverter_number` -  Parallel Inverter Number
+      - `sensor.luxpower_inverter_parallel_role` -  Parallel Role
+      - `sensor.luxpower_inverter_power_factor` -  Power Factor
+      - `sensor.luxpower_inverter_radiator_temperature` -  Radiator Temperature
+      - `sensor.luxpower_inverter_radiator_temperature_2` -  Radiator Temperature 2
+      - `sensor.luxpower_inverter_radiator_temperature_3` -  Radiator Temperature 3
+      - `sensor.luxpower_inverter_radiator_temperature_4` -  Radiator Temperature 4
+      - `sensor.luxpower_inverter_reactive_power` -  Reactive Power
+      - `sensor.luxpower_inverter_remaining_one_click_charge_time` -  Remaining One-Click Charge Time
+      - `sensor.luxpower_inverter_smart_load_power` -  Smart Load Power
+      - `sensor.luxpower_inverter_total_running_time` -  Total Running Time
+      - `switch.luxpower_inverter_ac_charging` -  AC Charging
+      - `switch.luxpower_inverter_ac_coupling` -  AC Coupling
+      - `switch.luxpower_inverter_buzzer` -  Buzzer
+      - `switch.luxpower_inverter_charge_first_pv` -  Charge First (PV)
+      - `switch.luxpower_inverter_eco_mode` -  Eco Mode
+      - `switch.luxpower_inverter_fast_zero_export` -  Fast Zero Export
+      - `switch.luxpower_inverter_forced_discharge` -  Forced Discharge
+      - `switch.luxpower_inverter_green_mode` -  Green Mode
+      - `switch.luxpower_inverter_half_hour_ac_charge_start` -  Half Hour AC Charge Start
+      - `switch.luxpower_inverter_micro_grid` -  Micro-Grid
+      - `switch.luxpower_inverter_quick_charge_start` -  Quick Charge Start
+      - `switch.luxpower_inverter_seamless_eps_switching` -  Seamless EPS Switching
+      - `switch.luxpower_inverter_take_load_together` -  Take Load Together
+      - `switch.luxpower_inverter_wattnode_ct1_direction` -  WattNode CT1 Direction
+      - `switch.luxpower_inverter_wattnode_ct2_direction` -  WattNode CT2 Direction
+      - `switch.luxpower_inverter_wattnode_ct3_direction` -  WattNode CT3 Direction
+      - `time.luxpower_inverter_ac_charging_end_time` -  AC Charging End Time
+      - `time.luxpower_inverter_ac_charging_end_time_1` -  AC Charging End Time 1
+      - `time.luxpower_inverter_ac_charging_end_time_2` -  AC Charging End Time 2
+      - `time.luxpower_inverter_ac_charging_start_time` -  AC Charging Start Time
+      - `time.luxpower_inverter_ac_charging_start_time_1` -  AC Charging Start Time 1
+      - `time.luxpower_inverter_ac_charging_start_time_2` -  AC Charging Start Time 2
+      - `time.luxpower_inverter_ac_first_load_end_time` -  AC First Load End Time
+      - `time.luxpower_inverter_ac_first_load_end_time_1` -  AC First Load End Time 1
+      - `time.luxpower_inverter_ac_first_load_end_time_2` -  AC First Load End Time 2
+      - `time.luxpower_inverter_ac_first_load_start_time` -  AC First Load Start Time
+      - `time.luxpower_inverter_ac_first_load_start_time_1` -  AC First Load Start Time 1
+      - `time.luxpower_inverter_ac_first_load_start_time_2` -  AC First Load Start Time 2
+      - `time.luxpower_inverter_forced_discharge_end_time` -  Forced Discharge End Time
+      - `time.luxpower_inverter_forced_discharge_end_time_1` -  Forced Discharge End Time 1
+      - `time.luxpower_inverter_forced_discharge_end_time_2` -  Forced Discharge End Time 2
+      - `time.luxpower_inverter_forced_discharge_start_time` -  Forced Discharge Start Time
+      - `time.luxpower_inverter_forced_discharge_start_time_1` -  Forced Discharge Start Time 1
+      - `time.luxpower_inverter_forced_discharge_start_time_2` -  Forced Discharge Start Time 2
+  - **Thiet bi:** Luxpower Inverter - Battery  (id: `6bcb9c86938c2436101c81cc9878ebf1`)
+    - hang: LuxpowerTek | model: HCAA | khu vuc: -
+    - Thuc the (116):
+      - `binary_sensor.luxpower_inverter_battery_bms_charge_allowed` -  BMS Charge Allowed
+      - `binary_sensor.luxpower_inverter_battery_bms_discharge_allowed` -  BMS Discharge Allowed
+      - `binary_sensor.luxpower_inverter_battery_bms_request_charge` -  BMS Request Charge
+      - `binary_sensor.luxpower_inverter_battery_bms_request_full_charge` -  BMS Request Full Charge
+      - `number.luxpower_inverter_battery_ac_charge_current_from_grid` -  AC Charge Current from Grid
+      - `number.luxpower_inverter_battery_ac_charge_end_soc` -  AC Charge End SOC
+      - `number.luxpower_inverter_battery_ac_charge_end_voltage` -  AC Charge End Voltage
+      - `number.luxpower_inverter_battery_ac_charge_power_rate_precise` -  AC Charge Power Rate (Precise)
+      - `number.luxpower_inverter_battery_ac_charge_soc_limit` -  AC Charge SOC Limit
+      - `number.luxpower_inverter_battery_ac_charge_start_soc` -  AC Charge Start SOC
+      - `number.luxpower_inverter_battery_ac_charge_start_voltage` -  AC Charge Start Voltage
+      - `number.luxpower_inverter_battery_battery_calibration_period` -  Battery Calibration Period
+      - `number.luxpower_inverter_battery_battery_cell_voltage_high_limit` -  Battery Cell Voltage High Limit
+      - `number.luxpower_inverter_battery_battery_cell_voltage_low_limit` -  Battery Cell Voltage Low Limit
+      - `number.luxpower_inverter_battery_battery_cells_in_parallel` -  Battery Cells in Parallel
+      - `number.luxpower_inverter_battery_battery_cells_in_series` -  Battery Cells in Series
+      - `number.luxpower_inverter_battery_battery_derating_start_voltage` -  Battery Derating Start Voltage
+      - `number.luxpower_inverter_battery_battery_inner_resistance` -  Battery Inner Resistance
+      - `number.luxpower_inverter_battery_battery_low_soc_alarm` -  Battery Low SOC Alarm
+      - `number.luxpower_inverter_battery_battery_low_soc_recovery` -  Battery Low SOC Recovery
+      - `number.luxpower_inverter_battery_battery_low_voltage_alarm` -  Battery Low Voltage Alarm
+      - `number.luxpower_inverter_battery_battery_low_voltage_recovery` -  Battery Low Voltage Recovery
+      - `number.luxpower_inverter_battery_battery_soc_hysteresis` -  Battery SOC Hysteresis
+      - `number.luxpower_inverter_battery_battery_stop_charging_soc` -  Battery Stop Charging SOC
+      - `number.luxpower_inverter_battery_battery_stop_charging_voltage` -  Battery Stop Charging Voltage
+      - `number.luxpower_inverter_battery_battery_transfer_to_grid_soc` -  Battery Transfer to Grid SOC
+      - `number.luxpower_inverter_battery_battery_transfer_to_grid_voltage` -  Battery Transfer to Grid Voltage
+      - `number.luxpower_inverter_battery_battery_voltage_hysteresis` -  Battery Voltage Hysteresis
+      - `number.luxpower_inverter_battery_charge_current` -  Charge Current
+      - `number.luxpower_inverter_battery_charge_first_end_voltage` -  Charge First End Voltage
+      - `number.luxpower_inverter_battery_charge_first_power` -  Charge First Power
+      - `number.luxpower_inverter_battery_charge_first_power_rate_precise` -  Charge First Power Rate (Precise)
+      - `number.luxpower_inverter_battery_charge_first_soc_limit` -  Charge First SOC Limit
+      - `number.luxpower_inverter_battery_charge_power_rate_legacy` -  Charge Power Rate (Legacy)
+      - `number.luxpower_inverter_battery_discharge_current` -  Discharge Current
+      - `number.luxpower_inverter_battery_discharge_power_rate_legacy` -  Discharge Power Rate (Legacy)
+      - `number.luxpower_inverter_battery_discharge_recovery_soc_threshold` -  Discharge Recovery SOC Threshold
+      - `number.luxpower_inverter_battery_equalization_voltage` -  Equalization Voltage
+      - `number.luxpower_inverter_battery_float_charge_current_threshold` -  Float Charge Current Threshold
+      - `number.luxpower_inverter_battery_float_charge_voltage` -  Float Charge Voltage
+      - `number.luxpower_inverter_battery_forced_discharge_end_voltage` -  Forced Discharge End Voltage
+      - `number.luxpower_inverter_battery_forced_discharge_power` -  Forced Discharge Power
+      - `number.luxpower_inverter_battery_forced_discharge_power_rate_precise` -  Forced Discharge Power Rate (Precise)
+      - `number.luxpower_inverter_battery_forced_discharge_soc_limit` -  Forced Discharge SOC Limit
+      - `number.luxpower_inverter_battery_generator_charge_end_soc` -  Generator Charge End SOC
+      - `number.luxpower_inverter_battery_generator_charge_end_voltage` -  Generator Charge End Voltage
+      - `number.luxpower_inverter_battery_generator_charge_start_soc` -  Generator Charge Start SOC
+      - `number.luxpower_inverter_battery_generator_charge_start_voltage` -  Generator Charge Start Voltage
+      - `number.luxpower_inverter_battery_grid_peak_shaving_soc` -  Grid Peak Shaving SOC
+      - `number.luxpower_inverter_battery_lead_acid_capacity` -  Lead-Acid Capacity
+      - `number.luxpower_inverter_battery_lead_acid_charge_temp_high_limit` -  Lead-Acid Charge Temp High Limit
+      - `number.luxpower_inverter_battery_lead_acid_charge_temp_low_limit` -  Lead-Acid Charge Temp Low Limit
+      - `number.luxpower_inverter_battery_lead_acid_charge_voltage` -  Lead-Acid Charge Voltage
+      - `number.luxpower_inverter_battery_lead_acid_discharge_cut_off_voltage` -  Lead-Acid Discharge Cut-Off Voltage
+      - `number.luxpower_inverter_battery_lead_acid_discharge_temp_high_limit` -  Lead-Acid Discharge Temp High Limit
+      - `number.luxpower_inverter_battery_lead_acid_discharge_temp_low_limit` -  Lead-Acid Discharge Temp Low Limit
+      - `number.luxpower_inverter_battery_max_generator_charge_current` -  Max Generator Charge Current
+      - `number.luxpower_inverter_battery_off_grid_cut_off_soc` -  Off-Grid Cut-Off SOC
+      - `number.luxpower_inverter_battery_on_grid_cut_off_soc` -  On-Grid Cut-Off SOC
+      - `number.luxpower_inverter_battery_quick_charge_time` -  Quick Charge Time
+      - `number.luxpower_inverter_battery_soc_calibration_soc_1` -  SOC Calibration SOC 1
+      - `number.luxpower_inverter_battery_soc_calibration_soc_2` -  SOC Calibration SOC 2
+      - `number.luxpower_inverter_battery_soc_calibration_voltage_1` -  SOC Calibration Voltage 1
+      - `number.luxpower_inverter_battery_soc_calibration_voltage_2` -  SOC Calibration Voltage 2
+      - `number.luxpower_inverter_battery_start_discharge_p_import` -  Start Discharge P_import
+      - `number.luxpower_inverter_battery_system_charge_power_rate` -  System Charge Power Rate
+      - `number.luxpower_inverter_battery_system_discharge_power_rate` -  System Discharge Power Rate
+      - `number.luxpower_inverter_battery_unmatched_battery_capacity` -  Unmatched Battery Capacity
+      - `number.luxpower_inverter_battery_unmatched_battery_nominal_voltage` -  Unmatched Battery Nominal Voltage
+      - `sensor.luxpower_inverter_battery_battery_capacity` -  Battery Capacity
+      - `sensor.luxpower_inverter_battery_battery_charge_power` -  Battery Charge Power
+      - `sensor.luxpower_inverter_battery_battery_discharge_power` -  Battery Discharge Power
+      - `sensor.luxpower_inverter_battery_battery_flow` -  Battery Flow
+      - `sensor.luxpower_inverter_battery_battery_parallel_number` -  Battery Parallel Number
+      - `sensor.luxpower_inverter_battery_battery_soc` -  Battery SOC
+      - `sensor.luxpower_inverter_battery_battery_soh` -  Battery SOH
+      - `sensor.luxpower_inverter_battery_battery_temperature` -  Battery Temperature
+      - `sensor.luxpower_inverter_battery_battery_type_and_brand` -  Battery Type and Brand
+      - `sensor.luxpower_inverter_battery_battery_voltage` -  Battery Voltage
+      - `sensor.luxpower_inverter_battery_bms_battery_current` -  BMS Battery Current
+      - `sensor.luxpower_inverter_battery_bms_battery_status_0` -  BMS Battery Status 0
+      - `sensor.luxpower_inverter_battery_bms_battery_status_1` -  BMS Battery Status 1
+      - `sensor.luxpower_inverter_battery_bms_battery_status_2` -  BMS Battery Status 2
+      - `sensor.luxpower_inverter_battery_bms_battery_status_3` -  BMS Battery Status 3
+      - `sensor.luxpower_inverter_battery_bms_battery_status_4` -  BMS Battery Status 4
+      - `sensor.luxpower_inverter_battery_bms_battery_status_5` -  BMS Battery Status 5
+      - `sensor.luxpower_inverter_battery_bms_battery_status_6` -  BMS Battery Status 6
+      - `sensor.luxpower_inverter_battery_bms_battery_status_7` -  BMS Battery Status 7
+      - `sensor.luxpower_inverter_battery_bms_battery_status_8` -  BMS Battery Status 8
+      - `sensor.luxpower_inverter_battery_bms_battery_status_9` -  BMS Battery Status 9
+      - `sensor.luxpower_inverter_battery_bms_battery_status_aggregated` -  BMS Battery Status Aggregated
+      - `sensor.luxpower_inverter_battery_bms_cell_difference` -  BMS Cell Difference
+      - `sensor.luxpower_inverter_battery_bms_charge_voltage_reference` -  BMS Charge Voltage Reference
+      - `sensor.luxpower_inverter_battery_bms_cycle_count` -  BMS Cycle Count
+      - `sensor.luxpower_inverter_battery_bms_discharge_cut_off_voltage` -  BMS Discharge Cut-off Voltage
+      - `sensor.luxpower_inverter_battery_bms_fault_code` -  BMS Fault Code
+      - `sensor.luxpower_inverter_battery_bms_firmware_update_state` -  BMS Firmware Update State
+      - `sensor.luxpower_inverter_battery_bms_max_cell_temperature` -  BMS Max Cell Temperature
+      - `sensor.luxpower_inverter_battery_bms_max_cell_voltage` -  BMS Max Cell Voltage
+      - `sensor.luxpower_inverter_battery_bms_max_charge_current` -  BMS Max Charge Current
+      - `sensor.luxpower_inverter_battery_bms_max_discharge_current` -  BMS Max Discharge Current
+      - `sensor.luxpower_inverter_battery_bms_min_cell_temperature` -  BMS Min Cell Temperature
+      - `sensor.luxpower_inverter_battery_bms_min_cell_voltage` -  BMS Min Cell Voltage
+      - `sensor.luxpower_inverter_battery_bms_warning_code` -  BMS Warning Code
+      - `sensor.luxpower_inverter_battery_charge_discharge_disable_reason` -  Charge Discharge Disable Reason
+      - `sensor.luxpower_inverter_battery_days_since_soc_99` -  Days since SOC >= 99
+      - `sensor.luxpower_inverter_battery_inverter_battery_voltage_sample` -  Inverter Battery Voltage Sample
+      - `switch.luxpower_inverter_battery_battery_backup` -  Battery Backup
+      - `switch.luxpower_inverter_battery_battery_maintenance` -  Battery Maintenance
+      - `switch.luxpower_inverter_battery_charge_last` -  Charge Last
+      - `time.luxpower_inverter_battery_charge_first_end_time` -  Charge First End Time
+      - `time.luxpower_inverter_battery_charge_first_end_time_1` -  Charge First End Time 1
+      - `time.luxpower_inverter_battery_charge_first_end_time_2` -  Charge First End Time 2
+      - `time.luxpower_inverter_battery_charge_first_start_time` -  Charge First Start Time
+      - `time.luxpower_inverter_battery_charge_first_start_time_1` -  Charge First Start Time 1
+      - `time.luxpower_inverter_battery_charge_first_start_time_2` -  Charge First Start Time 2
+  - **Thiet bi:** Luxpower Inverter - Grid  (id: `80805578f3be1782d9df9145c7ba1e72`)
+    - hang: LuxpowerTek | model: HCAA | khu vuc: -
+    - Thuc the (120):
+      - `binary_sensor.luxpower_inverter_grid_grid_connected` -  Grid Connected
+      - `button.luxpower_inverter_grid_clear_detected_phases` -  Clear Detected Phases
+      - `button.luxpower_inverter_grid_reset_g100_lockout` -  Reset G100 Lockout
+      - `number.luxpower_inverter_grid_grid_connect_time` -  Grid Connect Time
+      - `number.luxpower_inverter_grid_grid_frequency_high_limit` -  Grid Frequency High Limit
+      - `number.luxpower_inverter_grid_grid_frequency_l1_high` -  Grid Frequency L1 High
+      - `number.luxpower_inverter_grid_grid_frequency_l1_high_time` -  Grid Frequency L1 High Time
+      - `number.luxpower_inverter_grid_grid_frequency_l1_low` -  Grid Frequency L1 Low
+      - `number.luxpower_inverter_grid_grid_frequency_l1_low_time` -  Grid Frequency L1 Low Time
+      - `number.luxpower_inverter_grid_grid_frequency_l2_high` -  Grid Frequency L2 High
+      - `number.luxpower_inverter_grid_grid_frequency_l2_high_time` -  Grid Frequency L2 High Time
+      - `number.luxpower_inverter_grid_grid_frequency_l2_low` -  Grid Frequency L2 Low
+      - `number.luxpower_inverter_grid_grid_frequency_l2_low_time` -  Grid Frequency L2 Low Time
+      - `number.luxpower_inverter_grid_grid_frequency_l3_high` -  Grid Frequency L3 High
+      - `number.luxpower_inverter_grid_grid_frequency_l3_high_time` -  Grid Frequency L3 High Time
+      - `number.luxpower_inverter_grid_grid_frequency_l3_low` -  Grid Frequency L3 Low
+      - `number.luxpower_inverter_grid_grid_frequency_l3_low_time` -  Grid Frequency L3 Low Time
+      - `number.luxpower_inverter_grid_grid_frequency_low_limit` -  Grid Frequency Low Limit
+      - `number.luxpower_inverter_grid_grid_peak_shaving_power` -  Grid Peak Shaving Power
+      - `number.luxpower_inverter_grid_grid_peak_shaving_power_period_1` -  Grid Peak Shaving Power Period 1
+      - `number.luxpower_inverter_grid_grid_peak_shaving_soc_period_1` -  Grid Peak Shaving SOC Period 1
+      - `number.luxpower_inverter_grid_grid_peak_shaving_voltage` -  Grid Peak Shaving Voltage
+      - `number.luxpower_inverter_grid_grid_peak_shaving_voltage_period_1` -  Grid Peak Shaving Voltage Period 1
+      - `number.luxpower_inverter_grid_grid_reconnect_time` -  Grid Reconnect Time
+      - `number.luxpower_inverter_grid_grid_voltage_high_limit` -  Grid Voltage High Limit
+      - `number.luxpower_inverter_grid_grid_voltage_l1_high` -  Grid Voltage L1 High
+      - `number.luxpower_inverter_grid_grid_voltage_l1_high_time` -  Grid Voltage L1 High Time
+      - `number.luxpower_inverter_grid_grid_voltage_l1_low` -  Grid Voltage L1 Low
+      - `number.luxpower_inverter_grid_grid_voltage_l1_low_time` -  Grid Voltage L1 Low Time
+      - `number.luxpower_inverter_grid_grid_voltage_l2_high` -  Grid Voltage L2 High
+      - `number.luxpower_inverter_grid_grid_voltage_l2_high_time` -  Grid Voltage L2 High Time
+      - `number.luxpower_inverter_grid_grid_voltage_l2_low` -  Grid Voltage L2 Low
+      - `number.luxpower_inverter_grid_grid_voltage_l2_low_time` -  Grid Voltage L2 Low Time
+      - `number.luxpower_inverter_grid_grid_voltage_l3_high` -  Grid Voltage L3 High
+      - `number.luxpower_inverter_grid_grid_voltage_l3_high_time` -  Grid Voltage L3 High Time
+      - `number.luxpower_inverter_grid_grid_voltage_l3_low` -  Grid Voltage L3 Low
+      - `number.luxpower_inverter_grid_grid_voltage_l3_low_time` -  Grid Voltage L3 Low Time
+      - `number.luxpower_inverter_grid_grid_voltage_low_limit` -  Grid Voltage Low Limit
+      - `number.luxpower_inverter_grid_grid_voltage_moving_average_high` -  Grid Voltage Moving Average High
+      - `number.luxpower_inverter_grid_max_grid_input_power` -  Max Grid Input Power
+      - `number.luxpower_inverter_grid_max_q_percent_for_qv` -  Max Q Percent for QV
+      - `number.luxpower_inverter_grid_on_grid_cut_off_voltage` -  On-Grid Cut-Off Voltage
+      - `number.luxpower_inverter_grid_over_frequency_derate_delay` -  Over-Frequency Derate Delay
+      - `number.luxpower_inverter_grid_over_frequency_derate_end` -  Over-Frequency Derate End
+      - `number.luxpower_inverter_grid_over_frequency_derate_ratio` -  Over-Frequency Derate Ratio
+      - `number.luxpower_inverter_grid_over_frequency_derate_start` -  Over-Frequency Derate Start
+      - `number.luxpower_inverter_grid_p1_for_qp_curve` -  P1 for QP Curve
+      - `number.luxpower_inverter_grid_p2_for_qp_curve` -  P2 for QP Curve
+      - `number.luxpower_inverter_grid_p3_for_qp_curve` -  P3 for QP Curve
+      - `number.luxpower_inverter_grid_p4_for_qp_curve` -  P4 for QP Curve
+      - `number.luxpower_inverter_grid_pf_curve_lock_in_voltage` -  PF Curve Lock-In Voltage
+      - `number.luxpower_inverter_grid_pf_curve_lock_out_voltage` -  PF Curve Lock-Out Voltage
+      - `number.luxpower_inverter_grid_power_factor_command` -  Power Factor Command
+      - `number.luxpower_inverter_grid_q3_for_qv_curve` -  Q3 for QV Curve
+      - `number.luxpower_inverter_grid_q4_for_qv_curve` -  Q4 for QV Curve
+      - `number.luxpower_inverter_grid_qv_curve_v1_high` -  QV Curve V1 High
+      - `number.luxpower_inverter_grid_qv_curve_v1_low` -  QV Curve V1 Low
+      - `number.luxpower_inverter_grid_qv_curve_v2_high` -  QV Curve V2 High
+      - `number.luxpower_inverter_grid_qv_curve_v2_low` -  QV Curve V2 Low
+      - `number.luxpower_inverter_grid_qv_delay_time` -  QV Delay Time
+      - `number.luxpower_inverter_grid_qv_lock_in_power` -  QV Lock-In Power
+      - `number.luxpower_inverter_grid_qv_lock_out_power` -  QV Lock-Out Power
+      - `number.luxpower_inverter_grid_reactive_power_percent` -  Reactive Power Percent
+      - `number.luxpower_inverter_grid_under_frequency_derate_end` -  Under-Frequency Derate End
+      - `number.luxpower_inverter_grid_under_frequency_derate_start` -  Under-Frequency Derate Start
+      - `number.luxpower_inverter_grid_under_frequency_increase_ratio` -  Under-Frequency Increase Ratio
+      - `number.luxpower_inverter_grid_voltwatt_delay_time` -  VoltWatt Delay Time
+      - `number.luxpower_inverter_grid_voltwatt_p2` -  VoltWatt P2
+      - `number.luxpower_inverter_grid_voltwatt_v1` -  VoltWatt V1
+      - `number.luxpower_inverter_grid_voltwatt_v2` -  VoltWatt V2
+      - `number.luxpower_inverter_grid_vref_filter_time` -  Vref Filter Time
+      - `number.luxpower_inverter_grid_vref_for_qv` -  Vref for QV
+      - `select.luxpower_inverter_grid_grid_type` -  Grid Type
+      - `select.luxpower_inverter_grid_off_grid_composed_phase` -  Off-grid Composed Phase
+      - `select.luxpower_inverter_grid_on_grid_eod_type` -  On-Grid EOD Type
+      - `select.luxpower_inverter_grid_reactive_power_command_type` -  Reactive Power Command Type
+      - `sensor.luxpower_inverter_grid_ac_rectification_power_s_phase` -  AC Rectification Power S-Phase
+      - `sensor.luxpower_inverter_grid_ac_rectification_power_t_phase` -  AC Rectification Power T-Phase
+      - `sensor.luxpower_inverter_grid_energy_from_grid_today` -  Energy from Grid Today
+      - `sensor.luxpower_inverter_grid_energy_from_grid_total` -  Energy from Grid Total
+      - `sensor.luxpower_inverter_grid_energy_to_grid_today` -  Energy to Grid Today
+      - `sensor.luxpower_inverter_grid_energy_to_grid_total` -  Energy to Grid Total
+      - `sensor.luxpower_inverter_grid_grid_flow` -  Grid Flow
+      - `sensor.luxpower_inverter_grid_grid_frequency` -  Grid Frequency
+      - `sensor.luxpower_inverter_grid_grid_voltage` -  Grid Voltage
+      - `sensor.luxpower_inverter_grid_grid_voltage_l1n` -  Grid Voltage L1N
+      - `sensor.luxpower_inverter_grid_grid_voltage_l2n` -  Grid Voltage L2N
+      - `sensor.luxpower_inverter_grid_grid_voltage_s_phase` -  Grid Voltage S-Phase
+      - `sensor.luxpower_inverter_grid_grid_voltage_t_phase` -  Grid Voltage T-Phase
+      - `sensor.luxpower_inverter_grid_inverter_current_s_phase` -  Inverter Current S-Phase
+      - `sensor.luxpower_inverter_grid_inverter_current_t_phase` -  Inverter Current T-Phase
+      - `sensor.luxpower_inverter_grid_inverter_power_s_phase` -  Inverter Power S-Phase
+      - `sensor.luxpower_inverter_grid_inverter_power_t_phase` -  Inverter Power T-Phase
+      - `sensor.luxpower_inverter_grid_on_grid_load_power` -  On-Grid Load Power
+      - `sensor.luxpower_inverter_grid_on_grid_load_power_s_phase` -  On-Grid Load Power S-Phase
+      - `sensor.luxpower_inverter_grid_on_grid_load_power_t_phase` -  On-Grid Load Power T-Phase
+      - `sensor.luxpower_inverter_grid_parallel_phase` -  Parallel Phase
+      - `sensor.luxpower_inverter_grid_phase_sequence` -  Phase Sequence
+      - `sensor.luxpower_inverter_grid_power_factor_s_phase` -  Power Factor S-Phase
+      - `sensor.luxpower_inverter_grid_power_factor_t_phase` -  Power Factor T-Phase
+      - `sensor.luxpower_inverter_grid_power_from_grid` -  Power from Grid
+      - `sensor.luxpower_inverter_grid_power_from_grid_l1n` -  Power from Grid L1N
+      - `sensor.luxpower_inverter_grid_power_from_grid_l2n` -  Power from Grid L2N
+      - `sensor.luxpower_inverter_grid_power_from_grid_s_phase` -  Power from Grid S-Phase
+      - `sensor.luxpower_inverter_grid_power_from_grid_t_phase` -  Power from Grid T-Phase
+      - `sensor.luxpower_inverter_grid_power_to_grid` -  Power to Grid
+      - `sensor.luxpower_inverter_grid_power_to_grid_l1n` -  Power to Grid L1N
+      - `sensor.luxpower_inverter_grid_power_to_grid_l2n` -  Power to Grid L2N
+      - `sensor.luxpower_inverter_grid_power_to_grid_s_phase` -  Power to Grid S-Phase
+      - `sensor.luxpower_inverter_grid_power_to_grid_t_phase` -  Power to Grid T-Phase
+      - `switch.luxpower_inverter_grid_drms` -  DRMS
+      - `switch.luxpower_inverter_grid_feed_in_grid` -  Feed-In Grid
+      - `switch.luxpower_inverter_grid_grid_peak_shaving` -  Grid Peak Shaving
+      - `switch.luxpower_inverter_grid_over_frequency_load_reduction` -  Over-Frequency Load Reduction
+      - `switch.luxpower_inverter_grid_power_backup` -  Power Backup
+      - `switch.luxpower_inverter_grid_volt_watt_function` -  Volt-Watt Function
+      - `time.luxpower_inverter_grid_peak_shaving_end_time` -  Peak Shaving End Time
+      - `time.luxpower_inverter_grid_peak_shaving_end_time_1` -  Peak Shaving End Time 1
+      - `time.luxpower_inverter_grid_peak_shaving_start_time` -  Peak Shaving Start Time
+      - `time.luxpower_inverter_grid_peak_shaving_start_time_1` -  Peak Shaving Start Time 1
+  - **Thiet bi:** Luxpower Inverter - PV  (id: `0beca59ea5a6f76d0869d668b36afd39`)
+    - hang: LuxpowerTek | model: HCAA | khu vuc: -
+    - Thuc the (36):
+      - `number.luxpower_inverter_pv_start_pv_power` -  Start PV Power
+      - `select.luxpower_inverter_pv_pv_input_model` -  PV Input Model
+      - `sensor.luxpower_inverter_pv_pv1_current` -  PV1 Current
+      - `sensor.luxpower_inverter_pv_pv1_energy_today` -  PV1 Energy Today
+      - `sensor.luxpower_inverter_pv_pv1_energy_total` -  PV1 Energy Total
+      - `sensor.luxpower_inverter_pv_pv1_power` -  PV1 Power
+      - `sensor.luxpower_inverter_pv_pv1_voltage` -  PV1 Voltage
+      - `sensor.luxpower_inverter_pv_pv2_current` -  PV2 Current
+      - `sensor.luxpower_inverter_pv_pv2_energy_today` -  PV2 Energy Today
+      - `sensor.luxpower_inverter_pv_pv2_energy_total` -  PV2 Energy Total
+      - `sensor.luxpower_inverter_pv_pv2_power` -  PV2 Power
+      - `sensor.luxpower_inverter_pv_pv2_voltage` -  PV2 Voltage
+      - `sensor.luxpower_inverter_pv_pv3_current` -  PV3 Current
+      - `sensor.luxpower_inverter_pv_pv3_energy_today` -  PV3 Energy Today
+      - `sensor.luxpower_inverter_pv_pv3_energy_total` -  PV3 Energy Total
+      - `sensor.luxpower_inverter_pv_pv3_power` -  PV3 Power
+      - `sensor.luxpower_inverter_pv_pv3_voltage` -  PV3 Voltage
+      - `sensor.luxpower_inverter_pv_pv4_current` -  PV4 Current
+      - `sensor.luxpower_inverter_pv_pv4_energy_today` -  PV4 Energy Today
+      - `sensor.luxpower_inverter_pv_pv4_energy_total` -  PV4 Energy Total
+      - `sensor.luxpower_inverter_pv_pv4_power` -  PV4 Power
+      - `sensor.luxpower_inverter_pv_pv4_voltage` -  PV4 Voltage
+      - `sensor.luxpower_inverter_pv_pv5_current` -  PV5 Current
+      - `sensor.luxpower_inverter_pv_pv5_energy_today` -  PV5 Energy Today
+      - `sensor.luxpower_inverter_pv_pv5_energy_total` -  PV5 Energy Total
+      - `sensor.luxpower_inverter_pv_pv5_power` -  PV5 Power
+      - `sensor.luxpower_inverter_pv_pv5_voltage` -  PV5 Voltage
+      - `sensor.luxpower_inverter_pv_pv6_current` -  PV6 Current
+      - `sensor.luxpower_inverter_pv_pv6_energy_today` -  PV6 Energy Today
+      - `sensor.luxpower_inverter_pv_pv6_energy_total` -  PV6 Energy Total
+      - `sensor.luxpower_inverter_pv_pv6_power` -  PV6 Power
+      - `sensor.luxpower_inverter_pv_pv6_voltage` -  PV6 Voltage
+      - `sensor.luxpower_inverter_pv_pv_energy_today` -  PV Energy Today
+      - `sensor.luxpower_inverter_pv_pv_energy_total` -  PV Energy Total
+      - `sensor.luxpower_inverter_pv_pv_power` -  PV Power
+      - `switch.luxpower_inverter_pv_pv_arc_detection` -  PV Arc Detection
+  - **Thiet bi:** Luxpower Inverter - AC Coupling  (id: `0e5c2c6258d8377d5d2ac57ea898c320`)
+    - hang: LuxpowerTek | model: HCAA | khu vuc: -
+    - Thuc the (6):
+      - `number.luxpower_inverter_ac_coupling_ac_couple_end_soc` -  AC Couple End SOC
+      - `number.luxpower_inverter_ac_coupling_ac_couple_end_voltage` -  AC Couple End Voltage
+      - `number.luxpower_inverter_ac_coupling_ac_couple_start_soc` -  AC Couple Start SOC
+      - `number.luxpower_inverter_ac_coupling_ac_couple_start_voltage` -  AC Couple Start Voltage
+      - `sensor.luxpower_inverter_ac_coupling_ac_couple_power_s_phase` -  AC Couple Power S-Phase
+      - `sensor.luxpower_inverter_ac_coupling_ac_couple_power_t_phase` -  AC Couple Power T-Phase
+  - **Thiet bi:** Luxpower Inverter - EPS  (id: `8f2c98ec59c0cda0c80b049487ea0829`)
+    - hang: LuxpowerTek | model: HCAA | khu vuc: -
+    - Thuc the (20):
+      - `select.luxpower_inverter_eps_eps_frequency_set` -  EPS Frequency Set
+      - `select.luxpower_inverter_eps_eps_voltage_set` -  EPS Voltage Set
+      - `sensor.luxpower_inverter_eps_eps_apparent_power` -  EPS Apparent Power
+      - `sensor.luxpower_inverter_eps_eps_apparent_power_l1n` -  EPS Apparent Power L1N
+      - `sensor.luxpower_inverter_eps_eps_apparent_power_l2n` -  EPS Apparent Power L2N
+      - `sensor.luxpower_inverter_eps_eps_energy_today` -  EPS Energy Today
+      - `sensor.luxpower_inverter_eps_eps_energy_today_l1n` -  EPS Energy Today L1N
+      - `sensor.luxpower_inverter_eps_eps_energy_today_l2n` -  EPS Energy Today L2N
+      - `sensor.luxpower_inverter_eps_eps_energy_total` -  EPS Energy Total
+      - `sensor.luxpower_inverter_eps_eps_energy_total_l1n` -  EPS Energy Total L1N
+      - `sensor.luxpower_inverter_eps_eps_energy_total_l2n` -  EPS Energy Total L2N
+      - `sensor.luxpower_inverter_eps_eps_frequency` -  EPS Frequency
+      - `sensor.luxpower_inverter_eps_eps_power` -  EPS Power
+      - `sensor.luxpower_inverter_eps_eps_power_l1n` -  EPS Power L1N
+      - `sensor.luxpower_inverter_eps_eps_power_l2n` -  EPS Power L2N
+      - `sensor.luxpower_inverter_eps_eps_voltage` -  EPS Voltage
+      - `sensor.luxpower_inverter_eps_eps_voltage_l1n` -  EPS Voltage L1N
+      - `sensor.luxpower_inverter_eps_eps_voltage_l2n` -  EPS Voltage L2N
+      - `sensor.luxpower_inverter_eps_eps_voltage_s_phase` -  EPS Voltage S-Phase
+      - `sensor.luxpower_inverter_eps_eps_voltage_t_phase` -  EPS Voltage T-Phase
+  - **Thiet bi:** Luxpower Inverter - Generator  (id: `fdbcab7fb567995cf6e5aa61963cecb2`)
+    - hang: LuxpowerTek | model: HCAA | khu vuc: -
+    - Thuc the (16):
+      - `number.luxpower_inverter_generator_generator_cool_down_time` -  Generator Cool Down Time
+      - `number.luxpower_inverter_generator_generator_rated_power` -  Generator Rated Power
+      - `select.luxpower_inverter_generator_generator_charge_type` -  Generator Charge Type
+      - `sensor.luxpower_inverter_generator_generator_energy_today` -  Generator Energy Today
+      - `sensor.luxpower_inverter_generator_generator_energy_total` -  Generator Energy Total
+      - `sensor.luxpower_inverter_generator_generator_frequency` -  Generator Frequency
+      - `sensor.luxpower_inverter_generator_generator_power` -  Generator Power
+      - `sensor.luxpower_inverter_generator_generator_power_s_phase` -  Generator Power S-Phase
+      - `sensor.luxpower_inverter_generator_generator_power_t_phase` -  Generator Power T-Phase
+      - `sensor.luxpower_inverter_generator_generator_voltage` -  Generator Voltage
+      - `sensor.luxpower_inverter_generator_generator_voltage_l1n` -  Generator Voltage L1N
+      - `sensor.luxpower_inverter_generator_generator_voltage_l2n` -  Generator Voltage L2N
+      - `time.luxpower_inverter_generator_generator_end_time` -  Generator End Time
+      - `time.luxpower_inverter_generator_generator_end_time_1` -  Generator End Time 1
+      - `time.luxpower_inverter_generator_generator_start_time` -  Generator Start Time
+      - `time.luxpower_inverter_generator_generator_start_time_1` -  Generator Start Time 1
+  - **Thiet bi:** Luxpower Inverter - Smart Load  (id: `5e58a84114d6315ea0590c230955db56`)
+    - hang: LuxpowerTek | model: HCAA | khu vuc: -
+    - Thuc the (5):
+      - `number.luxpower_inverter_smart_load_smart_load_off_soc` -  Smart Load Off SOC
+      - `number.luxpower_inverter_smart_load_smart_load_off_voltage` -  Smart Load Off Voltage
+      - `number.luxpower_inverter_smart_load_smart_load_on_soc` -  Smart Load On SOC
+      - `number.luxpower_inverter_smart_load_smart_load_on_voltage` -  Smart Load On Voltage
+      - `switch.luxpower_inverter_smart_load_on_grid_always_on` -  On-Grid Always On
+  - **Thiet bi:** Luxpower Inverter - Schedules  (id: `6741facd71aad7fa92617e83b56c8ad6`)
+    - hang: LuxpowerTek | model: HCAA | khu vuc: -
+    - Thuc the (281):
+      - `number.luxpower_inverter_schedules_ac_charge_power_1_fri` -  AC Charge Power 1 Fri
+      - `number.luxpower_inverter_schedules_ac_charge_power_1_mon` -  AC Charge Power 1 Mon
+      - `number.luxpower_inverter_schedules_ac_charge_power_1_sat` -  AC Charge Power 1 Sat
+      - `number.luxpower_inverter_schedules_ac_charge_power_1_sun` -  AC Charge Power 1 Sun
+      - `number.luxpower_inverter_schedules_ac_charge_power_1_thu` -  AC Charge Power 1 Thu
+      - `number.luxpower_inverter_schedules_ac_charge_power_1_tue` -  AC Charge Power 1 Tue
+      - `number.luxpower_inverter_schedules_ac_charge_power_1_wed` -  AC Charge Power 1 Wed
+      - `number.luxpower_inverter_schedules_ac_charge_power_2_fri` -  AC Charge Power 2 Fri
+      - `number.luxpower_inverter_schedules_ac_charge_power_2_mon` -  AC Charge Power 2 Mon
+      - `number.luxpower_inverter_schedules_ac_charge_power_2_sat` -  AC Charge Power 2 Sat
+      - `number.luxpower_inverter_schedules_ac_charge_power_2_sun` -  AC Charge Power 2 Sun
+      - `number.luxpower_inverter_schedules_ac_charge_power_2_thu` -  AC Charge Power 2 Thu
+      - `number.luxpower_inverter_schedules_ac_charge_power_2_tue` -  AC Charge Power 2 Tue
+      - `number.luxpower_inverter_schedules_ac_charge_power_2_wed` -  AC Charge Power 2 Wed
+      - `number.luxpower_inverter_schedules_ac_charge_soc_limit_1_fri` -  AC Charge SOC Limit 1 Fri
+      - `number.luxpower_inverter_schedules_ac_charge_soc_limit_1_mon` -  AC Charge SOC Limit 1 Mon
+      - `number.luxpower_inverter_schedules_ac_charge_soc_limit_1_sat` -  AC Charge SOC Limit 1 Sat
+      - `number.luxpower_inverter_schedules_ac_charge_soc_limit_1_sun` -  AC Charge SOC Limit 1 Sun
+      - `number.luxpower_inverter_schedules_ac_charge_soc_limit_1_thu` -  AC Charge SOC Limit 1 Thu
+      - `number.luxpower_inverter_schedules_ac_charge_soc_limit_1_tue` -  AC Charge SOC Limit 1 Tue
+      - `number.luxpower_inverter_schedules_ac_charge_soc_limit_1_wed` -  AC Charge SOC Limit 1 Wed
+      - `number.luxpower_inverter_schedules_ac_charge_soc_limit_2_fri` -  AC Charge SOC Limit 2 Fri
+      - `number.luxpower_inverter_schedules_ac_charge_soc_limit_2_mon` -  AC Charge SOC Limit 2 Mon
+      - `number.luxpower_inverter_schedules_ac_charge_soc_limit_2_sat` -  AC Charge SOC Limit 2 Sat
+      - `number.luxpower_inverter_schedules_ac_charge_soc_limit_2_sun` -  AC Charge SOC Limit 2 Sun
+      - `number.luxpower_inverter_schedules_ac_charge_soc_limit_2_thu` -  AC Charge SOC Limit 2 Thu
+      - `number.luxpower_inverter_schedules_ac_charge_soc_limit_2_tue` -  AC Charge SOC Limit 2 Tue
+      - `number.luxpower_inverter_schedules_ac_charge_soc_limit_2_wed` -  AC Charge SOC Limit 2 Wed
+      - `number.luxpower_inverter_schedules_ac_charge_volt_limit_1_fri` -  AC Charge Volt Limit 1 Fri
+      - `number.luxpower_inverter_schedules_ac_charge_volt_limit_1_mon` -  AC Charge Volt Limit 1 Mon
+      - `number.luxpower_inverter_schedules_ac_charge_volt_limit_1_sat` -  AC Charge Volt Limit 1 Sat
+      - `number.luxpower_inverter_schedules_ac_charge_volt_limit_1_sun` -  AC Charge Volt Limit 1 Sun
+      - `number.luxpower_inverter_schedules_ac_charge_volt_limit_1_thu` -  AC Charge Volt Limit 1 Thu
+      - `number.luxpower_inverter_schedules_ac_charge_volt_limit_1_tue` -  AC Charge Volt Limit 1 Tue
+      - `number.luxpower_inverter_schedules_ac_charge_volt_limit_1_wed` -  AC Charge Volt Limit 1 Wed
+      - `number.luxpower_inverter_schedules_ac_charge_volt_limit_2_fri` -  AC Charge Volt Limit 2 Fri
+      - `number.luxpower_inverter_schedules_ac_charge_volt_limit_2_mon` -  AC Charge Volt Limit 2 Mon
+      - `number.luxpower_inverter_schedules_ac_charge_volt_limit_2_sat` -  AC Charge Volt Limit 2 Sat
+      - `number.luxpower_inverter_schedules_ac_charge_volt_limit_2_sun` -  AC Charge Volt Limit 2 Sun
+      - `number.luxpower_inverter_schedules_ac_charge_volt_limit_2_thu` -  AC Charge Volt Limit 2 Thu
+      - `number.luxpower_inverter_schedules_ac_charge_volt_limit_2_tue` -  AC Charge Volt Limit 2 Tue
+      - `number.luxpower_inverter_schedules_ac_charge_volt_limit_2_wed` -  AC Charge Volt Limit 2 Wed
+      - `number.luxpower_inverter_schedules_forced_charge_power_1_fri` -  Forced Charge Power 1 Fri
+      - `number.luxpower_inverter_schedules_forced_charge_power_1_mon` -  Forced Charge Power 1 Mon
+      - `number.luxpower_inverter_schedules_forced_charge_power_1_sat` -  Forced Charge Power 1 Sat
+      - `number.luxpower_inverter_schedules_forced_charge_power_1_sun` -  Forced Charge Power 1 Sun
+      - `number.luxpower_inverter_schedules_forced_charge_power_1_thu` -  Forced Charge Power 1 Thu
+      - `number.luxpower_inverter_schedules_forced_charge_power_1_tue` -  Forced Charge Power 1 Tue
+      - `number.luxpower_inverter_schedules_forced_charge_power_1_wed` -  Forced Charge Power 1 Wed
+      - `number.luxpower_inverter_schedules_forced_charge_power_2_fri` -  Forced Charge Power 2 Fri
+      - `number.luxpower_inverter_schedules_forced_charge_power_2_mon` -  Forced Charge Power 2 Mon
+      - `number.luxpower_inverter_schedules_forced_charge_power_2_sat` -  Forced Charge Power 2 Sat
+      - `number.luxpower_inverter_schedules_forced_charge_power_2_sun` -  Forced Charge Power 2 Sun
+      - `number.luxpower_inverter_schedules_forced_charge_power_2_thu` -  Forced Charge Power 2 Thu
+      - `number.luxpower_inverter_schedules_forced_charge_power_2_tue` -  Forced Charge Power 2 Tue
+      - `number.luxpower_inverter_schedules_forced_charge_power_2_wed` -  Forced Charge Power 2 Wed
+      - `number.luxpower_inverter_schedules_forced_charge_soc_limit_1_fri` -  Forced Charge SOC Limit 1 Fri
+      - `number.luxpower_inverter_schedules_forced_charge_soc_limit_1_mon` -  Forced Charge SOC Limit 1 Mon
+      - `number.luxpower_inverter_schedules_forced_charge_soc_limit_1_sat` -  Forced Charge SOC Limit 1 Sat
+      - `number.luxpower_inverter_schedules_forced_charge_soc_limit_1_sun` -  Forced Charge SOC Limit 1 Sun
+      - `number.luxpower_inverter_schedules_forced_charge_soc_limit_1_thu` -  Forced Charge SOC Limit 1 Thu
+      - `number.luxpower_inverter_schedules_forced_charge_soc_limit_1_tue` -  Forced Charge SOC Limit 1 Tue
+      - `number.luxpower_inverter_schedules_forced_charge_soc_limit_1_wed` -  Forced Charge SOC Limit 1 Wed
+      - `number.luxpower_inverter_schedules_forced_charge_soc_limit_2_fri` -  Forced Charge SOC Limit 2 Fri
+      - `number.luxpower_inverter_schedules_forced_charge_soc_limit_2_mon` -  Forced Charge SOC Limit 2 Mon
+      - `number.luxpower_inverter_schedules_forced_charge_soc_limit_2_sat` -  Forced Charge SOC Limit 2 Sat
+      - `number.luxpower_inverter_schedules_forced_charge_soc_limit_2_sun` -  Forced Charge SOC Limit 2 Sun
+      - `number.luxpower_inverter_schedules_forced_charge_soc_limit_2_thu` -  Forced Charge SOC Limit 2 Thu
+      - `number.luxpower_inverter_schedules_forced_charge_soc_limit_2_tue` -  Forced Charge SOC Limit 2 Tue
+      - `number.luxpower_inverter_schedules_forced_charge_soc_limit_2_wed` -  Forced Charge SOC Limit 2 Wed
+      - `number.luxpower_inverter_schedules_forced_charge_volt_limit_1_fri` -  Forced Charge Volt Limit 1 Fri
+      - `number.luxpower_inverter_schedules_forced_charge_volt_limit_1_mon` -  Forced Charge Volt Limit 1 Mon
+      - `number.luxpower_inverter_schedules_forced_charge_volt_limit_1_sat` -  Forced Charge Volt Limit 1 Sat
+      - `number.luxpower_inverter_schedules_forced_charge_volt_limit_1_sun` -  Forced Charge Volt Limit 1 Sun
+      - `number.luxpower_inverter_schedules_forced_charge_volt_limit_1_thu` -  Forced Charge Volt Limit 1 Thu
+      - `number.luxpower_inverter_schedules_forced_charge_volt_limit_1_tue` -  Forced Charge Volt Limit 1 Tue
+      - `number.luxpower_inverter_schedules_forced_charge_volt_limit_1_wed` -  Forced Charge Volt Limit 1 Wed
+      - `number.luxpower_inverter_schedules_forced_charge_volt_limit_2_fri` -  Forced Charge Volt Limit 2 Fri
+      - `number.luxpower_inverter_schedules_forced_charge_volt_limit_2_mon` -  Forced Charge Volt Limit 2 Mon
+      - `number.luxpower_inverter_schedules_forced_charge_volt_limit_2_sat` -  Forced Charge Volt Limit 2 Sat
+      - `number.luxpower_inverter_schedules_forced_charge_volt_limit_2_sun` -  Forced Charge Volt Limit 2 Sun
+      - `number.luxpower_inverter_schedules_forced_charge_volt_limit_2_thu` -  Forced Charge Volt Limit 2 Thu
+      - `number.luxpower_inverter_schedules_forced_charge_volt_limit_2_tue` -  Forced Charge Volt Limit 2 Tue
+      - `number.luxpower_inverter_schedules_forced_charge_volt_limit_2_wed` -  Forced Charge Volt Limit 2 Wed
+      - `number.luxpower_inverter_schedules_forced_discharge_power_1_fri` -  Forced Discharge Power 1 Fri
+      - `number.luxpower_inverter_schedules_forced_discharge_power_1_mon` -  Forced Discharge Power 1 Mon
+      - `number.luxpower_inverter_schedules_forced_discharge_power_1_sat` -  Forced Discharge Power 1 Sat
+      - `number.luxpower_inverter_schedules_forced_discharge_power_1_sun` -  Forced Discharge Power 1 Sun
+      - `number.luxpower_inverter_schedules_forced_discharge_power_1_thu` -  Forced Discharge Power 1 Thu
+      - `number.luxpower_inverter_schedules_forced_discharge_power_1_tue` -  Forced Discharge Power 1 Tue
+      - `number.luxpower_inverter_schedules_forced_discharge_power_1_wed` -  Forced Discharge Power 1 Wed
+      - `number.luxpower_inverter_schedules_forced_discharge_power_2_fri` -  Forced Discharge Power 2 Fri
+      - `number.luxpower_inverter_schedules_forced_discharge_power_2_mon` -  Forced Discharge Power 2 Mon
+      - `number.luxpower_inverter_schedules_forced_discharge_power_2_sat` -  Forced Discharge Power 2 Sat
+      - `number.luxpower_inverter_schedules_forced_discharge_power_2_sun` -  Forced Discharge Power 2 Sun
+      - `number.luxpower_inverter_schedules_forced_discharge_power_2_thu` -  Forced Discharge Power 2 Thu
+      - `number.luxpower_inverter_schedules_forced_discharge_power_2_tue` -  Forced Discharge Power 2 Tue
+      - `number.luxpower_inverter_schedules_forced_discharge_power_2_wed` -  Forced Discharge Power 2 Wed
+      - `number.luxpower_inverter_schedules_forced_discharge_soc_limit_1_fri` -  Forced Discharge SOC Limit 1 Fri
+      - `number.luxpower_inverter_schedules_forced_discharge_soc_limit_1_mon` -  Forced Discharge SOC Limit 1 Mon
+      - `number.luxpower_inverter_schedules_forced_discharge_soc_limit_1_sat` -  Forced Discharge SOC Limit 1 Sat
+      - `number.luxpower_inverter_schedules_forced_discharge_soc_limit_1_sun` -  Forced Discharge SOC Limit 1 Sun
+      - `number.luxpower_inverter_schedules_forced_discharge_soc_limit_1_thu` -  Forced Discharge SOC Limit 1 Thu
+      - `number.luxpower_inverter_schedules_forced_discharge_soc_limit_1_tue` -  Forced Discharge SOC Limit 1 Tue
+      - `number.luxpower_inverter_schedules_forced_discharge_soc_limit_1_wed` -  Forced Discharge SOC Limit 1 Wed
+      - `number.luxpower_inverter_schedules_forced_discharge_soc_limit_2_fri` -  Forced Discharge SOC Limit 2 Fri
+      - `number.luxpower_inverter_schedules_forced_discharge_soc_limit_2_mon` -  Forced Discharge SOC Limit 2 Mon
+      - `number.luxpower_inverter_schedules_forced_discharge_soc_limit_2_sat` -  Forced Discharge SOC Limit 2 Sat
+      - `number.luxpower_inverter_schedules_forced_discharge_soc_limit_2_sun` -  Forced Discharge SOC Limit 2 Sun
+      - `number.luxpower_inverter_schedules_forced_discharge_soc_limit_2_thu` -  Forced Discharge SOC Limit 2 Thu
+      - `number.luxpower_inverter_schedules_forced_discharge_soc_limit_2_tue` -  Forced Discharge SOC Limit 2 Tue
+      - `number.luxpower_inverter_schedules_forced_discharge_soc_limit_2_wed` -  Forced Discharge SOC Limit 2 Wed
+      - `number.luxpower_inverter_schedules_forced_discharge_volt_limit_1_fri` -  Forced Discharge Volt Limit 1 Fri
+      - `number.luxpower_inverter_schedules_forced_discharge_volt_limit_1_mon` -  Forced Discharge Volt Limit 1 Mon
+      - `number.luxpower_inverter_schedules_forced_discharge_volt_limit_1_sat` -  Forced Discharge Volt Limit 1 Sat
+      - `number.luxpower_inverter_schedules_forced_discharge_volt_limit_1_sun` -  Forced Discharge Volt Limit 1 Sun
+      - `number.luxpower_inverter_schedules_forced_discharge_volt_limit_1_thu` -  Forced Discharge Volt Limit 1 Thu
+      - `number.luxpower_inverter_schedules_forced_discharge_volt_limit_1_tue` -  Forced Discharge Volt Limit 1 Tue
+      - `number.luxpower_inverter_schedules_forced_discharge_volt_limit_1_wed` -  Forced Discharge Volt Limit 1 Wed
+      - `number.luxpower_inverter_schedules_forced_discharge_volt_limit_2_fri` -  Forced Discharge Volt Limit 2 Fri
+      - `number.luxpower_inverter_schedules_forced_discharge_volt_limit_2_mon` -  Forced Discharge Volt Limit 2 Mon
+      - `number.luxpower_inverter_schedules_forced_discharge_volt_limit_2_sat` -  Forced Discharge Volt Limit 2 Sat
+      - `number.luxpower_inverter_schedules_forced_discharge_volt_limit_2_sun` -  Forced Discharge Volt Limit 2 Sun
+      - `number.luxpower_inverter_schedules_forced_discharge_volt_limit_2_thu` -  Forced Discharge Volt Limit 2 Thu
+      - `number.luxpower_inverter_schedules_forced_discharge_volt_limit_2_tue` -  Forced Discharge Volt Limit 2 Tue
+      - `number.luxpower_inverter_schedules_forced_discharge_volt_limit_2_wed` -  Forced Discharge Volt Limit 2 Wed
+      - `number.luxpower_inverter_schedules_peak_shaving_power_1_fri` -  Peak Shaving Power 1 Fri
+      - `number.luxpower_inverter_schedules_peak_shaving_power_1_mon` -  Peak Shaving Power 1 Mon
+      - `number.luxpower_inverter_schedules_peak_shaving_power_1_sat` -  Peak Shaving Power 1 Sat
+      - `number.luxpower_inverter_schedules_peak_shaving_power_1_sun` -  Peak Shaving Power 1 Sun
+      - `number.luxpower_inverter_schedules_peak_shaving_power_1_thu` -  Peak Shaving Power 1 Thu
+      - `number.luxpower_inverter_schedules_peak_shaving_power_1_tue` -  Peak Shaving Power 1 Tue
+      - `number.luxpower_inverter_schedules_peak_shaving_power_1_wed` -  Peak Shaving Power 1 Wed
+      - `number.luxpower_inverter_schedules_peak_shaving_power_2_fri` -  Peak Shaving Power 2 Fri
+      - `number.luxpower_inverter_schedules_peak_shaving_power_2_mon` -  Peak Shaving Power 2 Mon
+      - `number.luxpower_inverter_schedules_peak_shaving_power_2_sat` -  Peak Shaving Power 2 Sat
+      - `number.luxpower_inverter_schedules_peak_shaving_power_2_sun` -  Peak Shaving Power 2 Sun
+      - `number.luxpower_inverter_schedules_peak_shaving_power_2_thu` -  Peak Shaving Power 2 Thu
+      - `number.luxpower_inverter_schedules_peak_shaving_power_2_tue` -  Peak Shaving Power 2 Tue
+      - `number.luxpower_inverter_schedules_peak_shaving_power_2_wed` -  Peak Shaving Power 2 Wed
+      - `number.luxpower_inverter_schedules_peak_shaving_soc_limit_1_fri` -  Peak Shaving SOC Limit 1 Fri
+      - `number.luxpower_inverter_schedules_peak_shaving_soc_limit_1_mon` -  Peak Shaving SOC Limit 1 Mon
+      - `number.luxpower_inverter_schedules_peak_shaving_soc_limit_1_sat` -  Peak Shaving SOC Limit 1 Sat
+      - `number.luxpower_inverter_schedules_peak_shaving_soc_limit_1_sun` -  Peak Shaving SOC Limit 1 Sun
+      - `number.luxpower_inverter_schedules_peak_shaving_soc_limit_1_thu` -  Peak Shaving SOC Limit 1 Thu
+      - `number.luxpower_inverter_schedules_peak_shaving_soc_limit_1_tue` -  Peak Shaving SOC Limit 1 Tue
+      - `number.luxpower_inverter_schedules_peak_shaving_soc_limit_1_wed` -  Peak Shaving SOC Limit 1 Wed
+      - `number.luxpower_inverter_schedules_peak_shaving_soc_limit_2_fri` -  Peak Shaving SOC Limit 2 Fri
+      - `number.luxpower_inverter_schedules_peak_shaving_soc_limit_2_mon` -  Peak Shaving SOC Limit 2 Mon
+      - `number.luxpower_inverter_schedules_peak_shaving_soc_limit_2_sat` -  Peak Shaving SOC Limit 2 Sat
+      - `number.luxpower_inverter_schedules_peak_shaving_soc_limit_2_sun` -  Peak Shaving SOC Limit 2 Sun
+      - `number.luxpower_inverter_schedules_peak_shaving_soc_limit_2_thu` -  Peak Shaving SOC Limit 2 Thu
+      - `number.luxpower_inverter_schedules_peak_shaving_soc_limit_2_tue` -  Peak Shaving SOC Limit 2 Tue
+      - `number.luxpower_inverter_schedules_peak_shaving_soc_limit_2_wed` -  Peak Shaving SOC Limit 2 Wed
+      - `number.luxpower_inverter_schedules_peak_shaving_volt_limit_1_fri` -  Peak Shaving Volt Limit 1 Fri
+      - `number.luxpower_inverter_schedules_peak_shaving_volt_limit_1_mon` -  Peak Shaving Volt Limit 1 Mon
+      - `number.luxpower_inverter_schedules_peak_shaving_volt_limit_1_sat` -  Peak Shaving Volt Limit 1 Sat
+      - `number.luxpower_inverter_schedules_peak_shaving_volt_limit_1_sun` -  Peak Shaving Volt Limit 1 Sun
+      - `number.luxpower_inverter_schedules_peak_shaving_volt_limit_1_thu` -  Peak Shaving Volt Limit 1 Thu
+      - `number.luxpower_inverter_schedules_peak_shaving_volt_limit_1_tue` -  Peak Shaving Volt Limit 1 Tue
+      - `number.luxpower_inverter_schedules_peak_shaving_volt_limit_1_wed` -  Peak Shaving Volt Limit 1 Wed
+      - `number.luxpower_inverter_schedules_peak_shaving_volt_limit_2_fri` -  Peak Shaving Volt Limit 2 Fri
+      - `number.luxpower_inverter_schedules_peak_shaving_volt_limit_2_mon` -  Peak Shaving Volt Limit 2 Mon
+      - `number.luxpower_inverter_schedules_peak_shaving_volt_limit_2_sat` -  Peak Shaving Volt Limit 2 Sat
+      - `number.luxpower_inverter_schedules_peak_shaving_volt_limit_2_sun` -  Peak Shaving Volt Limit 2 Sun
+      - `number.luxpower_inverter_schedules_peak_shaving_volt_limit_2_thu` -  Peak Shaving Volt Limit 2 Thu
+      - `number.luxpower_inverter_schedules_peak_shaving_volt_limit_2_tue` -  Peak Shaving Volt Limit 2 Tue
+      - `number.luxpower_inverter_schedules_peak_shaving_volt_limit_2_wed` -  Peak Shaving Volt Limit 2 Wed
+      - `switch.luxpower_inverter_schedules_7_day_schedule_enable` -  7-Day Schedule Enable
+      - `time.luxpower_inverter_schedules_ac_charge_end_time_1_fri` -  AC Charge End Time 1 Fri
+      - `time.luxpower_inverter_schedules_ac_charge_end_time_1_mon` -  AC Charge End Time 1 Mon
+      - `time.luxpower_inverter_schedules_ac_charge_end_time_1_sat` -  AC Charge End Time 1 Sat
+      - `time.luxpower_inverter_schedules_ac_charge_end_time_1_sun` -  AC Charge End Time 1 Sun
+      - `time.luxpower_inverter_schedules_ac_charge_end_time_1_thu` -  AC Charge End Time 1 Thu
+      - `time.luxpower_inverter_schedules_ac_charge_end_time_1_tue` -  AC Charge End Time 1 Tue
+      - `time.luxpower_inverter_schedules_ac_charge_end_time_1_wed` -  AC Charge End Time 1 Wed
+      - `time.luxpower_inverter_schedules_ac_charge_end_time_2_fri` -  AC Charge End Time 2 Fri
+      - `time.luxpower_inverter_schedules_ac_charge_end_time_2_mon` -  AC Charge End Time 2 Mon
+      - `time.luxpower_inverter_schedules_ac_charge_end_time_2_sat` -  AC Charge End Time 2 Sat
+      - `time.luxpower_inverter_schedules_ac_charge_end_time_2_sun` -  AC Charge End Time 2 Sun
+      - `time.luxpower_inverter_schedules_ac_charge_end_time_2_thu` -  AC Charge End Time 2 Thu
+      - `time.luxpower_inverter_schedules_ac_charge_end_time_2_tue` -  AC Charge End Time 2 Tue
+      - `time.luxpower_inverter_schedules_ac_charge_end_time_2_wed` -  AC Charge End Time 2 Wed
+      - `time.luxpower_inverter_schedules_ac_charge_start_time_1_fri` -  AC Charge Start Time 1 Fri
+      - `time.luxpower_inverter_schedules_ac_charge_start_time_1_mon` -  AC Charge Start Time 1 Mon
+      - `time.luxpower_inverter_schedules_ac_charge_start_time_1_sat` -  AC Charge Start Time 1 Sat
+      - `time.luxpower_inverter_schedules_ac_charge_start_time_1_sun` -  AC Charge Start Time 1 Sun
+      - `time.luxpower_inverter_schedules_ac_charge_start_time_1_thu` -  AC Charge Start Time 1 Thu
+      - `time.luxpower_inverter_schedules_ac_charge_start_time_1_tue` -  AC Charge Start Time 1 Tue
+      - `time.luxpower_inverter_schedules_ac_charge_start_time_1_wed` -  AC Charge Start Time 1 Wed
+      - `time.luxpower_inverter_schedules_ac_charge_start_time_2_fri` -  AC Charge Start Time 2 Fri
+      - `time.luxpower_inverter_schedules_ac_charge_start_time_2_mon` -  AC Charge Start Time 2 Mon
+      - `time.luxpower_inverter_schedules_ac_charge_start_time_2_sat` -  AC Charge Start Time 2 Sat
+      - `time.luxpower_inverter_schedules_ac_charge_start_time_2_sun` -  AC Charge Start Time 2 Sun
+      - `time.luxpower_inverter_schedules_ac_charge_start_time_2_thu` -  AC Charge Start Time 2 Thu
+      - `time.luxpower_inverter_schedules_ac_charge_start_time_2_tue` -  AC Charge Start Time 2 Tue
+      - `time.luxpower_inverter_schedules_ac_charge_start_time_2_wed` -  AC Charge Start Time 2 Wed
+      - `time.luxpower_inverter_schedules_forced_charge_end_time_1_fri` -  Forced Charge End Time 1 Fri
+      - `time.luxpower_inverter_schedules_forced_charge_end_time_1_mon` -  Forced Charge End Time 1 Mon
+      - `time.luxpower_inverter_schedules_forced_charge_end_time_1_sat` -  Forced Charge End Time 1 Sat
+      - `time.luxpower_inverter_schedules_forced_charge_end_time_1_sun` -  Forced Charge End Time 1 Sun
+      - `time.luxpower_inverter_schedules_forced_charge_end_time_1_thu` -  Forced Charge End Time 1 Thu
+      - `time.luxpower_inverter_schedules_forced_charge_end_time_1_tue` -  Forced Charge End Time 1 Tue
+      - `time.luxpower_inverter_schedules_forced_charge_end_time_1_wed` -  Forced Charge End Time 1 Wed
+      - `time.luxpower_inverter_schedules_forced_charge_end_time_2_fri` -  Forced Charge End Time 2 Fri
+      - `time.luxpower_inverter_schedules_forced_charge_end_time_2_mon` -  Forced Charge End Time 2 Mon
+      - `time.luxpower_inverter_schedules_forced_charge_end_time_2_sat` -  Forced Charge End Time 2 Sat
+      - `time.luxpower_inverter_schedules_forced_charge_end_time_2_sun` -  Forced Charge End Time 2 Sun
+      - `time.luxpower_inverter_schedules_forced_charge_end_time_2_thu` -  Forced Charge End Time 2 Thu
+      - `time.luxpower_inverter_schedules_forced_charge_end_time_2_tue` -  Forced Charge End Time 2 Tue
+      - `time.luxpower_inverter_schedules_forced_charge_end_time_2_wed` -  Forced Charge End Time 2 Wed
+      - `time.luxpower_inverter_schedules_forced_charge_start_time_1_fri` -  Forced Charge Start Time 1 Fri
+      - `time.luxpower_inverter_schedules_forced_charge_start_time_1_mon` -  Forced Charge Start Time 1 Mon
+      - `time.luxpower_inverter_schedules_forced_charge_start_time_1_sat` -  Forced Charge Start Time 1 Sat
+      - `time.luxpower_inverter_schedules_forced_charge_start_time_1_sun` -  Forced Charge Start Time 1 Sun
+      - `time.luxpower_inverter_schedules_forced_charge_start_time_1_thu` -  Forced Charge Start Time 1 Thu
+      - `time.luxpower_inverter_schedules_forced_charge_start_time_1_tue` -  Forced Charge Start Time 1 Tue
+      - `time.luxpower_inverter_schedules_forced_charge_start_time_1_wed` -  Forced Charge Start Time 1 Wed
+      - `time.luxpower_inverter_schedules_forced_charge_start_time_2_fri` -  Forced Charge Start Time 2 Fri
+      - `time.luxpower_inverter_schedules_forced_charge_start_time_2_mon` -  Forced Charge Start Time 2 Mon
+      - `time.luxpower_inverter_schedules_forced_charge_start_time_2_sat` -  Forced Charge Start Time 2 Sat
+      - `time.luxpower_inverter_schedules_forced_charge_start_time_2_sun` -  Forced Charge Start Time 2 Sun
+      - `time.luxpower_inverter_schedules_forced_charge_start_time_2_thu` -  Forced Charge Start Time 2 Thu
+      - `time.luxpower_inverter_schedules_forced_charge_start_time_2_tue` -  Forced Charge Start Time 2 Tue
+      - `time.luxpower_inverter_schedules_forced_charge_start_time_2_wed` -  Forced Charge Start Time 2 Wed
+      - `time.luxpower_inverter_schedules_forced_discharge_end_time_1_fri` -  Forced Discharge End Time 1 Fri
+      - `time.luxpower_inverter_schedules_forced_discharge_end_time_1_mon` -  Forced Discharge End Time 1 Mon
+      - `time.luxpower_inverter_schedules_forced_discharge_end_time_1_sat` -  Forced Discharge End Time 1 Sat
+      - `time.luxpower_inverter_schedules_forced_discharge_end_time_1_sun` -  Forced Discharge End Time 1 Sun
+      - `time.luxpower_inverter_schedules_forced_discharge_end_time_1_thu` -  Forced Discharge End Time 1 Thu
+      - `time.luxpower_inverter_schedules_forced_discharge_end_time_1_tue` -  Forced Discharge End Time 1 Tue
+      - `time.luxpower_inverter_schedules_forced_discharge_end_time_1_wed` -  Forced Discharge End Time 1 Wed
+      - `time.luxpower_inverter_schedules_forced_discharge_end_time_2_fri` -  Forced Discharge End Time 2 Fri
+      - `time.luxpower_inverter_schedules_forced_discharge_end_time_2_mon` -  Forced Discharge End Time 2 Mon
+      - `time.luxpower_inverter_schedules_forced_discharge_end_time_2_sat` -  Forced Discharge End Time 2 Sat
+      - `time.luxpower_inverter_schedules_forced_discharge_end_time_2_sun` -  Forced Discharge End Time 2 Sun
+      - `time.luxpower_inverter_schedules_forced_discharge_end_time_2_thu` -  Forced Discharge End Time 2 Thu
+      - `time.luxpower_inverter_schedules_forced_discharge_end_time_2_tue` -  Forced Discharge End Time 2 Tue
+      - `time.luxpower_inverter_schedules_forced_discharge_end_time_2_wed` -  Forced Discharge End Time 2 Wed
+      - `time.luxpower_inverter_schedules_forced_discharge_start_time_1_fri` -  Forced Discharge Start Time 1 Fri
+      - `time.luxpower_inverter_schedules_forced_discharge_start_time_1_mon` -  Forced Discharge Start Time 1 Mon
+      - `time.luxpower_inverter_schedules_forced_discharge_start_time_1_sat` -  Forced Discharge Start Time 1 Sat
+      - `time.luxpower_inverter_schedules_forced_discharge_start_time_1_sun` -  Forced Discharge Start Time 1 Sun
+      - `time.luxpower_inverter_schedules_forced_discharge_start_time_1_thu` -  Forced Discharge Start Time 1 Thu
+      - `time.luxpower_inverter_schedules_forced_discharge_start_time_1_tue` -  Forced Discharge Start Time 1 Tue
+      - `time.luxpower_inverter_schedules_forced_discharge_start_time_1_wed` -  Forced Discharge Start Time 1 Wed
+      - `time.luxpower_inverter_schedules_forced_discharge_start_time_2_fri` -  Forced Discharge Start Time 2 Fri
+      - `time.luxpower_inverter_schedules_forced_discharge_start_time_2_mon` -  Forced Discharge Start Time 2 Mon
+      - `time.luxpower_inverter_schedules_forced_discharge_start_time_2_sat` -  Forced Discharge Start Time 2 Sat
+      - `time.luxpower_inverter_schedules_forced_discharge_start_time_2_sun` -  Forced Discharge Start Time 2 Sun
+      - `time.luxpower_inverter_schedules_forced_discharge_start_time_2_thu` -  Forced Discharge Start Time 2 Thu
+      - `time.luxpower_inverter_schedules_forced_discharge_start_time_2_tue` -  Forced Discharge Start Time 2 Tue
+      - `time.luxpower_inverter_schedules_forced_discharge_start_time_2_wed` -  Forced Discharge Start Time 2 Wed
+      - `time.luxpower_inverter_schedules_peak_shaving_end_time_1_fri` -  Peak Shaving End Time 1 Fri
+      - `time.luxpower_inverter_schedules_peak_shaving_end_time_1_mon` -  Peak Shaving End Time 1 Mon
+      - `time.luxpower_inverter_schedules_peak_shaving_end_time_1_sat` -  Peak Shaving End Time 1 Sat
+      - `time.luxpower_inverter_schedules_peak_shaving_end_time_1_sun` -  Peak Shaving End Time 1 Sun
+      - `time.luxpower_inverter_schedules_peak_shaving_end_time_1_thu` -  Peak Shaving End Time 1 Thu
+      - `time.luxpower_inverter_schedules_peak_shaving_end_time_1_tue` -  Peak Shaving End Time 1 Tue
+      - `time.luxpower_inverter_schedules_peak_shaving_end_time_1_wed` -  Peak Shaving End Time 1 Wed
+      - `time.luxpower_inverter_schedules_peak_shaving_end_time_2_fri` -  Peak Shaving End Time 2 Fri
+      - `time.luxpower_inverter_schedules_peak_shaving_end_time_2_mon` -  Peak Shaving End Time 2 Mon
+      - `time.luxpower_inverter_schedules_peak_shaving_end_time_2_sat` -  Peak Shaving End Time 2 Sat
+      - `time.luxpower_inverter_schedules_peak_shaving_end_time_2_sun` -  Peak Shaving End Time 2 Sun
+      - `time.luxpower_inverter_schedules_peak_shaving_end_time_2_thu` -  Peak Shaving End Time 2 Thu
+      - `time.luxpower_inverter_schedules_peak_shaving_end_time_2_tue` -  Peak Shaving End Time 2 Tue
+      - `time.luxpower_inverter_schedules_peak_shaving_end_time_2_wed` -  Peak Shaving End Time 2 Wed
+      - `time.luxpower_inverter_schedules_peak_shaving_start_time_1_fri` -  Peak Shaving Start Time 1 Fri
+      - `time.luxpower_inverter_schedules_peak_shaving_start_time_1_mon` -  Peak Shaving Start Time 1 Mon
+      - `time.luxpower_inverter_schedules_peak_shaving_start_time_1_sat` -  Peak Shaving Start Time 1 Sat
+      - `time.luxpower_inverter_schedules_peak_shaving_start_time_1_sun` -  Peak Shaving Start Time 1 Sun
+      - `time.luxpower_inverter_schedules_peak_shaving_start_time_1_thu` -  Peak Shaving Start Time 1 Thu
+      - `time.luxpower_inverter_schedules_peak_shaving_start_time_1_tue` -  Peak Shaving Start Time 1 Tue
+      - `time.luxpower_inverter_schedules_peak_shaving_start_time_1_wed` -  Peak Shaving Start Time 1 Wed
+      - `time.luxpower_inverter_schedules_peak_shaving_start_time_2_fri` -  Peak Shaving Start Time 2 Fri
+      - `time.luxpower_inverter_schedules_peak_shaving_start_time_2_mon` -  Peak Shaving Start Time 2 Mon
+      - `time.luxpower_inverter_schedules_peak_shaving_start_time_2_sat` -  Peak Shaving Start Time 2 Sat
+      - `time.luxpower_inverter_schedules_peak_shaving_start_time_2_sun` -  Peak Shaving Start Time 2 Sun
+      - `time.luxpower_inverter_schedules_peak_shaving_start_time_2_thu` -  Peak Shaving Start Time 2 Thu
+      - `time.luxpower_inverter_schedules_peak_shaving_start_time_2_tue` -  Peak Shaving Start Time 2 Tue
+      - `time.luxpower_inverter_schedules_peak_shaving_start_time_2_wed` -  Peak Shaving Start Time 2 Wed
+
+### Mosquitto broker  (`mqtt`)
+- entry_id: `01KY4DJEPMG5TQN2VRZP5KFS7R` | state: loaded | so thiet bi: 0 | so thuc the (qua thiet bi): 0
+- (khong co thiet bi rieng - co the co thuc the truc tiep, xem phan "Thuc the khong gan thiet bi")
+
+### Radio Browser  (`radio_browser`)
+- entry_id: `01KWRAB3VK3JFKFCS3Z6RFGEJJ` | state: loaded | so thiet bi: 0 | so thuc the (qua thiet bi): 0
+- (khong co thiet bi rieng - co the co thuc the truc tiep, xem phan "Thuc the khong gan thiet bi")
+
+### Shopping list  (`shopping_list`)
+- entry_id: `01KWRAB38ZY8QA8M2HP0TXW2TF` | state: loaded | so thiet bi: 0 | so thuc the (qua thiet bi): 0
+- (khong co thiet bi rieng - co the co thuc the truc tiep, xem phan "Thuc the khong gan thiet bi")
+
+### SM-A146P  (`mobile_app`)
+- entry_id: `01KX67YK278HACQG70CHDSW1PY` | state: loaded | so thiet bi: 1 | so thuc the (qua thiet bi): 5
+  - **Thiet bi:** SM-A146P  (id: `00eeb13e484778b6e24a29e9483d0395`)
+    - hang: samsung | model: SM-A146P | sw: 34 | khu vuc: -
+    - Thuc the (5):
+      - `device_tracker.sm_a146p`
+      - `notify.sm_a146p`
+      - `sensor.sm_a146p_battery_level` - Battery level
+      - `sensor.sm_a146p_battery_state` - Battery state
+      - `sensor.sm_a146p_charger_type` - Charger type
+
+### SM-N986U1  (`mobile_app`)
+- entry_id: `01KX628F3QH1ZF1R95P1Z88F0W` | state: loaded | so thiet bi: 1 | so thuc the (qua thiet bi): 5
+  - **Thiet bi:** SM-N986U1  (id: `b7d20f1f6f7125fb04ccd547960aa865`)
+    - hang: samsung | model: SM-N986U1 | sw: 33 | khu vuc: -
+    - Thuc the (5):
+      - `device_tracker.sm_n986u1`
+      - `notify.sm_n986u1`
+      - `sensor.sm_n986u1_battery_level` - SamSung Note20
+      - `sensor.sm_n986u1_battery_state` - Battery state
+      - `sensor.sm_n986u1_charger_type` - Charger type
+
+### Sun  (`sun`)
+- entry_id: `01KWRA5ZGCN89BEW5R8BM5FSZY` | state: loaded | so thiet bi: 1 | so thuc the (qua thiet bi): 7
+  - **Thiet bi:** Sun  (id: `a3c72e6e4e307187a5e720fe67b917be`)
+    - khu vuc: -
+    - Thuc the (7):
+      - `sensor.sun_next_dawn` - Bình minh tới
+      - `sensor.sun_next_dusk` - Hoàng hôn tới
+      - `sensor.sun_next_midnight` - Nửa đêm tới
+      - `sensor.sun_next_noon` - Chính ngọ tới
+      - `sensor.sun_next_rising` - Lần mọc tới
+      - `sensor.sun_next_setting` - Lần lặn tới
+      - `sensor.sun_solar_azimuth` - Phương vị mặt trời
+
+### Supervisor  (`hassio`)
+- entry_id: `01KWRA5ZSTKFK27HQV1M2R79N1` | state: loaded | so thiet bi: 10 | so thuc the (qua thiet bi): 9
+  - **Thiet bi:** Home Assistant Core  (id: `03d966fb34105dd1e0afb1d791e4e8e4`)
+    - hang: Home Assistant | model: Home Assistant Core | sw: 2026.7.4 | khu vuc: -
+    - Thuc the (1):
+      - `update.home_assistant_core_update` - Update
+  - **Thiet bi:** Home Assistant Supervisor  (id: `24d8bd6d13dfba7240414923c64fd773`)
+    - hang: Home Assistant | model: Home Assistant Supervisor | sw: 2026.07.5 | khu vuc: -
+    - Thuc the (1):
+      - `update.home_assistant_supervisor_update` - Update
+  - **Thiet bi:** Home Assistant Host  (id: `2e71370ff7789a74cb7881c17963df05`)
+    - hang: Home Assistant | model: Home Assistant Host | khu vuc: -
+  - **Thiet bi:** Home Assistant Operating System  (id: `fea1863bb93f75d500570f65b01afe5f`)
+    - hang: Home Assistant | model: Home Assistant Operating System | sw: 18.2 | khu vuc: -
+    - Thuc the (1):
+      - `update.home_assistant_operating_system_update` - Update
+  - **Thiet bi:** File editor  (id: `ad80fdad85da71587e1e88b4faf8642c`)
+    - hang: Official apps | model: Home Assistant App | sw: 6.1.0 | khu vuc: -
+    - Thuc the (1):
+      - `update.file_editor_update` - Update
+  - **Thiet bi:** Cloudflared  (id: `e40c80a6050b95cd8fbef4207450d942`)
+    - hang: Cloudflared | model: Home Assistant App | sw: 7.0.11 | khu vuc: -
+    - Thuc the (1):
+      - `update.cloudflared_update` - Update
+  - **Thiet bi:** Mosquitto broker  (id: `29b5a2d63868464d39a9eb2f8328e9f4`)
+    - hang: Official apps | model: Home Assistant App | sw: 7.1.0 | khu vuc: -
+    - Thuc the (1):
+      - `update.mosquitto_broker_update` - Update
+  - **Thiet bi:** Samba share  (id: `bd546e8b29905b9fd3f8c42f31b64261`)
+    - hang: Official apps | model: Home Assistant App | sw: 12.10.0 | khu vuc: -
+    - Thuc the (1):
+      - `update.samba_share_update` - Update
+  - **Thiet bi:** Advanced SSH & Web Terminal  (id: `3ce81c1064d0db5292e19451973cc0fb`)
+    - hang: Home Assistant Community Apps | model: Home Assistant App | sw: 24.0.1 | khu vuc: -
+    - Thuc the (1):
+      - `update.advanced_ssh_web_terminal_update` - Update
+  - **Thiet bi:** Studio Code Server  (id: `a93d7bae6fa83d7cea43a99ab9fc7c06`)
+    - hang: Home Assistant Community Apps | model: Home Assistant App | sw: 6.0.1 | khu vuc: -
+    - Thuc the (1):
+      - `update.studio_code_server_update` - Update
+
+## Thuc the khong gan thiet bi
+Tong: 10
+### automation (2)
+- `automation.binh_nong_lanh_tat_thi_huy_timer` - Bình nóng lạnh - Tắt thì hủy timer
+- `automation.binh_nong_lanh_tu_tat_sau_20_phut` - Bình nóng lạnh - Tự tắt sau 20 phút
+### input_select (2)
+- `input_select.trang_thai_cua` - Trạng thái cửa 
+- `input_select.trang_thai_cua_cuon` - Trạng thái cửa cuốn
+### person (1)
+- `person.nham_minh_hieu` - Nhâm Minh Hiếu
+### script (3)
+- `script.cua_dong` - Cửa - Đóng
+- `script.cua_dung` - Cửa - Dừng
+- `script.cua_mo` - Cửa - Mở
+### timer (1)
+- `timer.nong_lanh_20_phut` - Nóng lạnh 20 phút
+### todo (1)
+- `todo.shopping_list` - Danh sách mua sắm

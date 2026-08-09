@@ -1,0 +1,15 @@
+name: Deploy to Home Assistant
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  trigger-ha-webhook:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Call HA webhook
+        run: |
+          curl -sf -X POST "${{ secrets.HA_WEBHOOK_URL }}" \
+            -H "Content-Type: application/json" \
+            -d "{\"token\": \"${{ secrets.HA_WEBHOOK_TOKEN }}\"}"

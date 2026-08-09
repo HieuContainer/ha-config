@@ -1,0 +1,24 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Imou Ranger 2 (ONVIF)",
+        "description": "Nhập địa chỉ IP và tài khoản của camera để kết nối qua ONVIF.",
+        "data": {
+          "host": "Địa chỉ IP",
+          "username": "Tài khoản",
+          "password": "Mật khẩu",
+          "port": "Cổng ONVIF",
+          "rtsp_port": "Cổng RTSP",
+          "name": "Tên"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Không kết nối được camera. Kiểm tra IP, tài khoản, mật khẩu."
+    },
+    "abort": {
+      "already_configured": "Camera này đã được thêm."
+    }
+  }
+}
