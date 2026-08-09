@@ -439,7 +439,7 @@ views:
             \ flow-dash 1s linear infinite; }\n    </style>\n\n    <div style=\"display:\
             \ flex; justify-content: space-between; align-items: center; margin-bottom:\
             \ 14px; width: 100%;\">\n      <div style=\"font-size: 14px; font-weight:\
-            \ 800; color: #fff; letter-spacing: 0.5px;\">DÒNG NĂNG LƯỢNG</div>\n \
+            \ 800; color: #fff; letter-spacing: 0.5px;\">DÒNG NĂNG LƯỢNG ABC</div>\n \
             \     <div style=\"background: rgba(37,211,102,0.12); border: 1px solid\
             \ rgba(37,211,102,0.3); padding: 3px 10px; border-radius: 16px; font-size:\
             \ 10px; color: #25d366; font-weight: 700; display: flex; align-items:\
