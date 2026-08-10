@@ -79,10 +79,16 @@
     # 1. Phải đúng biển số xe 30K-588.75
     - condition: template
       value_template: >
-        {% set p1 = state_attr('image_processing.platerecognizer_ipc_gs7e_3m0we_2', 'watched_plates') or [] %}
-        {% set p2 = state_attr('image_processing.platerecognizer_ipc_gs7e_3m0we', 'watched_plates') or [] %}
-        {% set ev_p = (trigger.event.data.plate if trigger.event is defined and trigger.event.data is defined else '') | lower %}
-        {{ '30K58875' in p1 or '30k58875' in p1 or '30K58875' in p2 or '30k58875' in p2 or '30k58875' in ev_p }}
+        {% set p1 = state_attr('image_processing.platerecognizer_ipc_gs7e_3m0we_2', 'watched_plates') or {} %}
+        {% set p2 = state_attr('image_processing.platerecognizer_ipc_gs7e_3m0we', 'watched_plates') or {} %}
+        {% set ev_p = (trigger.event.data.plate if trigger.event is defined and trigger.event.data is defined else '') | lower | replace('-', '') | replace('.', '') %}
+        {% set res1 = (state_attr('image_processing.platerecognizer_ipc_gs7e_3m0we_2', 'results') or []) | map(attribute='plate') | list | map('lower') | list %}
+        {% set res2 = (state_attr('image_processing.platerecognizer_ipc_gs7e_3m0we', 'results') or []) | map(attribute='plate') | list | map('lower') | list %}
+        {{ (p1 is mapping and (p1.get('30k58875') == true or p1.get('30K58875') == true or p1.get('30K-588.75') == true or p1.get('30K-58875') == true))
+           or (p2 is mapping and (p2.get('30k58875') == true or p2.get('30K58875') == true or p2.get('30K-588.75') == true or p2.get('30K-58875') == true))
+           or '30k58875' in res1 or '30k58875' in res2
+           or '30k58875' in ev_p }}
+
 
     # 2. Cửa cuốn hiện tại phải không ở trạng thái đang mở hoặc đã mở
     - condition: template
