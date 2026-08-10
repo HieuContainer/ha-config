@@ -94,10 +94,24 @@
       target:
         entity_id: script.cua_mo
 
-    # B. Gửi thông báo xác nhận về ứng dụng
-    - action: notify.persistent_notification
+    # B. Gửi thông báo đẩy về điện thoại & ứng dụng
+    - action: notify.notify
       data:
         title: "🚗 Đã nhận diện xe 30K-588.75!"
         message: "Camera Sân đã quét đúng xe 30K-588.75 của bạn. Cửa cuốn đang tự động mở!"
+        data:
+          push:
+            sound: "default"
+            interruption-level: "time-sensitive"
+          ttl: 0
+          priority: high
+          channel: "alpr_door_alert"
+
+    # C. Gửi thông báo lưu trên bảng điều khiển Home Assistant
+    - action: notify.persistent_notification
+      data:
+        title: "🚗 Đã nhận diện xe 30K-588.75!"
+        message: "Camera Sân đã quét đúng xe 30K-588.75 của bạn lúc {{ now().strftime('%H:%M:%S ngày %d/%m/%Y') }}. Cửa cuốn đã được tự động mở."
   mode: single
+
 
