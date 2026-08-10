@@ -42,3 +42,62 @@
     target:
       entity_id: timer.nong_lanh_20_phut
   mode: restart
+
+# ==========================================
+# 1. KÍCH HOẠT QUÉT BIỂN SỐ XE KHI CÓ CHUYỂN ĐỘNG / XE
+# ==========================================
+- id: 'trigger_scan_plate_on_motion'
+  alias: "Camera Sân - Quét Biển Số Xe"
+  description: "Khi camera sân phát hiện chuyển động thì gọi AI quét biển số"
+  triggers:
+    - trigger: state
+      entity_id:
+        - camera.ipc_gs7e_3m0we_2
+        - camera.ipc_gs7e_3m0we
+  actions:
+    - action: image_processing.scan
+      target:
+        entity_id:
+          - image_processing.platerecognizer_ipc_gs7e_3m0we_2
+          - image_processing.platerecognizer_ipc_gs7e_3m0we
+  mode: restart
+
+# ==========================================
+# 2. TỰ ĐỘNG MỞ CỬA CUỐN KHI QUÉT ĐÚNG XE 30K-588.75
+# ==========================================
+- id: 'auto_open_door_by_plate_30k58875'
+  alias: "Cửa Cuốn - Tự Động Mở Khi Nhận Diện Xe 30K-588.75"
+  description: "Camera quét đúng biển số xe 30K-588.75 và nhận diện xe thì tự động mở cửa cuốn"
+  triggers:
+    - trigger: state
+      entity_id:
+        - image_processing.platerecognizer_ipc_gs7e_3m0we_2
+        - image_processing.platerecognizer_ipc_gs7e_3m0we
+    - trigger: event
+      event_type: platerecognizer.plate_detected
+  conditions:
+    # 1. Phải đúng biển số xe 30K-588.75
+    - condition: template
+      value_template: >
+        {% set p1 = state_attr('image_processing.platerecognizer_ipc_gs7e_3m0we_2', 'watched_plates') or [] %}
+        {% set p2 = state_attr('image_processing.platerecognizer_ipc_gs7e_3m0we', 'watched_plates') or [] %}
+        {% set ev_p = (trigger.event.data.plate if trigger.event is defined and trigger.event.data is defined else '') | lower %}
+        {{ '30K58875' in p1 or '30k58875' in p1 or '30K58875' in p2 or '30k58875' in p2 or '30k58875' in ev_p }}
+
+    # 2. Cửa cuốn hiện tại phải không ở trạng thái đang mở hoặc đã mở
+    - condition: template
+      value_template: >
+        {{ states('input_select.trang_thai_cua') != 'ĐANG MỞ' and states('input_select.trang_thai_cua') != 'ĐÃ MỞ' }}
+  actions:
+    # A. Gọi kịch bản mở cửa cuốn
+    - action: script.turn_on
+      target:
+        entity_id: script.cua_mo
+
+    # B. Gửi thông báo xác nhận về ứng dụng
+    - action: notify.persistent_notification
+      data:
+        title: "🚗 Đã nhận diện xe 30K-588.75!"
+        message: "Camera Sân đã quét đúng xe 30K-588.75 của bạn. Cửa cuốn đang tự động mở!"
+  mode: single
+

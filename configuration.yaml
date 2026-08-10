@@ -123,3 +123,23 @@ input_number:
     unit_of_measurement: "%"
     initial: 20
     icon: mdi:battery-alert
+
+# ==========================================
+# NHẬN DIỆN BIỂN SỐ XE AI (PLATE RECOGNIZER)
+# ==========================================
+image_processing:
+  - platform: platerecognizer
+    api_token: "1a513f21c3311072bc4453b5cf4254b7a9b38095"
+    regions:
+      - vn
+    watched_plates:
+      - 30k58875
+      - 30K58875
+      - 30K-588.75
+      - 30K-58875
+      - 30k-58875
+      - 30k-588.75
+    source:
+      - entity_id: camera.ipc_gs7e_3m0we_2
+      - entity_id: camera.ipc_gs7e_3m0we
+
