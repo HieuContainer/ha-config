@@ -44,7 +44,7 @@
   mode: restart
 
 # ==========================================
-# 1. KÍCH HOẠT QUÉT BIỂN SỐ XE KHI CÓ CHUYỂN ĐỘNG / XE
+# 1. KÍCH HOẠT QUÉT BIỂN SỐ XE KHI CAMERA HOẠT ĐỘNG
 # ==========================================
 - id: 'trigger_scan_plate_on_motion'
   alias: "Camera Sân - Quét Biển Số Xe"
@@ -54,6 +54,10 @@
       entity_id:
         - camera.ipc_gs7e_3m0we_2
         - camera.ipc_gs7e_3m0we
+  conditions:
+    - condition: template
+      value_template: >
+        {{ trigger.from_state is defined and trigger.from_state is not none and trigger.from_state.state not in ['unavailable', 'unknown'] }}
   actions:
     - action: image_processing.scan
       target:
@@ -74,9 +78,19 @@
         - image_processing.platerecognizer_ipc_gs7e_3m0we_2
         - image_processing.platerecognizer_ipc_gs7e_3m0we
     - trigger: event
+      event_type: platerecognizer.vehicle_detected
+    - trigger: event
       event_type: platerecognizer.plate_detected
   conditions:
-    # 1. Phải đúng biển số xe 30K-588.75
+    # 1. Phải có ít nhất 1 biển số được tìm thấy (state > 0) hoặc có sự kiện xe đến
+    - condition: template
+      value_template: >
+        {% set s1 = states('image_processing.platerecognizer_ipc_gs7e_3m0we_2') | int(0) %}
+        {% set s2 = states('image_processing.platerecognizer_ipc_gs7e_3m0we') | int(0) %}
+        {% set has_event = trigger.event is defined and trigger.event.data is defined %}
+        {{ s1 > 0 or s2 > 0 or has_event }}
+
+    # 2. Phải đúng biển số xe 30K-588.75 (phải là True trong watched_plates hoặc results)
     - condition: template
       value_template: >
         {% set p1 = state_attr('image_processing.platerecognizer_ipc_gs7e_3m0we_2', 'watched_plates') or {} %}
@@ -89,8 +103,7 @@
            or '30k58875' in res1 or '30k58875' in res2
            or '30k58875' in ev_p }}
 
-
-    # 2. Cửa cuốn hiện tại phải không ở trạng thái đang mở hoặc đã mở
+    # 3. Cửa cuốn hiện tại phải không ở trạng thái đang mở hoặc đã mở
     - condition: template
       value_template: >
         {{ states('input_select.trang_thai_cua') != 'ĐANG MỞ' and states('input_select.trang_thai_cua') != 'ĐÃ MỞ' }}
@@ -99,6 +112,7 @@
     - action: script.turn_on
       target:
         entity_id: script.cua_mo
+
 
     # B. Gửi thông báo đẩy về điện thoại & ứng dụng
     - action: notify.notify
