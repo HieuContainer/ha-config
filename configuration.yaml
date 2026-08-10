@@ -73,7 +73,8 @@ shell_command:
   deploy_config: >
     cd /config &&
     git fetch origin &&
-    git checkout origin/main -- automations.yaml dashboard_nha-c-a-hi-u.yaml dashboard_nha-c-a-hi-u-2.yaml
+    git checkout origin/main -- automations.yaml configuration.yaml dashboard_nha-c-a-hi-u.yaml custom_components/
+
 
 # BỘ TRỢ GIÚP ĐIỀU KHIỂN SẠC & XẢ PIN LUXPOWER
 input_boolean:
