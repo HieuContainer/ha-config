@@ -1669,11 +1669,358 @@ views:
             \ </div>\n        </div>\n      </div>\n\n      <div style=\"background:\
             \ rgba(0, 0, 0, 0.4); border-radius: 12px; padding: 7px 12px; display:\
             \ flex; justify-content: center; align-items: center; gap: 8px; width:\
-            \ 100%; box-sizing: border-box;\">\n        <div style=\"font-size: 11px;\
-            \ font-weight: 600; color: #d0a495;\">Công Suất Hiện Tại:</div>\n    \
-            \    <div style=\"font-size: 17px; font-weight: 800; color: #ff5722;\"\
-            >${l_power} <span style=\"font-size: 11px; font-weight: 400; color: #aaa;\"\
-            >W</span></div>\n      </div>\n    </div>\n  `;\n]]]\n"
+            \ 100%; box-sizing: border-box;\">\n        <div style="font-size: 11px; font-weight: 600; color: #d0a495;">Công Suất Hiện Tại:</div>
+        <div style="font-size: 17px; font-weight: 800; color: #ff5722;">${l_power} <span style="font-size: 11px; font-weight: 400; color: #aaa;">W</span></div>
+      </div>
+    </div>
+  `;
+]]]
+    # ==========================================
+    # 4. THẺ SẠC TỪ LƯỚI (AC CHARGE - THEO GIỜ)
+    # ==========================================
+    - type: custom:stack-in-card
+      card_mod:
+        style: |
+          ha-card {
+            background: #141a24 !important;
+            border-radius: 18px !important;
+            border: 1px solid rgba(74, 144, 226, 0.25) !important;
+            padding: 12px 14px !important;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4) !important;
+            min-height: 400px !important;
+          }
+      cards:
+        - type: custom:button-card
+          show_icon: false
+          show_name: false
+          show_state: false
+          styles:
+            card:
+              - background: none
+              - border: none
+              - box-shadow: none
+              - padding: "0px"
+            grid:
+              - grid-template-areas: '"content"'
+              - grid-template-columns: 1fr
+            custom_fields:
+              content:
+                - width: 100%
+          custom_fields:
+            content: |
+              [[[
+                var p_chg = (states['sensor.luxpower_inverter_battery_battery_charge_power'] && states['sensor.luxpower_inverter_battery_battery_charge_power'].state != 'unavailable') ? states['sensor.luxpower_inverter_battery_battery_charge_power'].state : '0';
+                var i_ac = (states['number.luxpower_inverter_battery_ac_charge_current_from_grid'] && states['number.luxpower_inverter_battery_ac_charge_current_from_grid'].state != 'unavailable') ? states['number.luxpower_inverter_battery_ac_charge_current_from_grid'].state : '0';
+                return `
+                  <div style="width: 100%; margin-bottom: 8px;">
+                    <div style="display: flex; align-items: center; gap: 8px; font-size: 13.5px; font-weight: 800; color: #4a90e2; margin-bottom: 8px; letter-spacing: 0.3px;">
+                      <ha-icon icon="mdi:transmission-tower-import" style="--mdc-icon-size: 20px; color: #4a90e2;"></ha-icon>
+                      <span>SẠC TỪ LƯỚI (AC CHARGE - THEO GIỜ)</span>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; background: rgba(0, 0, 0, 0.35); border: 1px solid rgba(74, 144, 226, 0.2); border-radius: 12px; padding: 8px 12px; text-align: center;">
+                      <div>
+                        <div style="font-size: 9px; color: #78a6db; font-weight: 700; text-transform: uppercase;">CÔNG SUẤT SẠC</div>
+                        <div style="font-size: 16px; font-weight: 900; color: #00ffcc; margin-top: 2px;">${p_chg} <span style="font-size: 10px; color: #888;">W</span></div>
+                      </div>
+                      <div style="border-left: 1px solid rgba(255, 255, 255, 0.1);">
+                        <div style="font-size: 9px; color: #78a6db; font-weight: 700; text-transform: uppercase;">DÒNG SẠC LƯỚI</div>
+                        <div style="font-size: 16px; font-weight: 900; color: #00ffcc; margin-top: 2px;">${i_ac} <span style="font-size: 10px; color: #888;">A</span></div>
+                      </div>
+                    </div>
+                  </div>
+                `;
+              ]]]
+        - type: entities
+          card_mod:
+            style: |
+              ha-card {
+                background: none !important;
+                border: none !important;
+                box-shadow: none !important;
+                padding: 0px !important;
+              }
+              .card-content {
+                padding: 0px !important;
+              }
+              hui-generic-entity-row {
+                padding: 4px 0px !important;
+              }
+          entities:
+            - entity: input_boolean.solar_ac_charge_enabled
+              name: Kích hoạt sạc lưới tự động
+              icon: mdi:battery-charging-wireless-outline
+            - entity: number.luxpower_inverter_battery_ac_charge_current_from_grid
+              name: Dòng sạc
+              icon: mdi:current-ac
+            - entity: input_datetime.solar_ac_charge_start
+              name: Giờ bắt đầu sạc
+              icon: mdi:clock-start
+            - entity: input_datetime.solar_ac_charge_end
+              name: Giờ kết thúc sạc
+              icon: mdi:clock-end
+            - entity: input_number.solar_ac_charge_soc_limit
+              name: Ngưỡng dừng sạc
+              icon: mdi:battery-charging-90
+
+    # ==========================================
+    # 5. THẺ THỐNG KÊ CHI TIẾT TỪNG NGÀY TRONG THÁNG
+    # ==========================================
+    - type: custom:stack-in-card
+      card_mod:
+        style: |
+          ha-card {
+            background: #14171a !important;
+            border-radius: 18px !important;
+            border: 1px solid rgba(255, 255, 255, 0.1) !important;
+            padding: 12px 14px !important;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4) !important;
+            min-height: 400px !important;
+            display: flex !important;
+            flex-direction: column !important;
+            justify-content: space-between !important;
+          }
+      cards:
+        - type: custom:button-card
+          show_icon: false
+          show_name: false
+          show_state: false
+          styles:
+            card:
+              - background: none
+              - border: none
+              - box-shadow: none
+              - padding: "0px"
+            grid:
+              - grid-template-areas: '"content"'
+              - grid-template-columns: 1fr
+            custom_fields:
+              content:
+                - width: 100%
+          custom_fields:
+            content: |
+              [[[
+                var pv_t = (states['sensor.luxpower_inverter_pv_pv_energy_today'] && states['sensor.luxpower_inverter_pv_pv_energy_today'].state != 'unavailable') 
+                           ? parseFloat(states['sensor.luxpower_inverter_pv_pv_energy_today'].state).toFixed(1) : '0.0';
+                var grid_t = (states['sensor.luxpower_inverter_grid_energy_from_grid_today'] && states['sensor.luxpower_inverter_grid_energy_from_grid_today'].state != 'unavailable') 
+                             ? parseFloat(states['sensor.luxpower_inverter_grid_energy_from_grid_today'].state).toFixed(1) : '0.0';
+                var b_chg_t = (states['sensor.luxpower_inverter_battery_charge_energy_today'] && states['sensor.luxpower_inverter_battery_charge_energy_today'].state != 'unavailable') 
+                              ? parseFloat(states['sensor.luxpower_inverter_battery_charge_energy_today'].state).toFixed(1) : '0.0';
+                var b_dis_t = (states['sensor.luxpower_inverter_battery_discharge_energy_today'] && states['sensor.luxpower_inverter_battery_discharge_energy_today'].state != 'unavailable') 
+                              ? parseFloat(states['sensor.luxpower_inverter_battery_discharge_energy_today'].state).toFixed(1) : '0.0';
+
+                var now = new Date();
+                var today_str = now.toLocaleDateString('vi-VN');
+
+                return `
+                  <div style="width: 100%; margin-bottom: 4px;">
+                    <!-- TIÊU ĐỀ -->
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                      <div style="display: flex; align-items: center; gap: 6px; font-size: 13.5px; font-weight: 800; color: #ffffff; letter-spacing: 0.3px;">
+                        <ha-icon icon="mdi:calendar-multiselect" style="--mdc-icon-size: 20px; color: #25d366;"></ha-icon>
+                        <span>THỐNG KÊ CHI TIẾT TỪNG NGÀY</span>
+                      </div>
+                      <div style="background: rgba(37,211,102,0.12); border: 1px solid rgba(37,211,102,0.3); padding: 3px 8px; border-radius: 10px; font-size: 10px; color: #25d366; font-weight: 700;">
+                        Hôm nay: ${today_str}
+                      </div>
+                    </div>
+
+                    <!-- 4 Ô CHỈ SỐ CỦA NGÀY HÔM NAY -->
+                    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin-bottom: 2px;">
+                      <div style="background: rgba(37, 211, 102, 0.08); border: 1px solid rgba(37, 211, 102, 0.25); border-radius: 10px; padding: 6px 4px; text-align: center;">
+                        <div style="font-size: 8.5px; color: #25d366; font-weight: 800;">☀️ PV HÔM NAY</div>
+                        <div style="font-size: 15px; font-weight: 900; color: #25d366; margin-top: 2px; line-height: 1;">${pv_t}</div>
+                        <div style="font-size: 8.5px; color: #81b89a; margin-top: 1px;">kWh</div>
+                      </div>
+
+                      <div style="background: rgba(74, 144, 226, 0.08); border: 1px solid rgba(74, 144, 226, 0.25); border-radius: 10px; padding: 6px 4px; text-align: center;">
+                        <div style="font-size: 8.5px; color: #4a90e2; font-weight: 800;">🔌 LƯỚI HÔM NAY</div>
+                        <div style="font-size: 15px; font-weight: 900; color: #4a90e2; margin-top: 2px; line-height: 1;">${grid_t}</div>
+                        <div style="font-size: 8.5px; color: #78a6db; margin-top: 1px;">kWh</div>
+                      </div>
+
+                      <div style="background: rgba(188, 82, 255, 0.08); border: 1px solid rgba(188, 82, 255, 0.25); border-radius: 10px; padding: 6px 4px; text-align: center;">
+                        <div style="font-size: 8.5px; color: #bc52ff; font-weight: 800;">🔋 SẠC HÔM NAY</div>
+                        <div style="font-size: 15px; font-weight: 900; color: #bc52ff; margin-top: 2px; line-height: 1;">${b_chg_t}</div>
+                        <div style="font-size: 8.5px; color: #d19eff; margin-top: 1px;">kWh</div>
+                      </div>
+
+                      <div style="background: rgba(255, 159, 10, 0.08); border: 1px solid rgba(255, 159, 10, 0.25); border-radius: 10px; padding: 6px 4px; text-align: center;">
+                        <div style="font-size: 8.5px; color: #ff9f0a; font-weight: 800;">⚡ XẢ HÔM NAY</div>
+                        <div style="font-size: 15px; font-weight: 900; color: #ff9f0a; margin-top: 2px; line-height: 1;">${b_dis_t}</div>
+                        <div style="font-size: 8.5px; color: #ffb340; margin-top: 1px;">kWh</div>
+                      </div>
+                    </div>
+                  </div>
+                `;
+              ]]]
+        - type: custom:apexcharts-card
+          span:
+            start: month
+          graph_span: 1month
+          header:
+            show: false
+          apex_config:
+            chart:
+              type: bar
+              height: 308
+              toolbar:
+                show: false
+            plotOptions:
+              bar:
+                borderRadius: 4
+                columnWidth: "65%"
+                stacked: false
+            grid:
+              borderColor: "rgba(255, 255, 255, 0.06)"
+              strokeDashArray: 3
+            legend:
+              show: true
+              position: top
+              horizontalAlign: center
+              fontSize: "11px"
+              fontFamily: inherit
+              labels:
+                colors: "#ffffff"
+              markers:
+                width: 9
+                height: 9
+                radius: 3
+            xaxis:
+              labels:
+                format: "dd"
+                style:
+                  colors: "#888888"
+                  fontSize: "10.5px"
+                  fontWeight: 600
+            yaxis:
+              labels:
+                style:
+                  colors: "#888888"
+                  fontSize: "10.5px"
+            tooltip:
+              theme: dark
+              shared: true
+              intersect: false
+              x:
+                format: "dd/MM/yyyy"
+          series:
+            - entity: sensor.luxpower_inverter_pv_pv_energy_today
+              name: PV Mặt Trời
+              type: column
+              color: "#25d366"
+              group_by:
+                func: max
+                duration: 1d
+              show:
+                in_header: false
+                legend_value: false
+                datalabels: false
+            - entity: sensor.luxpower_inverter_grid_energy_from_grid_today
+              name: Lưới Mua
+              type: column
+              color: "#4a90e2"
+              group_by:
+                func: max
+                duration: 1d
+              show:
+                in_header: false
+                legend_value: false
+                datalabels: false
+          card_mod:
+            style: |
+              ha-card {
+                background: transparent !important;
+                border: none !important;
+                box-shadow: none !important;
+                padding: 0px !important;
+              }
+
+    # ==========================================
+    # 6. THẺ XẢ PIN / CẤP TẢI (THEO GIỜ)
+    # ==========================================
+    - type: custom:stack-in-card
+      card_mod:
+        style: |
+          ha-card {
+            background: #201712 !important;
+            border-radius: 18px !important;
+            border: 1px solid rgba(255, 159, 10, 0.25) !important;
+            padding: 12px 14px !important;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4) !important;
+            min-height: 400px !important;
+          }
+      cards:
+        - type: custom:button-card
+          show_icon: false
+          show_name: false
+          show_state: false
+          styles:
+            card:
+              - background: none
+              - border: none
+              - box-shadow: none
+              - padding: "0px"
+            grid:
+              - grid-template-areas: '"content"'
+              - grid-template-columns: 1fr
+            custom_fields:
+              content:
+                - width: 100%
+          custom_fields:
+            content: |
+              [[[
+                var p_dis = (states['sensor.luxpower_inverter_battery_battery_discharge_power'] && states['sensor.luxpower_inverter_battery_battery_discharge_power'].state != 'unavailable') ? states['sensor.luxpower_inverter_battery_battery_discharge_power'].state : '0';
+                var i_dis = (states['number.luxpower_inverter_battery_discharge_current'] && states['number.luxpower_inverter_battery_discharge_current'].state != 'unavailable') ? states['number.luxpower_inverter_battery_discharge_current'].state : '0';
+                return `
+                  <div style="width: 100%; margin-bottom: 8px;">
+                    <div style="display: flex; align-items: center; gap: 8px; font-size: 13.5px; font-weight: 800; color: #ff9f0a; margin-bottom: 8px; letter-spacing: 0.3px;">
+                      <ha-icon icon="mdi:battery-arrow-down-outline" style="--mdc-icon-size: 20px; color: #ff9f0a;"></ha-icon>
+                      <span>XẢ PIN / CẤP TẢI (THEO GIỜ)</span>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; background: rgba(0, 0, 0, 0.35); border: 1px solid rgba(255, 159, 10, 0.2); border-radius: 12px; padding: 8px 12px; text-align: center;">
+                      <div>
+                        <div style="font-size: 9px; color: #ffb340; font-weight: 700; text-transform: uppercase;">CÔNG SUẤT XẢ</div>
+                        <div style="font-size: 16px; font-weight: 900; color: #ff9f0a; margin-top: 2px;">${p_dis} <span style="font-size: 10px; color: #888;">W</span></div>
+                      </div>
+                      <div style="border-left: 1px solid rgba(255, 255, 255, 0.1);">
+                        <div style="font-size: 9px; color: #ffb340; font-weight: 700; text-transform: uppercase;">DÒNG XẢ PIN</div>
+                        <div style="font-size: 16px; font-weight: 900; color: #ff9f0a; margin-top: 2px;">${i_dis} <span style="font-size: 10px; color: #888;">A</span></div>
+                      </div>
+                    </div>
+                  </div>
+                `;
+              ]]]
+        - type: entities
+          card_mod:
+            style: |
+              ha-card {
+                background: none !important;
+                border: none !important;
+                box-shadow: none !important;
+                padding: 0px !important;
+              }
+              .card-content {
+                padding: 0px !important;
+              }
+              hui-generic-entity-row {
+                padding: 4px 0px !important;
+              }
+          entities:
+            - entity: input_boolean.solar_discharge_enabled
+              name: Kích hoạt xả pin tự động
+              icon: mdi:battery-clock-outline
+            - entity: number.luxpower_inverter_battery_discharge_current
+              name: Dòng xả
+              icon: mdi:current-dc
+            - entity: input_datetime.solar_discharge_start
+              name: Giờ bắt đầu xả
+              icon: mdi:clock-start
+            - entity: input_datetime.solar_discharge_end
+              name: Giờ kết thúc xả
+              icon: mdi:clock-end
+            - entity: input_number.solar_discharge_soc_cutoff
+              name: Ngưỡng dừng xả
+              icon: mdi:battery-alert-variant-outline
     column_span: 4
   - type: grid
     cards:
