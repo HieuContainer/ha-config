@@ -84,10 +84,8 @@ class ImouOnvifHub:
     def get_available_channels(self) -> list[int]:
         """Xác định số lượng mắt (kênh) của camera."""
         self._ensure()
-        if len(self.profiles) >= 3:
-            return [1, 2]
         model = (self.info.get("model") or "").upper()
-        if any(k in model for k in ["S2X", "S7X", "DUAL", "2-LENS", "2LENS"]):
+        if len(self.profiles) >= 3 or any(k in model for k in ["S2X", "S7X", "DUAL", "2-LENS", "2LENS", "6M0WED"]):
             return [1, 2]
         return [1]
 

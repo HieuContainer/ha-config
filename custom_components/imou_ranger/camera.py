@@ -39,12 +39,12 @@ class ImouRangerCamera(Camera):
         self._hub = hub
         self._entry_id = entry_id
         self._channel = channel
-        if name_suffix:
-            self._attr_name = name_suffix
-            self._attr_unique_id = f"{entry_id}_camera_ch{channel}"
-        else:
-            self._attr_name = None  # Dùng tên thiết bị
+        if channel == 1:
+            self._attr_name = name_suffix if name_suffix else None
             self._attr_unique_id = f"{entry_id}_camera"
+        else:
+            self._attr_name = name_suffix or f"Mắt {channel}"
+            self._attr_unique_id = f"{entry_id}_camera_ch{channel}"
 
     @property
     def device_info(self) -> DeviceInfo:
