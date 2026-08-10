@@ -1938,90 +1938,346 @@ views:
     # ==========================================
     # 6. THẺ XẢ PIN / CẤP TẢI (THEO GIỜ)
     # ==========================================
-    - type: custom:stack-in-card
-      card_mod:
-        style: |
-          ha-card {
-            background: #201712 !important;
-            border-radius: 18px !important;
-            border: 1px solid rgba(255, 159, 10, 0.25) !important;
-            padding: 12px 14px !important;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4) !important;
-            min-height: 400px !important;
-          }
+    # ==========================================
+    # CỘT 3 - HÀNG 2: CỤM CAMERA & THIẾT BỊ (NÓNG LẠNH + CỬA CUỐN)
+    # ==========================================
+    - type: vertical-stack
+      column_span: 4
       cards:
-        - type: custom:button-card
-          show_icon: false
+        # 1. THẺ CAMERA SÂN (KHÓA CHUẨN TỶ LỆ 16:9)
+        - type: picture-entity
+          entity: camera.ipc_gs7e_3m0we_2
+          camera_image: camera.ipc_gs7e_3m0we_2
+          camera_view: live
+          aspect_ratio: 16x9
           show_name: false
           show_state: false
-          styles:
-            card:
-              - background: none
-              - border: none
-              - box-shadow: none
-              - padding: "0px"
-            grid:
-              - grid-template-areas: '"content"'
-              - grid-template-columns: 1fr
-            custom_fields:
-              content:
-                - width: 100%
-          custom_fields:
-            content: |
-              [[[
-                var p_dis = (states['sensor.luxpower_inverter_battery_battery_discharge_power'] && states['sensor.luxpower_inverter_battery_battery_discharge_power'].state != 'unavailable') ? states['sensor.luxpower_inverter_battery_battery_discharge_power'].state : '0';
-                var i_dis = (states['number.luxpower_inverter_battery_discharge_current'] && states['number.luxpower_inverter_battery_discharge_current'].state != 'unavailable') ? states['number.luxpower_inverter_battery_discharge_current'].state : '0';
-                return `
-                  <div style="width: 100%; margin-bottom: 8px;">
-                    <div style="display: flex; align-items: center; gap: 8px; font-size: 13.5px; font-weight: 800; color: #ff9f0a; margin-bottom: 8px; letter-spacing: 0.3px;">
-                      <ha-icon icon="mdi:battery-arrow-down-outline" style="--mdc-icon-size: 20px; color: #ff9f0a;"></ha-icon>
-                      <span>XẢ PIN / CẤP TẢI (THEO GIỜ)</span>
-                    </div>
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; background: rgba(0, 0, 0, 0.35); border: 1px solid rgba(255, 159, 10, 0.2); border-radius: 12px; padding: 8px 12px; text-align: center;">
-                      <div>
-                        <div style="font-size: 9px; color: #ffb340; font-weight: 700; text-transform: uppercase;">CÔNG SUẤT XẢ</div>
-                        <div style="font-size: 16px; font-weight: 900; color: #ff9f0a; margin-top: 2px;">${p_dis} <span style="font-size: 10px; color: #888;">W</span></div>
+          show_entity_picture: true
+          fit_mode: fill
+
+        # 2. HÀNG 2 THẺ (CAO 150PX KHỚP PHẲNG ĐÁY)
+        - type: grid
+          columns: 2
+          square: false
+          cards:
+            # A. THẺ NÓNG LẠNH VÒNG TRÒN 3D
+            - type: custom:button-card
+              entity: switch.cong_tac_nong_lanh
+              name: Nóng Lạnh
+              show_name: false
+              show_icon: false
+              show_state: false
+              update_timer: 1s
+              triggers_update:
+                - switch.cong_tac_nong_lanh
+                - timer.nong_lanh_20_phut
+              tap_action:
+                action: toggle
+              hold_action:
+                action: more-info
+              styles:
+                card:
+                  - height: 150px
+                  - background-color: "#14171a"
+                  - border-radius: 18px
+                  - border: |
+                      [[[
+                        if (entity.state === 'on') return '1px solid rgba(255, 69, 58, 0.4)';
+                        return '1px solid rgba(255, 255, 255, 0.08)';
+                      ]]]
+                  - padding: 10px 12px
+                  - box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35)
+                grid:
+                  - grid-template-areas: '"header" "gauge" "footer"'
+                  - grid-template-columns: 1fr
+                  - grid-template-rows: auto 1fr auto
+                  - row-gap: 3px
+                  - align-items: center
+              custom_fields:
+                header: |
+                  [[[
+                    var is_on = entity.state === 'on';
+                    var is_unav = entity.state === 'unavailable';
+                    var wifi_col = is_unav ? '#ff453a' : '#34c759';
+                    var wifi_icon = is_unav ? 'mdi:wifi-off' : 'mdi:wifi';
+                    var wifi_text = is_unav ? 'Offline' : 'Online';
+                    var wifi_bg = is_unav ? 'rgba(255,69,58,0.12)' : 'rgba(52,199,89,0.12)';
+
+                    return `
+                      <div style="display:flex; justify-content:space-between; align-items:center; width:100%;">
+                        <div style="display:flex; align-items:center; gap:5px;">
+                          <div style="width:24px; height:24px; border-radius:6px; background:${is_on ? 'rgba(255,69,58,0.2)' : 'rgba(255,255,255,0.06)'}; display:flex; align-items:center; justify-content:center;">
+                            <ha-icon icon="mdi:water-boiler" style="--mdc-icon-size:15px; color:${is_on ? '#ff453a' : '#8e8e93'};"></ha-icon>
+                          </div>
+                          <span style="font-size:13px; font-weight:800; color:#fff;">Nóng Lạnh</span>
+                        </div>
+                        <div style="display:flex; align-items:center; gap:3px; font-size:9.5px; font-weight:700; color:${wifi_col}; background:${wifi_bg}; padding:2px 5px; border-radius:6px; border:1px solid ${wifi_col};">
+                          <ha-icon icon="${wifi_icon}" style="--mdc-icon-size:10px; color:${wifi_col};"></ha-icon>
+                          <span>${wifi_text}</span>
+                        </div>
                       </div>
-                      <div style="border-left: 1px solid rgba(255, 255, 255, 0.1);">
-                        <div style="font-size: 9px; color: #ffb340; font-weight: 700; text-transform: uppercase;">DÒNG XẢ PIN</div>
-                        <div style="font-size: 16px; font-weight: 900; color: #ff9f0a; margin-top: 2px;">${i_dis} <span style="font-size: 10px; color: #888;">A</span></div>
+                    `;
+                  ]]]
+                gauge: |
+                  [[[
+                    const sw = states['switch.cong_tac_nong_lanh'];
+                    const timer = states['timer.nong_lanh_20_phut'];
+                    var is_on = sw?.state === 'on';
+
+                    var totalSec = 1200;
+                    var remainSec = 0;
+                    var time_str = '--:--';
+                    var percent = 0;
+
+                    if (is_on) {
+                      if (timer && timer.state === 'active' && timer.attributes.finishes_at) {
+                        remainSec = Math.max(0, Math.ceil((new Date(timer.attributes.finishes_at).getTime() - Date.now()) / 1000));
+                        var min = Math.floor(remainSec / 60);
+                        var sec = remainSec % 60;
+                        time_str = `${String(min).padStart(2, '0')}:${String(sec).padStart(2, '0')}`;
+                        percent = (remainSec / totalSec) * 100;
+                      } else {
+                        time_str = '20:00';
+                        percent = 100;
+                      }
+                    }
+
+                    var strokeDash = (percent * 182.2) / 100;
+                    var ringColor = is_on ? '#ff453a' : 'rgba(255,255,255,0.06)';
+
+                    return `
+                      <div style="position:relative; width:74px; height:74px; display:flex; align-items:center; justify-content:center; margin:auto;">
+                        <svg viewBox="0 0 68 68" style="width:100%; height:100%; transform: rotate(-90deg);">
+                          <circle cx="34" cy="34" r="29" stroke="rgba(255,255,255,0.06)" stroke-width="5" fill="none" />
+                          <circle cx="34" cy="34" r="29" stroke="${ringColor}" stroke-width="5" stroke-linecap="round" fill="none"
+                            stroke-dasharray="182.2" stroke-dashoffset="${182.2 - strokeDash}" style="transition: stroke-dashoffset 1s linear;" />
+                        </svg>
+                        <div style="position:absolute; text-align:center;">
+                          <div style="font-size:${is_on ? '14px' : '13px'}; font-weight:900; color:${is_on ? '#ff9f0a' : '#8e8e93'}; line-height:1;">
+                            ${is_on ? time_str : 'OFF'}
+                          </div>
+                          <div style="font-size:7.5px; color:#aaa; font-weight:700; margin-top:2px;">
+                            ${is_on ? 'ĐANG ĐUN' : 'ĐÃ TẮT'}
+                          </div>
+                        </div>
                       </div>
-                    </div>
-                  </div>
-                `;
-              ]]]
-        - type: entities
-          card_mod:
-            style: |
-              ha-card {
-                background: none !important;
-                border: none !important;
-                box-shadow: none !important;
-                padding: 0px !important;
-              }
-              .card-content {
-                padding: 0px !important;
-              }
-              hui-generic-entity-row {
-                padding: 4px 0px !important;
-              }
-          entities:
-            - entity: input_boolean.solar_discharge_enabled
-              name: Kích hoạt xả pin tự động
-              icon: mdi:battery-clock-outline
-            - entity: number.luxpower_inverter_battery_discharge_current
-              name: Dòng xả
-              icon: mdi:current-dc
-            - entity: input_datetime.solar_discharge_start
-              name: Giờ bắt đầu xả
-              icon: mdi:clock-start
-            - entity: input_datetime.solar_discharge_end
-              name: Giờ kết thúc xả
-              icon: mdi:clock-end
-            - entity: input_number.solar_discharge_soc_cutoff
-              name: Ngưỡng dừng xả
-              icon: mdi:battery-alert-variant-outline
-    column_span: 4
+                    `;
+                  ]]]
+                footer: |
+                  [[[
+                    var is_on = entity.state === 'on';
+                    var bg = is_on ? '#ff453a' : 'rgba(255,255,255,0.08)';
+                    var text = is_on ? 'CHẠM ĐỂ TẮT' : 'BẬT 20 PHÚT';
+                    var col = is_on ? '#fff' : '#8e8e93';
+
+                    return `
+                      <div style="width:100%; background:${bg}; border-radius:8px; padding:5px 0; text-align:center; font-size:10px; font-weight:800; color:${col}; letter-spacing:0.4px;">
+                        ${text}
+                      </div>
+                    `;
+                  ]]]
+
+            # B. THẺ CỬA CUỐN (CAO 150PX - NỀN ĐEN ĐẶC)
+            - type: custom:button-card
+              entity: cover.cong_tac_cua_cuon
+              name: Cửa cuốn
+              show_name: false
+              show_icon: false
+              show_state: false
+              triggers_update:
+                - input_select.trang_thai_cua
+                - cover.cong_tac_cua_cuon
+              tap_action:
+                action: more-info
+              hold_action:
+                action: more-info
+              styles:
+                card:
+                  - height: 150px
+                  - background-color: "#14171a"
+                  - border-radius: 18px
+                  - border: |
+                      [[[
+                        const status = states['input_select.trang_thai_cua']?.state;
+                        if (entity.state === 'unavailable') return '1px solid rgba(255, 69, 58, 0.35)';
+                        if (status === 'ĐANG MỞ' || status === 'ĐÃ MỞ') return '1px solid rgba(52, 199, 89, 0.35)';
+                        if (status === 'ĐANG DỪNG') return '1px solid rgba(255, 159, 10, 0.35)';
+                        return '1px solid rgba(255, 255, 255, 0.08)';
+                      ]]]
+                  - padding: 10px 12px
+                  - box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35)
+                grid:
+                  - grid-template-areas: '"header" "status" "controls"'
+                  - grid-template-columns: 1fr
+                  - grid-template-rows: auto 1fr auto
+                  - row-gap: 4px
+                  - align-items: center
+              custom_fields:
+                header: |
+                  [[[
+                    const status = states['input_select.trang_thai_cua']?.state;
+                    var is_unav = entity.state === 'unavailable';
+
+                    var door_icon = 'mdi:garage-variant';
+                    var icon_col = '#8e8e93';
+                    var icon_bg = 'rgba(255,255,255,0.06)';
+
+                    if (is_unav) {
+                      door_icon = 'mdi:garage-alert';
+                      icon_col = '#ff453a';
+                      icon_bg = 'rgba(255,69,58,0.15)';
+                    } else if (status === 'ĐANG MỞ' || status === 'ĐÃ MỞ') {
+                      door_icon = 'mdi:garage-open-variant';
+                      icon_col = '#34c759';
+                      icon_bg = 'rgba(52,199,89,0.18)';
+                    } else if (status === 'ĐANG DỪNG') {
+                      door_icon = 'mdi:garage-alert-variant';
+                      icon_col = '#ff9f0a';
+                      icon_bg = 'rgba(255,159,10,0.18)';
+                    } else if (status === 'ĐANG ĐÓNG' || status === 'ĐÃ ĐÓNG') {
+                      door_icon = 'mdi:garage-variant';
+                      icon_col = '#0a84ff';
+                      icon_bg = 'rgba(10,132,255,0.18)';
+                    }
+
+                    var wifi_col = is_unav ? '#ff453a' : '#34c759';
+                    var wifi_icon = is_unav ? 'mdi:wifi-off' : 'mdi:wifi';
+                    var wifi_text = is_unav ? 'Offline' : 'Online';
+                    var wifi_bg = is_unav ? 'rgba(255,69,58,0.12)' : 'rgba(52,199,89,0.12)';
+
+                    return `
+                      <div style="display:flex; justify-content:space-between; align-items:center; width:100%;">
+                        <div style="display:flex; align-items:center; gap:5px;">
+                          <div style="width:24px; height:24px; border-radius:6px; background:${icon_bg}; display:flex; align-items:center; justify-content:center;">
+                            <ha-icon icon="${door_icon}" style="--mdc-icon-size:15px; color:${icon_col};"></ha-icon>
+                          </div>
+                          <span style="font-size:13px; font-weight:800; color:#fff;">Cửa Cuốn</span>
+                        </div>
+                        <div style="display:flex; align-items:center; gap:3px; font-size:9.5px; font-weight:700; color:${wifi_col}; background:${wifi_bg}; padding:2px 5px; border-radius:6px; border:1px solid ${wifi_col};">
+                          <ha-icon icon="${wifi_icon}" style="--mdc-icon-size:10px; color:${wifi_col};"></ha-icon>
+                          <span>${wifi_text}</span>
+                        </div>
+                      </div>
+                    `;
+                  ]]]
+                status: |
+                  [[[
+                    const status = states['input_select.trang_thai_cua']?.state || 'KHÔNG XÁC ĐỊNH';
+                    var is_unav = entity.state === 'unavailable';
+
+                    var st_text = is_unav ? 'MẤT KẾT NỐI' : status;
+                    var st_col = '#8e8e93';
+                    var st_bg = 'rgba(255,255,255,0.04)';
+                    var st_border = 'rgba(255,255,255,0.08)';
+
+                    if (is_unav) {
+                      st_col = '#ff453a';
+                      st_bg = 'rgba(255,69,58,0.1)';
+                      st_border = 'rgba(255,69,58,0.25)';
+                    } else if (status === 'ĐANG MỞ' || status === 'ĐÃ MỞ') {
+                      st_col = '#34c759';
+                      st_bg = 'rgba(52,199,89,0.1)';
+                      st_border = 'rgba(52,199,89,0.25)';
+                    } else if (status === 'ĐANG DỪNG') {
+                      st_col = '#ff9f0a';
+                      st_bg = 'rgba(255,159,10,0.1)';
+                      st_border = 'rgba(255,159,10,0.25)';
+                    } else if (status === 'ĐANG ĐÓNG' || status === 'ĐÃ ĐÓNG') {
+                      st_col = '#0a84ff';
+                      st_bg = 'rgba(10,132,255,0.1)';
+                      st_border = 'rgba(10,132,255,0.25)';
+                    }
+
+                    return `
+                      <div style="width:100%; background:${st_bg}; border:1px solid ${st_border}; border-radius:8px; padding:5px 0; display:flex; align-items:center; justify-content:center; gap:5px; box-sizing:border-box;">
+                        <span style="width:6px; height:6px; border-radius:50%; background:${st_col}; box-shadow:0 0 6px ${st_col};"></span>
+                        <span style="font-size:11.5px; font-weight:800; color:${st_col}; letter-spacing:0.3px;">${st_text}</span>
+                      </div>
+                    `;
+                  ]]]
+                controls:
+                  card:
+                    type: grid
+                    columns: 3
+                    square: false
+                    cards:
+                      - type: custom:button-card
+                        entity: cover.cong_tac_cua_cuon
+                        name: Mở
+                        icon: mdi:chevron-up
+                        show_state: false
+                        tap_action:
+                          action: call-service
+                          service: script.turn_on
+                          target:
+                            entity_id: script.cua_mo
+                        styles:
+                          card:
+                            - height: 36px
+                            - border-radius: 8px
+                            - background: rgba(52, 199, 89, 0.15)
+                            - border: 1px solid rgba(52, 199, 89, 0.3)
+                            - padding: 2px
+                          icon:
+                            - width: 16px
+                            - color: "#34c759"
+                          name:
+                            - font-size: 10px
+                            - font-weight: 700
+                            - color: "#ffffff"
+                            - margin-top: -3px
+
+                      - type: custom:button-card
+                        entity: cover.cong_tac_cua_cuon
+                        name: Dừng
+                        icon: mdi:stop
+                        show_state: false
+                        tap_action:
+                          action: call-service
+                          service: script.turn_on
+                          target:
+                            entity_id: script.cua_dung
+                        styles:
+                          card:
+                            - height: 36px
+                            - border-radius: 8px
+                            - background: rgba(255, 159, 10, 0.15)
+                            - border: 1px solid rgba(255, 159, 10, 0.3)
+                            - padding: 2px
+                          icon:
+                            - width: 14px
+                            - color: "#ff9f0a"
+                          name:
+                            - font-size: 10px
+                            - font-weight: 700
+                            - color: "#ffffff"
+                            - margin-top: -3px
+
+                      - type: custom:button-card
+                        entity: cover.cong_tac_cua_cuon
+                        name: Đóng
+                        icon: mdi:chevron-down
+                        show_state: false
+                        tap_action:
+                          action: call-service
+                          service: script.turn_on
+                          target:
+                            entity_id: script.cua_dong
+                        styles:
+                          card:
+                            - height: 36px
+                            - border-radius: 8px
+                            - background: rgba(10, 132, 255, 0.15)
+                            - border: 1px solid rgba(10, 132, 255, 0.3)
+                            - padding: 2px
+                          icon:
+                            - width: 16px
+                            - color: "#0a84ff"
+                          name:
+                            - font-size: 10px
+                            - font-weight: 700
+                            - color: "#ffffff"
+                            - margin-top: -3px
   - type: grid
     cards:
     - type: heading
