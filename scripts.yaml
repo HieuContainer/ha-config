@@ -34,3 +34,42 @@ c_a_dong:
     target:
       entity_id: cover.cong_tac_cua_cuon
   mode: restart
+
+cua_mo:
+  alias: Kịch bản Cửa Mở
+  sequence:
+  - action: input_select.select_option
+    target:
+      entity_id: input_select.trang_thai_cua
+    data:
+      option: ĐANG MỞ
+  - action: cover.open_cover
+    target:
+      entity_id: cover.cong_tac_cua_cuon
+  mode: restart
+
+cua_dung:
+  alias: Kịch bản Cửa Dừng
+  sequence:
+  - action: input_select.select_option
+    target:
+      entity_id: input_select.trang_thai_cua
+    data:
+      option: ĐANG DỪNG
+  - action: cover.stop_cover
+    target:
+      entity_id: cover.cong_tac_cua_cuon
+  mode: restart
+
+cua_dong:
+  alias: Kịch bản Cửa Đóng
+  sequence:
+  - action: input_select.select_option
+    target:
+      entity_id: input_select.trang_thai_cua
+    data:
+      option: ĐANG ĐÓNG
+  - action: cover.close_cover
+    target:
+      entity_id: cover.cong_tac_cua_cuon
+  mode: restart
