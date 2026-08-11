@@ -242,15 +242,17 @@ views:
                           <div style="display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; margin-top: 6px; margin-bottom: 8px; width: 100%;">
                             <div style="text-align: center;">
                               <div style="font-size: 9px; color: #6ba4e8; font-weight: 800;">HÔM NAY</div>
-                              <div style="font-size: 20px; font-weight: 800; color: #fff; margin-top: 2px; line-height: 1.1;">${g_imp_today} <span style="font-size: 10px; color: #aaa; font-weight: 400;">kWh</span></div>
+                              <div style="font-size: 20px; font-weight: 800; color: #fff; margin-top: 2px; line-height: 1.1;">${g_imp_today}</div>
+                              <div style="font-size: 10px; color: #aaa; margin-top: 1px;">kWh</div>
                             </div>
 
                             <div style="width: 1px; height: 42px; background: rgba(255,255,255,0.12);"></div>
 
                             <div style="text-align: center;">
                               <div style="font-size: 9px; color: #6ba4e8; font-weight: 800;">THÁNG NÀY</div>
-                              <div style="font-size: 20px; font-weight: 800; color: #fff; margin-top: 2px; line-height: 1.1;">${g_imp_month} <span style="font-size: 10px; color: #aaa; font-weight: 400;">kWh</span></div>
-                              <div style="font-size: 11px; color: #64b5f6; font-weight: 700; margin-top: 2px;">~${g_money} đ</div>
+                              <div style="font-size: 20px; font-weight: 800; color: #fff; margin-top: 2px; line-height: 1.1;">${g_imp_month}</div>
+                              <div style="font-size: 10px; color: #aaa; margin-top: 1px;">kWh</div>
+                              <div style="font-size: 11px; color: #64b5f6; font-weight: 700; margin-top: 10px;">~${g_money} đ</div>
                             </div>
                           </div>
                         </div>
@@ -325,21 +327,23 @@ views:
                             <div style="display: flex; align-items: center; gap: 6px; background: rgba(255,87,34,0.15); padding: 4px 8px; border-radius: 10px; color: #ff5722; font-weight: 800; font-size: 11px;">
                               <ha-icon icon="mdi:home-lightning-bolt" style="--mdc-icon-size: 15px; color: #ff5722;"></ha-icon> TIÊU THỤ
                             </div>
-                            <ha-icon icon="mdi:home" style="--mdc-icon-size: 26px; color: #ff5722; opacity: 0.8;"></ha-icon>
+                            <img src="https://img.icons8.com/3d-fluency/94/home.png" style="height: 30px; margin-right: 18px;" />
                           </div>
 
                           <div style="display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; margin-top: 6px; margin-bottom: 8px; width: 100%;">
                             <div style="text-align: center;">
                               <div style="font-size: 9px; color: #b38575; font-weight: 800;">HÔM NAY</div>
-                              <div style="font-size: 20px; font-weight: 800; color: #fff; margin-top: 2px; line-height: 1.1;">${l_today} <span style="font-size: 10px; color: #aaa; font-weight: 400;">kWh</span></div>
+                              <div style="font-size: 20px; font-weight: 800; color: #fff; margin-top: 2px; line-height: 1.1;">${l_today}</div>
+                              <div style="font-size: 10px; color: #aaa; margin-top: 1px;">kWh</div>
                             </div>
 
                             <div style="width: 1px; height: 42px; background: rgba(255,255,255,0.12);"></div>
 
                             <div style="text-align: center;">
                               <div style="font-size: 9px; color: #b38575; font-weight: 800;">THÁNG NÀY</div>
-                              <div style="font-size: 20px; font-weight: 800; color: #fff; margin-top: 2px; line-height: 1.1;">${l_total} <span style="font-size: 10px; color: #aaa; font-weight: 400;">kWh</span></div>
-                              <div style="font-size: 11px; color: #ffb74d; font-weight: 700; margin-top: 2px;">~${l_money} đ</div>
+                              <div style="font-size: 20px; font-weight: 800; color: #fff; margin-top: 2px; line-height: 1.1;">${l_total}</div>
+                              <div style="font-size: 10px; color: #aaa; margin-top: 1px;">kWh</div>
+                              <div style="font-size: 11px; color: #ffb74d; font-weight: 700; margin-top: 10px;">~${l_money} đ</div>
                             </div>
                           </div>
                         </div>
@@ -393,7 +397,9 @@ views:
                 var wifi_text = is_online ? "Online" : "Offline";
                 var wifi_color = is_online ? "#25d366" : "#ff3b30";
 
-                var now = new Date().toLocaleTimeString('vi-VN', { hour12: false });
+                var now_obj = new Date();
+                var now_date = now_obj.toLocaleDateString('vi-VN');
+                var now = now_obj.toLocaleTimeString('vi-VN', { hour12: false });
 
                 var pv_path = "M 160 125 L 270 125 L 270 210 L 375 210";
                 var grid_path = "M 840 125 L 730 125 L 730 210 L 625 210";
@@ -455,9 +461,15 @@ views:
 
                   <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; width: 100%;">
                     <div style="font-size: 14px; font-weight: 800; color: #fff; letter-spacing: 0.5px;">DÒNG NĂNG LƯỢNG</div>
-                    <div style="background: rgba(37,211,102,0.12); border: 1px solid rgba(37,211,102,0.3); padding: 3px 10px; border-radius: 16px; font-size: 10px; color: #25d366; font-weight: 700; display: flex; align-items: center; gap: 5px;">
-                      <span style="height: 5px; width: 5px; background-color: #25d366; border-radius: 50%; box-shadow: 0 0 5px #25d366;"></span> 
-                      Cập nhật: <span id="live-clock-mob">${now}</span>
+                    <div style="display: flex; align-items: center; gap: 6px;">
+                      <div style="background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255, 255, 255, 0.12); padding: 3px 8px; border-radius: 16px; font-size: 10px; color: #81b89a; font-weight: 700; display: flex; align-items: center; gap: 4px;">
+                        <ha-icon icon="mdi:calendar-month-outline" style="--mdc-icon-size: 13px; color: #25d366;"></ha-icon>
+                        <span id="live-date-mob">${now_date}</span>
+                      </div>
+                      <div style="background: rgba(37,211,102,0.12); border: 1px solid rgba(37,211,102,0.3); padding: 3px 10px; border-radius: 16px; font-size: 10px; color: #25d366; font-weight: 700; display: flex; align-items: center; gap: 5px;">
+                        <span style="height: 5px; width: 5px; background-color: #25d366; border-radius: 50%; box-shadow: 0 0 5px #25d366;"></span> 
+                        Cập nhật: <span id="live-clock-mob">${now}</span>
+                      </div>
                     </div>
                   </div>
 
@@ -468,6 +480,9 @@ views:
                         var els = document.querySelectorAll('#live-clock-mob');
                         var t = new Date().toLocaleTimeString('vi-VN', { hour12: false });
                         els.forEach(function(el) { el.innerText = t; });
+                        var d_els = document.querySelectorAll('#live-date-mob');
+                        var d = new Date().toLocaleDateString('vi-VN');
+                        d_els.forEach(function(el) { el.innerText = d; });
                       }, 1000);
                     }
                   " />
