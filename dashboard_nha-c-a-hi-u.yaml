@@ -1610,7 +1610,7 @@ views:
                     } else if (g_val <= 200) {
                       cost = 50 * 1984 + 50 * 2050 + (g_val - 100) * 2380;
                     } else if (g_val <= 300) {
-                      cost = 50 * 1984 + 50 * 2050 + 100 * 2380 + (p_val - 200) * 2998;
+                      cost = 50 * 1984 + 50 * 2050 + 100 * 2380 + (g_val - 200) * 2998;
                     } else if (g_val <= 400) {
                       cost = 50 * 1984 + 50 * 2050 + 100 * 2380 + 100 * 2998 + (g_val - 300) * 3350;
                     } else {
@@ -1631,15 +1631,17 @@ views:
                           <div style="display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; margin-top: 6px; margin-bottom: 8px; width: 100%;">
                             <div style="text-align: center;">
                               <div style="font-size: 9px; color: #6ba4e8; font-weight: 800;">HÔM NAY</div>
-                              <div style="font-size: 20px; font-weight: 800; color: #fff; margin-top: 2px; line-height: 1.1;">${g_imp_today} <span style="font-size: 10px; color: #aaa; font-weight: 400;">kWh</span></div>
+                              <div style="font-size: 20px; font-weight: 800; color: #fff; margin-top: 2px; line-height: 1.1;">${g_imp_today}</div>
+                              <div style="font-size: 10px; color: #aaa; margin-top: 1px;">kWh</div>
                             </div>
 
                             <div style="width: 1px; height: 42px; background: rgba(255,255,255,0.12);"></div>
 
                             <div style="text-align: center;">
                               <div style="font-size: 9px; color: #6ba4e8; font-weight: 800;">THÁNG NÀY</div>
-                              <div style="font-size: 20px; font-weight: 800; color: #fff; margin-top: 2px; line-height: 1.1;">${g_imp_month} <span style="font-size: 10px; color: #aaa; font-weight: 400;">kWh</span></div>
-                              <div style="font-size: 11px; color: #64b5f6; font-weight: 700; margin-top: 2px;">~${g_money} đ</div>
+                              <div style="font-size: 20px; font-weight: 800; color: #fff; margin-top: 2px; line-height: 1.1;">${g_imp_month}</div>
+                              <div style="font-size: 10px; color: #aaa; margin-top: 1px;">kWh</div>
+                              <div style="font-size: 11px; color: #64b5f6; font-weight: 700; margin-top: 10px;">~${g_money} đ</div>
                             </div>
                           </div>
                         </div>
@@ -1697,11 +1699,11 @@ views:
                     } else if (k_val <= 200) {
                       cost = 50 * 1984 + 50 * 2050 + (k_val - 100) * 2380;
                     } else if (k_val <= 300) {
-                      cost = 50 * 1984 + 50 * 2050 + 100 * 2380 + (p_val - 200) * 2998;
+                      cost = 50 * 1984 + 50 * 2050 + 100 * 2380 + (k_val - 200) * 2998;
                     } else if (k_val <= 400) {
-                      cost = 50 * 1984 + 50 * 2050 + 100 * 2380 + 100 * 2998 + (g_val - 300) * 3350;
+                      cost = 50 * 1984 + 50 * 2050 + 100 * 2380 + 100 * 2998 + (k_val - 300) * 3350;
                     } else {
-                      cost = 50 * 1984 + 50 * 2050 + 100 * 2380 + 100 * 2998 + 100 * 3350 + (g_val - 400) * 3460;
+                      cost = 50 * 1984 + 50 * 2050 + 100 * 2380 + 100 * 2998 + 100 * 3350 + (k_val - 400) * 3460;
                     }
                     var l_money = Math.round(cost).toLocaleString('vi-VN');
 
@@ -1720,15 +1722,17 @@ views:
                           <div style="display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; margin-top: 6px; margin-bottom: 8px; width: 100%;">
                             <div style="text-align: center;">
                               <div style="font-size: 9px; color: #b38575; font-weight: 800;">HÔM NAY</div>
-                              <div style="font-size: 20px; font-weight: 800; color: #fff; margin-top: 2px; line-height: 1.1;">${l_today} <span style="font-size: 10px; color: #aaa; font-weight: 400;">kWh</span></div>
+                              <div style="font-size: 20px; font-weight: 800; color: #fff; margin-top: 2px; line-height: 1.1;">${l_today}</div>
+                              <div style="font-size: 10px; color: #aaa; margin-top: 1px;">kWh</div>
                             </div>
 
                             <div style="width: 1px; height: 42px; background: rgba(255,255,255,0.12);"></div>
 
                             <div style="text-align: center;">
                               <div style="font-size: 9px; color: #b38575; font-weight: 800;">THÁNG NÀY</div>
-                              <div style="font-size: 20px; font-weight: 800; color: #fff; margin-top: 2px; line-height: 1.1;">${l_total} <span style="font-size: 10px; color: #aaa; font-weight: 400;">kWh</span></div>
-                              <div style="font-size: 11px; color: #ffb74d; font-weight: 700; margin-top: 2px;">~${l_money} đ</div>
+                              <div style="font-size: 20px; font-weight: 800; color: #fff; margin-top: 2px; line-height: 1.1;">${l_total}</div>
+                              <div style="font-size: 10px; color: #aaa; margin-top: 1px;">kWh</div>
+                              <div style="font-size: 11px; color: #ffb74d; font-weight: 700; margin-top: 10px;">~${l_money} đ</div>
                             </div>
                           </div>
                         </div>
