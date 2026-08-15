@@ -17,38 +17,38 @@ scene: !include scenes.yaml
 
 template:
   - sensor:
-      - name: "Nhiá»‡t Ä‘á»™ hĂ´m nay dá»± bĂ¡o thá»i tiáº¿t"
+      - name: "Nhiệt độ hôm nay dự báo thời tiết"
         state: "{{ state_attr('weather.forecast_home','temperature') }}"
-        unit_of_measurement: "Â°C"
+        unit_of_measurement: "°C"
         device_class: temperature
 
-      - name: "Äá»™ áº©m dá»± bĂ¡o thá»i tiáº¿t "
+      - name: "Độ ẩm dự báo thời tiết "
         state: "{{ state_attr('weather.forecast_home','humidity') }}"
         unit_of_measurement: "%"
         device_class: humidity
 
-      - name: "Tá»‘c Ä‘á»™ giĂ³ dá»± bĂ¡o thá»i tiáº¿t"
+      - name: "Tốc độ gió dự báo thời tiết"
         state: "{{ state_attr('weather.forecast_home','wind_speed') }}"
         unit_of_measurement: "km/h"
         device_class: wind_speed
 
-      - name: "Dá»± bĂ¡o thá»i tiáº¿t"
+      - name: "Dự báo thời tiết"
         state: >
           {% set w = states('weather.forecast_home') %}
-          {% if w == 'sunny' %} Trá»i cĂ³ náº¯ng
-          {% elif w == 'partlycloudy' %} Trá»i Ă­t mĂ¢y
-          {% elif w == 'clear-night' %} Trá»i quang mĂ¢y
-          {% elif w == 'cloudy' %} Trá»i nhiá»u mĂ¢y
-          {% elif w == 'rainy' %} Trá»i cĂ³ mÆ°a
-          {% elif w == 'pouring' %} Trá»i cĂ³ mÆ°a lá»›n
-          {% elif w == 'snowy' %} Trá»i cĂ³ tuyáº¿t rÆ¡i
-          {% elif w == 'fog' %} Trá»i cĂ³ sÆ°Æ¡ng mĂ¹
-          {% elif w == 'windy' %} Trá»i nhiá»u giĂ³
-          {% elif w == 'lightning' %} Trá»i cĂ³ dĂ´ng
-          {% elif w == 'lightning-rainy' %} Trá»i cĂ³ mÆ°a dĂ´ng
+          {% if w == 'sunny' %} Trời có nắng
+          {% elif w == 'partlycloudy' %} Trời ít mây
+          {% elif w == 'clear-night' %} Trời quang mây
+          {% elif w == 'cloudy' %} Trời nhiều mây
+          {% elif w == 'rainy' %} Trời có mưa
+          {% elif w == 'pouring' %} Trời có mưa lớn
+          {% elif w == 'snowy' %} Trời có tuyết rơi
+          {% elif w == 'fog' %} Trời có sương mù
+          {% elif w == 'windy' %} Trời nhiều gió
+          {% elif w == 'lightning' %} Trời có dông
+          {% elif w == 'lightning-rainy' %} Trời có mưa dông
           {% else %} {{ w }}
           {% endif %}
-          panel_iframe:
+
 utility_meter:
   pv_energy_monthly:
     name: "PV Energy Monthly"
