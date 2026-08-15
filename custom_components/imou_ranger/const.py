@@ -32,4 +32,10 @@ ATTR_NAME = "name"
 # entity liên quan (select/text) cập nhật ngay, không phải chờ polling.
 SIGNAL_PRESETS_UPDATED = f"{DOMAIN}_presets_updated"
 
-PLATFORMS = ["camera", "sensor", "select", "button", "text"]
+# Tên sự kiện bắn lên Home Assistant bus
+EVENT_IMOU_MOTION = f"{DOMAIN}_motion"
+EVENT_IMOU_VEHICLE = f"{DOMAIN}_vehicle_detected"
+EVENT_IMOU_HUMAN = f"{DOMAIN}_human_detected"
+
+PLATFORMS = ["camera", "binary_sensor", "sensor", "select", "button", "text"]
+

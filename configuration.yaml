@@ -14,6 +14,17 @@ automation: !include automations.yaml
 script: !include scripts.yaml
 scene: !include scenes.yaml
 
+lovelace:
+  mode: storage
+  dashboards:
+    nha-c-a-hi-u:
+      mode: yaml
+      title: "Nhà Của Hiếu"
+      icon: mdi:home
+      show_in_sidebar: true
+      filename: dashboard_nha-c-a-hi-u.yaml
+
+
 template:
   - sensor:
       - name: "Nhiệt độ hôm nay dự báo thời tiết"
@@ -125,6 +136,10 @@ input_number:
     initial: 20
     icon: mdi:battery-alert
 
+homeassistant:
+  allowlist_external_dirs:
+    - "/config/www/snapshots"
+
 # ==========================================
 # NHẬN DIỆN BIỂN SỐ XE AI (PLATE RECOGNIZER)
 # ==========================================
@@ -140,7 +155,11 @@ image_processing:
       - 30K-58875
       - 30k-58875
       - 30k-588.75
+    save_file_folder: /config/www/snapshots
+    save_timestamped_file: true
+    always_save_latest_file: true
     source:
       - entity_id: camera.ipc_gs7e_3m0we_2
       - entity_id: camera.ipc_gs7e_3m0we
+
 

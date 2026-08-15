@@ -57,6 +57,9 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
 
     hass.data.setdefault(DOMAIN, {})[entry.entry_id] = hub
 
+    # Khởi động luồng lắng nghe sự kiện chuyển động / nhận diện xe
+    hub.start_event_listener(hass)
+
     await hass.config_entries.async_forward_entry_setups(entry, PLATFORMS)
 
     _register_services(hass)
@@ -65,12 +68,17 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
 
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     """Gỡ tích hợp."""
+    hub: ImouOnvifHub | None = hass.data.get(DOMAIN, {}).get(entry.entry_id)
+    if hub:
+        hub.stop_event_listener()
+
     unload_ok = await hass.config_entries.async_unload_platforms(entry, PLATFORMS)
     if unload_ok:
         hass.data[DOMAIN].pop(entry.entry_id, None)
         if not hass.data[DOMAIN]:
             _unregister_services(hass)
     return unload_ok
+
 
 
 def _resolve_hubs(hass: HomeAssistant, call: ServiceCall):

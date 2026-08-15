@@ -4,6 +4,7 @@ Tất cả phương thức là blocking — HA gọi qua hass.async_add_executor
 """
 from __future__ import annotations
 
+import logging
 import threading
 import time
 from urllib.parse import quote
@@ -13,9 +14,13 @@ from requests.auth import HTTPDigestAuth
 
 from onvif import ONVIFCamera
 
+from .const import EVENT_IMOU_HUMAN, EVENT_IMOU_MOTION, EVENT_IMOU_VEHICLE
+
+_LOGGER = logging.getLogger(__name__)
+
 
 class ImouOnvifHub:
-    """Bọc các thao tác ONVIF: info, stream, snapshot, PTZ, presets."""
+    """Bọc các thao tác ONVIF: info, stream, snapshot, PTZ, presets và Dahua Event Stream."""
 
     def __init__(self, host, port, username, password, rtsp_port=554):
         self.host = host
@@ -34,7 +39,165 @@ class ImouOnvifHub:
         self.ptz_token = None
         self.info = {}
 
+        # Quản lý luồng sự kiện (Dahua Event Stream)
+        self._hass = None
+        self._event_thread: threading.Thread | None = None
+        self._event_stop: threading.Event = threading.Event()
+        self._event_callbacks: list[callable] = []
+        self._states = {
+            "motion": False,
+            "vehicle": False,
+            "human": False,
+        }
+
     # ---------------------------------------------------------------
+    # Quản lý luồng sự kiện chuyển động / nhận diện xe / người
+    # ---------------------------------------------------------------
+    def start_event_listener(self, hass) -> None:
+        """Bắt đầu luồng nền lắng nghe sự kiện từ camera."""
+        self._hass = hass
+        if self._event_thread and self._event_thread.is_alive():
+            return
+        self._event_stop.clear()
+        self._event_thread = threading.Thread(
+            target=self._run_event_stream,
+            daemon=True,
+            name=f"ImouEvent-{self.host}",
+        )
+        self._event_thread.start()
+        _LOGGER.info("Đã khởi chạy luồng lắng nghe sự kiện cho camera %s", self.host)
+
+    def stop_event_listener(self) -> None:
+        """Dừng luồng lắng nghe sự kiện."""
+        self._event_stop.set()
+        _LOGGER.info("Đã gửi tín hiệu dừng event listener camera %s", self.host)
+
+    def register_event_callback(self, callback: callable) -> None:
+        """Đăng ký hàm callback khi có sự kiện."""
+        if callback not in self._event_callbacks:
+            self._event_callbacks.append(callback)
+
+    def unregister_event_callback(self, callback: callable) -> None:
+        """Hủy đăng ký callback."""
+        if callback in self._event_callbacks:
+            self._event_callbacks.remove(callback)
+
+    def get_state(self, state_type: str) -> bool:
+        """Lấy trạng thái hiện tại (motion, vehicle, human)."""
+        return self._states.get(state_type, False)
+
+    def _run_event_stream(self) -> None:
+        """Kết nối HTTP Stream tới /cgi-bin/eventManager.cgi và lắng nghe liên tục."""
+        url = (
+            f"http://{self.host}:{self.port}"
+            "/cgi-bin/eventManager.cgi?action=attach"
+            "&codes=[VideoMotion,SmartMotionHuman,SmartMotionVehicle,CrossLineDetection,CrossRegionDetection,AlarmLocal]"
+        )
+        auth = HTTPDigestAuth(self.username, self.password)
+
+        while not self._event_stop.is_set():
+            try:
+                with requests.get(url, auth=auth, stream=True, timeout=(10, 60)) as r:
+                    if r.status_code == 401:
+                        # Fallback basic auth
+                        r = requests.get(
+                            url,
+                            auth=(self.username, self.password),
+                            stream=True,
+                            timeout=(10, 60),
+                        )
+
+                    if r.status_code != 200:
+                        _LOGGER.warning(
+                            "Không thể mở event stream trên %s: HTTP %s (sẽ thử lại sau 10s)",
+                            self.host,
+                            r.status_code,
+                        )
+                        time.sleep(10)
+                        continue
+
+                    _LOGGER.info("Đã kết nối thành công event stream camera %s", self.host)
+                    for line in r.iter_lines(chunk_size=512):
+                        if self._event_stop.is_set():
+                            break
+                        if not line:
+                            continue
+                        try:
+                            text = line.decode("utf-8", errors="ignore").strip()
+                        except Exception:
+                            continue
+
+                        if "Code=" in text and "action=" in text:
+                            self._process_event_line(text)
+
+            except Exception as exc:
+                if not self._event_stop.is_set():
+                    _LOGGER.debug(
+                        "Mất kết nối event stream camera %s: %s (tự kết nối lại sau 5s)",
+                        self.host,
+                        exc,
+                    )
+                    time.sleep(5)
+
+    def _process_event_line(self, text: str) -> None:
+        """Phân tích dòng sự kiện từ Dahua event stream."""
+        parts = text.split(";")
+        kv: dict[str, str] = {}
+        for part in parts:
+            if "=" in part:
+                k, v = part.split("=", 1)
+                kv[k.strip()] = v.strip()
+
+        code = kv.get("Code", "")
+        action = kv.get("action", "")  # "Start" hoặc "Stop"
+        try:
+            index = int(kv.get("index", 0))
+        except ValueError:
+            index = 0
+
+        if not code or not action:
+            return
+
+        is_on = action.lower() == "start"
+
+        event_type = None
+        if code in ["VideoMotion", "CrossLineDetection", "CrossRegionDetection"]:
+            self._states["motion"] = is_on
+            event_type = EVENT_IMOU_MOTION
+        elif code in ["SmartMotionVehicle"]:
+            self._states["vehicle"] = is_on
+            self._states["motion"] = is_on
+            event_type = EVENT_IMOU_VEHICLE
+        elif code in ["SmartMotionHuman"]:
+            self._states["human"] = is_on
+            self._states["motion"] = is_on
+            event_type = EVENT_IMOU_HUMAN
+
+        # Bắn sự kiện lên HA Event Bus
+        if self._hass and event_type and is_on:
+            event_data = {
+                "host": self.host,
+                "code": code,
+                "action": action,
+                "index": index,
+                "device_name": self.info.get("model") or "Imou Camera",
+            }
+            try:
+                self._hass.loop.call_soon_threadsafe(
+                    self._hass.bus.async_fire, event_type, event_data
+                )
+            except Exception as err:
+                _LOGGER.debug("Lỗi khi bắn event %s: %s", event_type, err)
+
+        # Gọi các callback đã đăng ký từ entity
+        for cb in list(self._event_callbacks):
+            try:
+                cb(code, action, index)
+            except Exception as err:
+                _LOGGER.error("Lỗi khi chạy callback event: %s", err)
+
+    # ---------------------------------------------------------------
+
     def connect(self):
         """Kết nối ONVIF, nạp profiles + PTZ. Ném lỗi nếu thất bại."""
         cam = ONVIFCamera(self.host, self.port, self.username, self.password)

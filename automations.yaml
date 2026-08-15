@@ -48,22 +48,41 @@
 # ==========================================
 - id: 'trigger_scan_plate_on_motion'
   alias: "Camera Sân - Quét Biển Số Xe"
-  description: "Khi camera sân phát hiện chuyển động thì gọi AI quét biển số"
+  description: "Khi camera sân phát hiện chuyển động hoặc nhận diện xe thì gọi AI quét biển số"
   triggers:
+    # 1. Bắt sự kiện chuyển động / phát hiện xe từ camera Imou qua HA Event Bus
+    - trigger: event
+      event_type: imou_ranger_vehicle_detected
+    - trigger: event
+      event_type: imou_ranger_motion
+
+    # 2. Bắt trạng thái cảm biến chuyển động / nhận diện xe Imou
     - trigger: state
       entity_id:
-        - camera.ipc_gs7e_3m0we_2
-        - camera.ipc_gs7e_3m0we
+        - binary_sensor.ipc_gs7e_3m0we_chuyen_dong
+        - binary_sensor.ipc_gs7e_3m0we_phat_hien_xe
+        - binary_sensor.ipc_gs7e_3m0we_2_chuyen_dong
+        - binary_sensor.ipc_gs7e_3m0we_2_phat_hien_xe
+        - binary_sensor.imou_ranger_2_chuyen_dong
+        - binary_sensor.imou_ranger_2_phat_hien_xe
+      to: 'on'
   conditions:
+    # Chỉ quét khi cửa cuốn chưa ở trạng thái đang mở hoặc đã mở
     - condition: template
       value_template: >
-        {{ trigger.from_state is defined and trigger.from_state is not none and trigger.from_state.state not in ['unavailable', 'unknown'] }}
+        {{ states('input_select.trang_thai_cua') != 'ĐANG MỞ' and states('input_select.trang_thai_cua') != 'ĐÃ MỞ' }}
   actions:
-    - action: image_processing.scan
-      target:
-        entity_id:
-          - image_processing.platerecognizer_ipc_gs7e_3m0we_2
-          - image_processing.platerecognizer_ipc_gs7e_3m0we
+    # Quét ảnh 3 lần cách nhau 2 giây để bắt trọn góc chụp xe rõ nhất khi xe tiến vào sân
+    - repeat:
+        count: 3
+        sequence:
+          - action: image_processing.scan
+            target:
+              entity_id:
+                - image_processing.platerecognizer_ipc_gs7e_3m0we_2
+                - image_processing.platerecognizer_ipc_gs7e_3m0we
+          - delay:
+              seconds: 2
   mode: restart
 
 # ==========================================
@@ -82,7 +101,7 @@
     - trigger: event
       event_type: platerecognizer.plate_detected
   conditions:
-    # 1. Phải có ít nhất 1 biển số được tìm thấy (state > 0) hoặc có sự kiện xe đến
+    # 1. Phải có ít nhất 1 biển số được tìm thấy hoặc có sự kiện xe đến
     - condition: template
       value_template: >
         {% set s1 = states('image_processing.platerecognizer_ipc_gs7e_3m0we_2') | int(0) %}
@@ -90,16 +109,16 @@
         {% set has_event = trigger.event is defined and trigger.event.data is defined %}
         {{ s1 > 0 or s2 > 0 or has_event }}
 
-    # 2. Phải đúng biển số xe 30K-588.75 (phải là True trong watched_plates hoặc results)
+    # 2. Phải đúng biển số xe 30K-588.75 (so khớp không phân biệt hoa thường, dấu gạch, chấm)
     - condition: template
       value_template: >
         {% set p1 = state_attr('image_processing.platerecognizer_ipc_gs7e_3m0we_2', 'watched_plates') or {} %}
         {% set p2 = state_attr('image_processing.platerecognizer_ipc_gs7e_3m0we', 'watched_plates') or {} %}
-        {% set ev_p = (trigger.event.data.plate if trigger.event is defined and trigger.event.data is defined else '') | lower | replace('-', '') | replace('.', '') %}
+        {% set ev_p = (trigger.event.data.plate if trigger.event is defined and trigger.event.data is defined else '') | lower | replace('-', '') | replace('.', '') | replace(' ', '') %}
         {% set res1 = (state_attr('image_processing.platerecognizer_ipc_gs7e_3m0we_2', 'results') or []) | map(attribute='plate') | list | map('lower') | list %}
         {% set res2 = (state_attr('image_processing.platerecognizer_ipc_gs7e_3m0we', 'results') or []) | map(attribute='plate') | list | map('lower') | list %}
-        {{ (p1 is mapping and (p1.get('30k58875') == true or p1.get('30K58875') == true or p1.get('30K-588.75') == true or p1.get('30K-58875') == true))
-           or (p2 is mapping and (p2.get('30k58875') == true or p2.get('30K58875') == true or p2.get('30K-588.75') == true or p2.get('30K-58875') == true))
+        {{ (p1 is mapping and (p1.get('30k58875') == true or p1.get('30K58875') == true or p1.get('30K-588.75') == true or p1.get('30K-58875') == true or p1.get('30k-588.75') == true or p1.get('30k-58875') == true))
+           or (p2 is mapping and (p2.get('30k58875') == true or p2.get('30K58875') == true or p2.get('30K-588.75') == true or p2.get('30K-58875') == true or p2.get('30k-588.75') == true or p2.get('30k-58875') == true))
            or '30k58875' in res1 or '30k58875' in res2
            or '30k58875' in ev_p }}
 
@@ -108,18 +127,38 @@
       value_template: >
         {{ states('input_select.trang_thai_cua') != 'ĐANG MỞ' and states('input_select.trang_thai_cua') != 'ĐÃ MỞ' }}
   actions:
-    # A. Gọi kịch bản mở cửa cuốn
+    # A. Chụp ảnh lưu lại snapshot lịch sử xe về
+    - action: camera.snapshot
+      target:
+        entity_id: camera.ipc_gs7e_3m0we_2
+      data:
+        filename: /config/www/snapshots/xe_30k58875_latest.jpg
+
+    - action: camera.snapshot
+      target:
+        entity_id: camera.ipc_gs7e_3m0we_2
+      data:
+        filename: "/config/www/snapshots/xe_30k58875_{{ now().strftime('%Y%m%d_%H%M%S') }}.jpg"
+
+    # B. Ghi sự kiện vào Lịch sử (Logbook) của Home Assistant
+    - action: logbook.log
+      data:
+        name: "🚗 Nhận diện xe 30K-588.75"
+        message: "Camera sân đã chụp ảnh và nhận diện đúng xe 30K-588.75 lúc {{ now().strftime('%H:%M:%S ngày %d/%m/%Y') }}. Đã tự động mở cửa cuốn."
+        entity_id: cover.cong_tac_cua_cuon
+
+    # C. Gọi kịch bản mở cửa cuốn
     - action: script.turn_on
       target:
         entity_id: script.cua_mo
 
-
-    # B. Gửi thông báo đẩy về điện thoại & ứng dụng
+    # D. Gửi thông báo đẩy về điện thoại kèm ảnh chụp xe
     - action: notify.notify
       data:
         title: "🚗 Đã nhận diện xe 30K-588.75!"
-        message: "Camera Sân đã quét đúng xe 30K-588.75 của bạn. Cửa cuốn đang tự động mở!"
+        message: "Camera Sân đã quét đúng xe 30K-588.75 của bạn lúc {{ now().strftime('%H:%M:%S ngày %d/%m/%Y') }}. Cửa cuốn đang tự động mở!"
         data:
+          image: "/local/snapshots/xe_30k58875_latest.jpg"
           push:
             sound: "default"
             interruption-level: "time-sensitive"
@@ -127,11 +166,22 @@
           priority: high
           channel: "alpr_door_alert"
 
-    # C. Gửi thông báo lưu trên bảng điều khiển Home Assistant
+    # E. Lưu thông báo kèm hình ảnh trên Bảng thông báo của Home Assistant
     - action: notify.persistent_notification
       data:
-        title: "🚗 Đã nhận diện xe 30K-588.75!"
-        message: "Camera Sân đã quét đúng xe 30K-588.75 của bạn lúc {{ now().strftime('%H:%M:%S ngày %d/%m/%Y') }}. Cửa cuốn đã được tự động mở."
+        title: "🚗 Lịch sử xe về: 30K-588.75"
+        message: >
+          ![Ảnh chụp xe](/local/snapshots/xe_30k58875_latest.jpg?t={{ now().timestamp() }})
+
+          **Thời gian:** {{ now().strftime('%H:%M:%S ngày %d/%m/%Y') }}
+
+          **Biển số:** 30K-588.75
+
+          **Camera:** Sân trước
+
+          **Hành động:** Nhận diện thành công & Đã tự động mở cửa cuốn.
   mode: single
+
+
 
 
