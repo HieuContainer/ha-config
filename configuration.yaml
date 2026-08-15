@@ -77,40 +77,40 @@ shell_command:
     git checkout origin/main -- automations.yaml configuration.yaml dashboard_nha-c-a-hi-u.yaml custom_components/
 
 
-# Bá»˜ TRá»¢ GIĂP ÄIá»€U KHIá»‚N Sáº C & Xáº¢ PIN LUXPOWER
+# BỘ TRỢ GIÚP ĐIỀU KHIỂN SẠC & XẢ PIN LUXPOWER
 input_boolean:
   solar_ac_charge_enabled:
-    name: "KĂ­ch hoáº¡t sáº¡c lÆ°á»›i theo giá»"
+    name: "Kích hoạt sạc lưới theo giờ"
     icon: mdi:battery-charging
   solar_discharge_enabled:
-    name: "KĂ­ch hoáº¡t xáº£ pin theo giá»"
+    name: "Kích hoạt xả pin theo giờ"
     icon: mdi:battery-arrow-down
 
 input_datetime:
   solar_ac_charge_start:
-    name: "Giá» báº¯t Ä‘áº§u sáº¡c lÆ°á»›i"
+    name: "Giờ bắt đầu sạc lưới"
     has_date: false
     has_time: true
     initial: "23:00"
   solar_ac_charge_end:
-    name: "Giá» káº¿t thĂºc sáº¡c lÆ°á»›i"
+    name: "Giờ kết thúc sạc lưới"
     has_date: false
     has_time: true
     initial: "05:00"
   solar_discharge_start:
-    name: "Giá» báº¯t Ä‘áº§u xáº£ pin"
+    name: "Giờ bắt đầu xả pin"
     has_date: false
     has_time: true
     initial: "17:00"
   solar_discharge_end:
-    name: "Giá» káº¿t thĂºc xáº£ pin"
+    name: "Giờ kết thúc xả pin"
     has_date: false
     has_time: true
     initial: "21:00"
 
 input_number:
   solar_ac_charge_soc_limit:
-    name: "NgÆ°á»¡ng dá»«ng sáº¡c lÆ°á»›i (% SOC)"
+    name: "Ngưỡng dừng sạc lưới (% SOC)"
     min: 20
     max: 100
     step: 5
@@ -118,7 +118,7 @@ input_number:
     initial: 90
     icon: mdi:battery-charging-90
   solar_discharge_soc_cutoff:
-    name: "NgÆ°á»¡ng dá»«ng xáº£ báº£o vá»‡ pin (% SOC)"
+    name: "Ngưỡng dừng xả bảo vệ pin (% SOC)"
     min: 10
     max: 50
     step: 5
@@ -131,7 +131,7 @@ homeassistant:
     - "/config/www/snapshots"
 
 # ==========================================
-# NHáº¬N DIá»†N BIá»‚N Sá» XE AI (PLATE RECOGNIZER)
+# NHẬN DIỆN BIỂN SỐ XE AI (PLATE RECOGNIZER)
 # ==========================================
 image_processing:
   - platform: platerecognizer
@@ -151,5 +151,3 @@ image_processing:
     source:
       - entity_id: camera.ipc_gs7e_3m0we_2
       - entity_id: camera.ipc_gs7e_3m0we
-
-
