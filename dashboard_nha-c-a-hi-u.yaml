@@ -1370,8 +1370,11 @@ views:
     show_entity_picture: true
   max_columns: 4
   title: Chế độ Phone
+  path: phone
+  icon: mdi:cellphone
   cards: []
 - type: sections
+
   background:
     opacity: 33
     alignment: center
@@ -2750,3 +2753,7 @@ views:
     show_name: true
   show_icon_and_title: true
   dense_section_placement: true
+  title: Chế độ PC
+  path: pc
+  icon: mdi:laptop
+
