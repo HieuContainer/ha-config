@@ -50,11 +50,13 @@
   alias: "Camera Sân - Quét Biển Số Xe"
   description: "Khi camera sân phát hiện chuyển động hoặc nhận diện xe thì gọi AI quét biển số"
   triggers:
-    # 1. Bắt sự kiện chuyển động / phát hiện xe từ camera Imou qua HA Event Bus
+    # 1. Bắt sự kiện chuyển động / phát hiện xe / người từ camera Imou qua HA Event Bus
     - trigger: event
       event_type: imou_ranger_vehicle_detected
     - trigger: event
       event_type: imou_ranger_motion
+    - trigger: event
+      event_type: imou_ranger_human_detected
 
     # 2. Bắt trạng thái cảm biến chuyển động / nhận diện xe Imou
     - trigger: state
@@ -67,14 +69,14 @@
         - binary_sensor.imou_ranger_2_phat_hien_xe
       to: 'on'
   conditions:
-    # Chỉ quét khi cửa cuốn chưa ở trạng thái đang mở hoặc đã mở
+    # Chỉ quét khi cửa cuốn chưa ở trạng thái mở hoàn toàn
     - condition: template
       value_template: >
-        {{ states('input_select.trang_thai_cua') != 'ĐANG MỞ' and states('input_select.trang_thai_cua') != 'ĐÃ MỞ' }}
+        {{ states('cover.cong_tac_cua_cuon') != 'open' and states('input_select.trang_thai_cua') != 'ĐÃ MỞ' }}
   actions:
-    # Quét ảnh 3 lần cách nhau 2 giây để bắt trọn góc chụp xe rõ nhất khi xe tiến vào sân
+    # Quét ảnh 5 lần, mỗi lần cách nhau 2 giây (tổng cộng 10 giây) để bắt kịp lúc xe rẽ vào và dừng trước cổng
     - repeat:
-        count: 3
+        count: 5
         sequence:
           - action: image_processing.scan
             target:
@@ -90,7 +92,7 @@
 # ==========================================
 - id: 'auto_open_door_by_plate_30k58875'
   alias: "Cửa Cuốn - Tự Động Mở Khi Nhận Diện Xe 30K-588.75"
-  description: "Camera quét đúng biển số xe 30K-588.75 và nhận diện xe thì tự động mở cửa cuốn"
+  description: "Camera quét đúng biển số xe 30K-588.75 thì tự động mở cửa cuốn"
   triggers:
     - trigger: state
       entity_id:
@@ -98,34 +100,45 @@
         - image_processing.platerecognizer_ipc_gs7e_3m0we
     - trigger: event
       event_type: platerecognizer.vehicle_detected
-    - trigger: event
-      event_type: platerecognizer.plate_detected
   conditions:
-    # 1. Phải có ít nhất 1 biển số được tìm thấy hoặc có sự kiện xe đến
+    # 1. So khớp biển số xe 30K-588.75 (làm sạch dấu chấm, gạch ngang, khoảng trắng, chữ hoa/thường)
     - condition: template
       value_template: >
-        {% set s1 = states('image_processing.platerecognizer_ipc_gs7e_3m0we_2') | int(0) %}
-        {% set s2 = states('image_processing.platerecognizer_ipc_gs7e_3m0we') | int(0) %}
-        {% set has_event = trigger.event is defined and trigger.event.data is defined %}
-        {{ s1 > 0 or s2 > 0 or has_event }}
+        {% set target = '30k58875' %}
+        {% set ev_p = (trigger.event.data.plate if (trigger.event is defined and trigger.event.data is defined and trigger.event.data.plate is defined) else '') | lower | replace('-', '') | replace('.', '') | replace(' ', '') %}
+        {% set v1 = state_attr('image_processing.platerecognizer_ipc_gs7e_3m0we_2', 'vehicles') or [] %}
+        {% set plates1 = v1 | map(attribute='plate') | list if v1 is iterable else [] %}
+        {% set v2 = state_attr('image_processing.platerecognizer_ipc_gs7e_3m0we', 'vehicles') or [] %}
+        {% set plates2 = v2 | map(attribute='plate') | list if v2 is iterable else [] %}
+        {% set wp1 = state_attr('image_processing.platerecognizer_ipc_gs7e_3m0we_2', 'watched_plates') or {} %}
+        {% set wp2 = state_attr('image_processing.platerecognizer_ipc_gs7e_3m0we', 'watched_plates') or {} %}
+        {% set all_raw = [] %}
+        {% if ev_p %}{% set _ = all_raw.append(ev_p) %}{% endif %}
+        {% for p in plates1 %}{% set _ = all_raw.append(p) %}{% endfor %}
+        {% for p in plates2 %}{% set _ = all_raw.append(p) %}{% endfor %}
+        {% if wp1 is mapping %}
+          {% for k, v in wp1.items() %}
+            {% if v == true %}{% set _ = all_raw.append(k) %}{% endif %}
+          {% endfor %}
+        {% endif %}
+        {% if wp2 is mapping %}
+          {% for k, v in wp2.items() %}
+            {% if v == true %}{% set _ = all_raw.append(k) %}{% endif %}
+          {% endfor %}
+        {% endif %}
+        {% set normalized = all_raw | map('lower') | map('replace', '-', '') | map('replace', '.', '') | map('replace', ' ', '') | list %}
+        {% set match = namespace(found=false) %}
+        {% for p in normalized %}
+          {% if target in p or p in target or '30k5887' in p %}
+            {% set match.found = true %}
+          {% endif %}
+        {% endfor %}
+        {{ match.found }}
 
-    # 2. Phải đúng biển số xe 30K-588.75 (so khớp không phân biệt hoa thường, dấu gạch, chấm)
+    # 2. Cửa cuốn hiện tại chưa ở trạng thái mở hẳn
     - condition: template
       value_template: >
-        {% set p1 = state_attr('image_processing.platerecognizer_ipc_gs7e_3m0we_2', 'watched_plates') or {} %}
-        {% set p2 = state_attr('image_processing.platerecognizer_ipc_gs7e_3m0we', 'watched_plates') or {} %}
-        {% set ev_p = (trigger.event.data.plate if trigger.event is defined and trigger.event.data is defined else '') | lower | replace('-', '') | replace('.', '') | replace(' ', '') %}
-        {% set res1 = (state_attr('image_processing.platerecognizer_ipc_gs7e_3m0we_2', 'results') or []) | map(attribute='plate') | list | map('lower') | list %}
-        {% set res2 = (state_attr('image_processing.platerecognizer_ipc_gs7e_3m0we', 'results') or []) | map(attribute='plate') | list | map('lower') | list %}
-        {{ (p1 is mapping and (p1.get('30k58875') == true or p1.get('30K58875') == true or p1.get('30K-588.75') == true or p1.get('30K-58875') == true or p1.get('30k-588.75') == true or p1.get('30k-58875') == true))
-           or (p2 is mapping and (p2.get('30k58875') == true or p2.get('30K58875') == true or p2.get('30K-588.75') == true or p2.get('30K-58875') == true or p2.get('30k-588.75') == true or p2.get('30k-58875') == true))
-           or '30k58875' in res1 or '30k58875' in res2
-           or '30k58875' in ev_p }}
-
-    # 3. Cửa cuốn hiện tại phải không ở trạng thái đang mở hoặc đã mở
-    - condition: template
-      value_template: >
-        {{ states('input_select.trang_thai_cua') != 'ĐANG MỞ' and states('input_select.trang_thai_cua') != 'ĐÃ MỞ' }}
+        {{ states('cover.cong_tac_cua_cuon') != 'open' and states('input_select.trang_thai_cua') != 'ĐÃ MỞ' }}
   actions:
     # A. Chụp ảnh lưu lại snapshot lịch sử xe về
     - action: camera.snapshot
@@ -144,7 +157,7 @@
     - action: logbook.log
       data:
         name: "🚗 Nhận diện xe 30K-588.75"
-        message: "Camera sân đã chụp ảnh và nhận diện đúng xe 30K-588.75 lúc {{ now().strftime('%H:%M:%S ngày %d/%m/%Y') }}. Đã tự động mở cửa cuốn."
+        message: "Camera sân đã nhận diện đúng xe 30K-588.75 lúc {{ now().strftime('%H:%M:%S ngày %d/%m/%Y') }}. Đã tự động mở cửa cuốn."
         entity_id: cover.cong_tac_cua_cuon
 
     # C. Gọi kịch bản mở cửa cuốn
@@ -181,6 +194,42 @@
 
           **Hành động:** Nhận diện thành công & Đã tự động mở cửa cuốn.
   mode: single
+
+# ==========================================
+# 3. ĐỒNG BỘ TRẠNG THÁI CỬA CUỐN KHI ĐÓNG/MỞ
+# ==========================================
+- id: 'sync_door_state_closed'
+  alias: "Cửa Cuốn - Tự Đồng Bộ Trạng Thái Khi Đóng"
+  description: "Khi công tắc cửa cuốn chuyển sang closed thì cập nhật input_select về ĐÃ ĐÓNG"
+  triggers:
+    - trigger: state
+      entity_id: cover.cong_tac_cua_cuon
+      to: 'closed'
+  conditions: []
+  actions:
+    - action: input_select.select_option
+      target:
+        entity_id: input_select.trang_thai_cua
+      data:
+        option: "ĐÃ ĐÓNG"
+  mode: single
+
+- id: 'sync_door_state_open'
+  alias: "Cửa Cuốn - Tự Đồng Bộ Trạng Thái Khi Mở"
+  description: "Khi công tắc cửa cuốn chuyển sang open thì cập nhật input_select về ĐÃ MỞ"
+  triggers:
+    - trigger: state
+      entity_id: cover.cong_tac_cua_cuon
+      to: 'open'
+  conditions: []
+  actions:
+    - action: input_select.select_option
+      target:
+        entity_id: input_select.trang_thai_cua
+      data:
+        option: "ĐÃ MỞ"
+  mode: single
+
 
 
 
