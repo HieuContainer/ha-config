@@ -68,11 +68,7 @@
         - binary_sensor.imou_ranger_2_chuyen_dong
         - binary_sensor.imou_ranger_2_phat_hien_xe
       to: 'on'
-  conditions:
-    # Chỉ quét khi cửa cuốn chưa ở trạng thái mở hoàn toàn
-    - condition: template
-      value_template: >
-        {{ states('cover.cong_tac_cua_cuon') != 'open' and states('input_select.trang_thai_cua') != 'ĐÃ MỞ' }}
+  conditions: []
   actions:
     # Quét ảnh 5 lần, mỗi lần cách nhau 2 giây (tổng cộng 10 giây) để bắt kịp lúc xe rẽ vào và dừng trước cổng
     - repeat:
@@ -92,7 +88,7 @@
 # ==========================================
 - id: 'auto_open_door_by_plate_30k58875'
   alias: "Cửa Cuốn - Tự Động Mở Khi Nhận Diện Xe 30K-588.75"
-  description: "Camera quét đúng biển số xe 30K-588.75 thì tự động mở cửa cuốn"
+  description: "Camera quét đúng biển số xe 30K-588.75 thì tự động mở cửa cuốn (bất kể trạng thái cửa hiện tại)"
   triggers:
     - trigger: state
       entity_id:
@@ -101,7 +97,7 @@
     - trigger: event
       event_type: platerecognizer.vehicle_detected
   conditions:
-    # 1. So khớp biển số xe 30K-588.75 (làm sạch dấu chấm, gạch ngang, khoảng trắng, chữ hoa/thường)
+    # So khớp biển số xe 30K-588.75 (làm sạch dấu chấm, gạch ngang, khoảng trắng, chữ hoa/thường)
     - condition: template
       value_template: >
         {% set target = '30k58875' %}
@@ -134,11 +130,6 @@
           {% endif %}
         {% endfor %}
         {{ match.found }}
-
-    # 2. Cửa cuốn hiện tại chưa ở trạng thái mở hẳn
-    - condition: template
-      value_template: >
-        {{ states('cover.cong_tac_cua_cuon') != 'open' and states('input_select.trang_thai_cua') != 'ĐÃ MỞ' }}
   actions:
     # A. Chụp ảnh lưu lại snapshot lịch sử xe về
     - action: camera.snapshot
