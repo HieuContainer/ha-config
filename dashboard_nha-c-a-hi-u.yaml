@@ -37,11 +37,11 @@ views:
               custom_fields:
                 content: |
                   [[[
-                    var p_today = (states['sensor.luxpower_inverter_pv_pv_energy_today'] && states['sensor.luxpower_inverter_pv_pv_energy_today'].state != 'unavailable') ? states['sensor.luxpower_inverter_pv_pv_energy_today'].state : '0.0';
-                    var p_total = (states['sensor.pv_energy_monthly'] && states['sensor.pv_energy_monthly'].state != 'unavailable' && states['sensor.pv_energy_monthly'].state != 'unknown') ? states['sensor.pv_energy_monthly'].state : ((states['sensor.luxpower_inverter_pv_pv_energy_total'] && states['sensor.luxpower_inverter_pv_pv_energy_total'].state != 'unavailable') ? states['sensor.luxpower_inverter_pv_pv_energy_total'].state : '0.0');
-                    var p_power = (states['sensor.luxpower_inverter_pv_pv_power'] && states['sensor.luxpower_inverter_pv_pv_power'].state != 'unavailable') ? states['sensor.luxpower_inverter_pv_pv_power'].state : '0';
-                    var p_volt = (states['sensor.luxpower_inverter_pv_pv1_voltage'] && states['sensor.luxpower_inverter_pv_pv1_voltage'].state != 'unavailable') ? states['sensor.luxpower_inverter_pv_pv1_voltage'].state : '0.0';
-                    var p_curr = (states['sensor.luxpower_inverter_pv_pv1_current'] && states['sensor.luxpower_inverter_pv_pv1_current'].state != 'unavailable') ? states['sensor.luxpower_inverter_pv_pv1_current'].state : '0.0';
+                    var p_today = (states['sensor.luxpower_inverter_pv_pv_energy_today'] && states['sensor.luxpower_inverter_pv_pv_energy_today'].state != 'unavailable' && states['sensor.luxpower_inverter_pv_pv_energy_today'].state != 'unknown') ? states['sensor.luxpower_inverter_pv_pv_energy_today'].state : '0.0';
+                    var p_total = (states['sensor.luxpower_inverter_pv_pv_energy_total'] && states['sensor.luxpower_inverter_pv_pv_energy_total'].state != 'unavailable' && states['sensor.luxpower_inverter_pv_pv_energy_total'].state != 'unknown') ? states['sensor.luxpower_inverter_pv_pv_energy_total'].state : '0.0';
+                    var p_power = (states['sensor.luxpower_inverter_pv_pv_power'] && states['sensor.luxpower_inverter_pv_pv_power'].state != 'unavailable' && states['sensor.luxpower_inverter_pv_pv_power'].state != 'unknown') ? states['sensor.luxpower_inverter_pv_pv_power'].state : '0';
+                    var p_volt = (states['sensor.luxpower_inverter_pv_pv1_voltage'] && states['sensor.luxpower_inverter_pv_pv1_voltage'].state != 'unavailable' && states['sensor.luxpower_inverter_pv_pv1_voltage'].state != 'unknown') ? states['sensor.luxpower_inverter_pv_pv1_voltage'].state : '0.0';
+                    var p_curr = (states['sensor.luxpower_inverter_pv_pv1_current'] && states['sensor.luxpower_inverter_pv_pv1_current'].state != 'unavailable' && states['sensor.luxpower_inverter_pv_pv1_current'].state != 'unknown') ? states['sensor.luxpower_inverter_pv_pv1_current'].state : '0.0';
                     var is_gen = parseFloat(p_power) > 5;
 
                     var p_val = parseFloat(p_total) || 0;
