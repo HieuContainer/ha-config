@@ -1,4 +1,4 @@
-﻿views:
+views:
 - type: sections
   sections:
   - type: grid
@@ -141,12 +141,12 @@
               custom_fields:
                 content: |
                   [[[
-                    var soc = (states['sensor.luxpower_inverter_battery_battery_soc'] && states['sensor.luxpower_inverter_battery_battery_soc'].state != 'unavailable') ? states['sensor.luxpower_inverter_battery_battery_soc'].state : '0';
-                    var b_power = (states['sensor.luxpower_inverter_battery_battery_power'] && states['sensor.luxpower_inverter_battery_battery_power'].state != 'unavailable') ? states['sensor.luxpower_inverter_battery_battery_power'].state : '0';
-                    var b_chg_today = (states['sensor.luxpower_inverter_battery_charge_energy_today'] && states['sensor.luxpower_inverter_battery_charge_energy_today'].state != 'unavailable') ? states['sensor.luxpower_inverter_battery_charge_energy_today'].state : '0.0';
-                    var b_chg_total = (states['sensor.battery_charge_monthly'] && states['sensor.battery_charge_monthly'].state != 'unavailable' && states['sensor.battery_charge_monthly'].state != 'unknown') ? states['sensor.battery_charge_monthly'].state : ((states['sensor.luxpower_inverter_battery_charge_energy_total'] && states['sensor.luxpower_inverter_battery_charge_energy_total'].state != 'unavailable') ? states['sensor.luxpower_inverter_battery_charge_energy_total'].state : '0.0');
-                    var b_dis_today = (states['sensor.luxpower_inverter_battery_discharge_energy_today'] && states['sensor.luxpower_inverter_battery_discharge_energy_today'].state != 'unavailable') ? states['sensor.luxpower_inverter_battery_discharge_energy_today'].state : '0.0';
-                    var b_dis_total = (states['sensor.battery_discharge_monthly'] && states['sensor.battery_discharge_monthly'].state != 'unavailable' && states['sensor.battery_discharge_monthly'].state != 'unknown') ? states['sensor.battery_discharge_monthly'].state : ((states['sensor.luxpower_inverter_battery_discharge_energy_total'] && states['sensor.luxpower_inverter_battery_discharge_energy_total'].state != 'unavailable') ? states['sensor.luxpower_inverter_battery_discharge_energy_total'].state : '0.0');
+                    var soc = (states['sensor.luxpower_inverter_battery_battery_soc'] && states['sensor.luxpower_inverter_battery_battery_soc'].state != 'unavailable' && states['sensor.luxpower_inverter_battery_battery_soc'].state != 'unknown') ? states['sensor.luxpower_inverter_battery_battery_soc'].state : '0';
+                    var b_power = (states['sensor.luxpower_inverter_battery_battery_power'] && states['sensor.luxpower_inverter_battery_battery_power'].state != 'unavailable' && states['sensor.luxpower_inverter_battery_battery_power'].state != 'unknown') ? states['sensor.luxpower_inverter_battery_battery_power'].state : '0';
+                    var b_chg_today = (states['sensor.luxpower_inverter_battery_charge_energy_today'] && states['sensor.luxpower_inverter_battery_charge_energy_today'].state != 'unavailable' && states['sensor.luxpower_inverter_battery_charge_energy_today'].state != 'unknown') ? states['sensor.luxpower_inverter_battery_charge_energy_today'].state : '0.0';
+                    var b_chg_total = (states['sensor.battery_charge_monthly'] && states['sensor.battery_charge_monthly'].state != 'unavailable' && states['sensor.battery_charge_monthly'].state != 'unknown') ? states['sensor.battery_charge_monthly'].state : ((states['sensor.luxpower_inverter_battery_charge_energy_total'] && states['sensor.luxpower_inverter_battery_charge_energy_total'].state != 'unavailable' && states['sensor.luxpower_inverter_battery_charge_energy_total'].state != 'unknown') ? states['sensor.luxpower_inverter_battery_charge_energy_total'].state : '0.0');
+                    var b_dis_today = (states['sensor.luxpower_inverter_battery_discharge_energy_today'] && states['sensor.luxpower_inverter_battery_discharge_energy_today'].state != 'unavailable' && states['sensor.luxpower_inverter_battery_discharge_energy_today'].state != 'unknown') ? states['sensor.luxpower_inverter_battery_discharge_energy_today'].state : '0.0';
+                    var b_dis_total = (states['sensor.battery_discharge_monthly'] && states['sensor.battery_discharge_monthly'].state != 'unavailable' && states['sensor.battery_discharge_monthly'].state != 'unknown') ? states['sensor.battery_discharge_monthly'].state : ((states['sensor.luxpower_inverter_battery_discharge_energy_total'] && states['sensor.luxpower_inverter_battery_discharge_energy_total'].state != 'unavailable' && states['sensor.luxpower_inverter_battery_discharge_energy_total'].state != 'unknown') ? states['sensor.luxpower_inverter_battery_discharge_energy_total'].state : '0.0');
 
                     return `
                       <div style="display: flex; flex-direction: column; justify-content: space-between; height: 100%; width: 100%; box-sizing: border-box;">
@@ -208,9 +208,9 @@
               custom_fields:
                 content: |
                   [[[
-                    var g_imp_p = (states['sensor.luxpower_inverter_grid_power_from_grid'] && states['sensor.luxpower_inverter_grid_power_from_grid'].state != 'unavailable') ? states['sensor.luxpower_inverter_grid_power_from_grid'].state : '0';
-                    var g_imp_today = (states['sensor.luxpower_inverter_grid_energy_from_grid_today'] && states['sensor.luxpower_inverter_grid_energy_from_grid_today'].state != 'unavailable') ? states['sensor.luxpower_inverter_grid_energy_from_grid_today'].state : '0.0';
-                    var g_imp_month = (states['sensor.grid_energy_monthly'] && states['sensor.grid_energy_monthly'].state != 'unavailable' && states['sensor.grid_energy_monthly'].state != 'unknown') ? states['sensor.grid_energy_monthly'].state : ((states['sensor.luxpower_inverter_grid_energy_from_grid_total'] && states['sensor.luxpower_inverter_grid_energy_from_grid_total'].state != 'unavailable') ? states['sensor.luxpower_inverter_grid_energy_from_grid_total'].state : '0.0');
+                    var g_imp_p = (states['sensor.luxpower_inverter_grid_power_from_grid'] && states['sensor.luxpower_inverter_grid_power_from_grid'].state != 'unavailable' && states['sensor.luxpower_inverter_grid_power_from_grid'].state != 'unknown') ? states['sensor.luxpower_inverter_grid_power_from_grid'].state : '0';
+                    var g_imp_today = (states['sensor.luxpower_inverter_grid_energy_from_grid_today'] && states['sensor.luxpower_inverter_grid_energy_from_grid_today'].state != 'unavailable' && states['sensor.luxpower_inverter_grid_energy_from_grid_today'].state != 'unknown') ? states['sensor.luxpower_inverter_grid_energy_from_grid_today'].state : '0.0';
+                    var g_imp_month = (states['sensor.grid_energy_monthly'] && states['sensor.grid_energy_monthly'].state != 'unavailable' && states['sensor.grid_energy_monthly'].state != 'unknown') ? states['sensor.grid_energy_monthly'].state : ((states['sensor.luxpower_inverter_grid_energy_from_grid_total'] && states['sensor.luxpower_inverter_grid_energy_from_grid_total'].state != 'unavailable' && states['sensor.luxpower_inverter_grid_energy_from_grid_total'].state != 'unknown') ? states['sensor.luxpower_inverter_grid_energy_from_grid_total'].state : '0.0');
 
                     var g_val = parseFloat(g_imp_month) || 0;
                     var cost = 0;

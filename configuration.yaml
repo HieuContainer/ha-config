@@ -91,22 +91,18 @@ input_datetime:
     name: "Giờ bắt đầu sạc lưới"
     has_date: false
     has_time: true
-    initial: "23:00"
   solar_ac_charge_end:
     name: "Giờ kết thúc sạc lưới"
     has_date: false
     has_time: true
-    initial: "05:00"
   solar_discharge_start:
     name: "Giờ bắt đầu xả pin"
     has_date: false
     has_time: true
-    initial: "17:00"
   solar_discharge_end:
     name: "Giờ kết thúc xả pin"
     has_date: false
     has_time: true
-    initial: "21:00"
 
 input_number:
   solar_ac_charge_soc_limit:
@@ -115,7 +111,6 @@ input_number:
     max: 100
     step: 5
     unit_of_measurement: "%"
-    initial: 90
     icon: mdi:battery-charging-90
   solar_discharge_soc_cutoff:
     name: "Ngưỡng dừng xả bảo vệ pin (% SOC)"
@@ -123,7 +118,6 @@ input_number:
     max: 50
     step: 5
     unit_of_measurement: "%"
-    initial: 20
     icon: mdi:battery-alert
 
 homeassistant:
