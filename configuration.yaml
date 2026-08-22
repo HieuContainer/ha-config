@@ -49,25 +49,77 @@ template:
           {% else %} {{ w }}
           {% endif %}
 
+      - name: "Luxpower PV Energy Total Safe"
+        unique_id: luxpower_pv_energy_total_safe
+        unit_of_measurement: "kWh"
+        device_class: energy
+        state_class: total_increasing
+        state: >
+          {% set v = states('sensor.luxpower_inverter_pv_pv_energy_total') %}
+          {% if v not in ['unknown', 'unavailable', 'none', '0', '0.0'] and v | float(0) > 0 %}
+            {{ v | float(0) }}
+          {% else %}
+            {{ this.state | default(0, true) }}
+          {% endif %}
+
+      - name: "Luxpower Grid Energy Total Safe"
+        unique_id: luxpower_grid_energy_total_safe
+        unit_of_measurement: "kWh"
+        device_class: energy
+        state_class: total_increasing
+        state: >
+          {% set v = states('sensor.luxpower_inverter_grid_energy_from_grid_total') %}
+          {% if v not in ['unknown', 'unavailable', 'none', '0', '0.0'] and v | float(0) > 0 %}
+            {{ v | float(0) }}
+          {% else %}
+            {{ this.state | default(0, true) }}
+          {% endif %}
+
+      - name: "Luxpower Battery Charge Energy Total Safe"
+        unique_id: luxpower_battery_charge_energy_total_safe
+        unit_of_measurement: "kWh"
+        device_class: energy
+        state_class: total_increasing
+        state: >
+          {% set v = states('sensor.luxpower_inverter_battery_charge_energy_total') %}
+          {% if v not in ['unknown', 'unavailable', 'none', '0', '0.0'] and v | float(0) > 0 %}
+            {{ v | float(0) }}
+          {% else %}
+            {{ this.state | default(0, true) }}
+          {% endif %}
+
+      - name: "Luxpower Battery Discharge Energy Total Safe"
+        unique_id: luxpower_battery_discharge_energy_total_safe
+        unit_of_measurement: "kWh"
+        device_class: energy
+        state_class: total_increasing
+        state: >
+          {% set v = states('sensor.luxpower_inverter_battery_discharge_energy_total') %}
+          {% if v not in ['unknown', 'unavailable', 'none', '0', '0.0'] and v | float(0) > 0 %}
+            {{ v | float(0) }}
+          {% else %}
+            {{ this.state | default(0, true) }}
+          {% endif %}
+
 utility_meter:
   pv_energy_monthly:
     name: "PV Energy Monthly"
-    source: sensor.luxpower_inverter_pv_pv_energy_total
+    source: sensor.luxpower_pv_energy_total_safe
     cycle: monthly
 
   battery_charge_monthly:
     name: "Battery Charge Monthly"
-    source: sensor.luxpower_inverter_battery_charge_energy_total
+    source: sensor.luxpower_battery_charge_energy_total_safe
     cycle: monthly
 
   battery_discharge_monthly:
     name: "Battery Discharge Monthly"
-    source: sensor.luxpower_inverter_battery_discharge_energy_total
+    source: sensor.luxpower_battery_discharge_energy_total_safe
     cycle: monthly
 
   grid_energy_monthly:
     name: "Grid Energy Monthly"
-    source: sensor.luxpower_inverter_grid_energy_from_grid_total
+    source: sensor.luxpower_grid_energy_total_safe
     cycle: monthly
 
 shell_command:
